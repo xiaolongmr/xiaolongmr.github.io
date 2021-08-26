@@ -1,0 +1,395 @@
+li[class^=logo] {
+    position: relative;
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 50px;
+    background-size: 400px 240px !important;
+    border-radius: 50%;
+    /* background-color: #002fff !important; */
+    background: url(https://s.pc.qq.com/tousu/img/20210825/1745494_1629906127.jpg) no-repeat;
+}
+
+a:hover li[class^=logo] {
+    animation: zlnb 2s 1;
+}
+
+
+/* a:hover .logo {
+    animation: zlnb 2s 1;
+} */
+
+@keyframes zlnb {
+    0% {
+        top: 0px;
+        left: 0px;
+        background-color: rgb(255, 129, 129);
+    }
+    20% {
+        top: 0px;
+        left: 60px;
+        background-color: rgb(255, 182, 123);
+    }
+    30% {
+        top: 0px;
+        left: 0px;
+        background-color: rgb(255, 255, 124);
+    }
+    40% {
+        top: 0px;
+        left: 20px;
+        background-color: rgb(153, 255, 122);
+    }
+    50% {
+        top: 0px;
+        left: 00px;
+        background-color: rgb(123, 255, 237);
+    }
+    60% {
+        top: 0px;
+        left: 10px;
+        background-color: rgb(124, 192, 255);
+    }
+    70% {
+        top: 0px;
+        left: 0px;
+        background-color: rgb(199, 131, 255);
+    }
+    80% {
+        top: 0px;
+        left: 7px;
+        background-color: rgb(255, 128, 213);
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        background-color: rgb(255, 126, 126);
+    }
+}
+
+.logo_uigreat {
+    background-position: 0 0 !important;
+}
+
+.logo_color {
+    background-position: -40px 0 !important;
+}
+
+.logo_garbient {
+    background-position: -80px 0 !important;
+    border-radius: 50%;
+}
+
+.logo_ui100 {
+    background-position: -120px 0 !important;
+}
+
+.logo_huaban {
+    background-position: -160px 0 !important;
+}
+
+.logo_zcool {
+    background-position: -200px 0 !important;
+}
+
+.logo_ui {
+    background-position: -240px 0 !important;
+}
+
+.logo_motion {
+    background-position: -280px 0 !important;
+}
+
+.logo_dribbble {
+    background-position: -320px 0 !important;
+}
+
+.logo_behance {
+    background-position: -360px 0 !important;
+}
+
+.logo_pinterest {
+    background-position: 0px -40px !important;
+}
+
+.logo_lookae {
+    background-position: -40px -40px !important;
+}
+
+.logo_lookzy {
+    background-position: -80px -40px !important;
+}
+
+.logo_ar {
+    background-position: -120px -40px !important;
+}
+
+.logo_psd {
+    background-position: -160px -40px !important;
+}
+
+.logo_extfans {
+    background-position: -200px -40px !important;
+}
+
+.logo_c4dnb {
+    background-position: -240px -40px !important;
+}
+
+.logo_qishiye {
+    background-position: -280px -40px !important;
+}
+
+.logo_jianying {
+    background-position: -320px -40px !important;
+}
+
+.logo_miao {
+    background-position: -360px -40px !important;
+}
+
+.logo_adobe {
+    background-position: 0px -80px !important;
+}
+
+.logo_bili1 {
+    background-position: -40px -80px !important;
+}
+
+.logo_bili2 {
+    background-position: -80px -80px !important;
+}
+
+.logo_bili3 {
+    background-position: -120px -80px !important;
+}
+
+.logo_bili4 {
+    background-position: -160px -80px !important;
+}
+
+.logo_bili5 {
+    background-position: -200px -80px !important;
+}
+
+.logo_bili6 {
+    background-position: -240px -80px !important;
+}
+
+.logo_bili7 {
+    background-position: -280px -80px !important;
+}
+
+.logo_ebook {
+    background-position: -320px -80px !important;
+}
+
+.logo_qqsz {
+    background-position: -360px -80px !important;
+}
+
+.logo_books {
+    background-position: 0px -120px !important;
+}
+
+.logo_sbkko {
+    background-position: -40px -120px !important;
+}
+
+.logo_shejidaren {
+    background-position: -80px -120px !important;
+}
+
+.logo_shejibox {
+    background-position: -120px -120px !important;
+}
+
+.logo_zyhsq {
+    background-position: -160px -120px !important;
+}
+
+.logo_uisheji {
+    background-position: -200px -120px !important;
+}
+
+.logo_chuangzaoshi {
+    background-position: -240px -120px !important;
+}
+
+.logo_nainiu {
+    background-position: -280px -120px !important;
+}
+
+.logo_uiguifan {
+    background-position: -320px -120px !important;
+}
+
+.logo_aconvert {
+    background-position: -360px -120px !important;
+}
+
+.logo_screensizes {
+    background-position: 0px -160px !important;
+}
+
+.logo_iphone {
+    background-position: -40px -160px !important;
+}
+
+.logo_cli {
+    background-position: -80px -160px !important;
+}
+
+.logo_processon {
+    background-position: -120px -160px !important;
+}
+
+.logo_piaofang {
+    background-position: -160px -160px !important;
+}
+
+.logo_jijin {
+    background-position: -200px -160px !important;
+}
+
+.logo_trace {
+    background-position: -240px -160px !important;
+}
+
+.logo_saucenao {
+    background-position: -280px -160px !important;
+}
+
+.logo_sougou {
+    background-position: -320px -160px !important;
+}
+
+.logo_360 {
+    background-position: -360px -160px !important;
+}
+
+.logo_baiduimage {
+    background-position: 0px -200px !important;
+}
+
+.logo_imgtu {
+    background-position: -40px -200px !important;
+}
+
+.logo_sm {
+    background-position: -80px -200px !important;
+}
+
+.logo_synergize {
+    background-position: -120px -200px !important;
+}
+
+.logo_fastpage {
+    background-position: -160px -200px !important;
+}
+
+.logourl {
+    /* vertical-align: middle; */
+    background-size: 40px 40px !important;
+    background-position: center !important;
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-indent: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-repeat: no-repeat !important;
+    background-color: #e3f9fd !important;
+}
+
+.jiaran {
+    height: 45px !important;
+    width: 45px !important;
+    background: url(https://img14.360buyimg.com/ddimg/jfs/t1/197063/24/1827/187121/610c10a4Eea47c816/c6d16227ec53c1d2.gif);
+    background-size: 45px 45px !important;
+    transition: all 0.5s;
+}
+
+.jiaran:hover {
+    transform: scale(1.2) rotate(360deg);
+}
+
+.snipaste {
+    background: url(https://zh.snipaste.com/img/logo.svg);
+    background-size: 30px 30px !important;
+}
+
+.androidsize {
+    background: url(https://z3.ax1x.com/2021/08/01/WzOznA.jpg);
+}
+
+.logourlone {
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    border-radius: 8px;
+    left: 50%;
+    margin-left: -70px;
+    vertical-align: middle;
+    background-size: 140px 40px !important;
+    background-position: center !important;
+    background-color: #e3f9fd !important;
+}
+
+.jingsai52 {
+    background: url(http://cdn3.52jingsai.com/m/images/logo.png);
+}
+
+.zhengji {
+    background: url(https://bbs.1zj.com/static/image/common/logo.png);
+}
+
+.cnad {
+    background: url(http://www.cnad.com/newImages/logo2.jpg);
+}
+
+.imgurl {
+    background: url(https://imgurl.org/static/images/logo.png);
+}
+
+.adobeqjt {
+    background: url(https://s.pc.qq.com/tousu/img/20210825/5889831_1629905723.jpg);
+}
+
+.ppt51 {
+    background: url(http://www.51pptmoban.com/favicon.ico);
+}
+
+.ppt1 {
+    background: url(http://www.1ppt.com/favicon.ico);
+}
+
+.softwarepc {
+    background: url(https://static.woozooo.com/userimg/201906/14/350842-73.jpg);
+}
+
+.miaobai {
+    background: url(https://tu.teas.moe/favicon.ico);
+    background-size: 40px 50px !important;
+}
+
+.sucai5 {
+    background: url(https://www.5sucai.com/web/default/images/logo.png);
+    background-color: rgb(69, 32, 138) !important;
+}
+
+.sheji567 {
+    background: url(http://www.sheji567.com/logo.png);
+    background-color: rgb(69, 32, 138) !important;
+}
+
+.zhuanhuan {
+    background: url(https://img.supfree.net/ico/zhuanhuan.png);
+}
+
+.zamzar {
+    background: url(https://www.zamzar.com/favicon.ico);
+}
