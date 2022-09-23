@@ -4,14 +4,15 @@
 // Updated at：2022/7/24 20:49
 // 以后主要靠修改这个
 
+
 // ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
 // ==========✨公共区✨✨==========✨==========✨==========✨==========✨==========✨==========✨==========✨==========✨==========
 
 // 其实这是一个json文件
 var txt1 = '{ "sites" : [' +
-    '{ "hello":"嗨,欢迎发现新大陆,夏dj导航站取名来自我的室友，本站是方便自己和朋友而存在的" , "url":"www.1nav.ml" },' +
-    '{ "hello":"google" , "url":"www.google.com" },' +
-    '{ "hello":"微博" , "url":"www.weibo.com" } ]}';
+    '{ "hello":"(｡･∀･)ﾉﾞ嗨，欢迎发现新大陆，夏dj导航站取名来自我的室友，本站是方便自己和朋友而存在的" , "url":"www.1nav.ml" },' +
+    '{ "hello":"备用网站1" , "url":"www.1nav.cf" },' +
+    '{ "hello":"备用网站2" , "url":"xiaolongmr.github.io" } ]}';
 var obj = eval("(" + txt1 + ")");
 
 // 引入的用户离开本站标题的变化
@@ -23,8 +24,6 @@ document.addEventListener("visibilitychange", function() {
     }, 2e3))
 });
 //
-
-
 
 // 弹窗部分
 function displayAlert(type, data, time) {
@@ -44,7 +43,6 @@ function displayAlert(type, data, time) {
         console.log("入参type错误");
         return;
     }
-
     lunbo.id = "lunbo";
     lunbo.style.position = "fixed";
     // lunbo.style.position = "absolute";
@@ -67,7 +65,6 @@ function displayAlert(type, data, time) {
     lunbo.style.alignItems = "center";
     lunbo.style.padding = "10px 30px";
     lunbo.style.zIndex = "999";
-
     if (document.getElementById("lunbo") == null) {
         document.body.appendChild(lunbo);
         lunbo.innerHTML = data;
@@ -169,19 +166,10 @@ function container(brightness) {
 
 // ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
 // ==========🎉comments.html🎉=====================🎉=================🎉=================🎉=================🎉========================================================
-// tips的文案
-
-// function gxzh() { //共享账号的函数 gxzh 现在用不到了
-//     window.alert("请记住以下账号密码\n\n  账号：1nav \n  密码：1nav");
-// }
-// gxzh();  //不能立即调用，得手动点击调用
-
 // 共享账号
 function tips() {
     document.getElementById("dome").innerHTML = "<br><strong>1</strong> (未开放注册) 可使用 <font onclick=test0() color=hotpink> 👉共享账号👈 </font> 进行登录留言<br> <strong>2</strong> 右下角客服（站长）头像点击对话";
 };
-
-
 // 恋爱时间部分
 function lovepyqSitetime2() {
     window.setTimeout("lovepyqSitetime2()", 1000);

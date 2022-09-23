@@ -1,17 +1,17 @@
 document.writeln("<aside class=left-bar id=leftBar>");
 document.writeln("            <div class=title><a href=# rel=noopener title=关于本站 onclick=\'document.getElementById(\'dome\').innerHTML=obj.sites[0].hello\'><i class=jiaran></i></a>");
 document.writeln("                <!-- h1是方便搜索引擎,设置隐藏` -->");
-document.writeln("                <h1 style=display:none>夏dj导航站</h1><a class=scr target=_blank rel=noopener href=\'https://cn.bing.com/search?q=%E5%A4%8Fdj%E5%AF%BC%E8%88%AA\'>夏DJ导航站</a>");
+document.writeln("                <h1 style=display:none>夏dj导航站</h1><a  target=_blank rel=noopener href=\'https://cn.bing.com/search?q=%E5%A4%8Fdj%E5%AF%BC\'>夏DJ导航站</a>");
 document.writeln("            </div>");
 document.writeln("            <nav class=nav>");
-document.writeln("                <div class=\'item active\'><i class=\'iconfont icon-shoucangbenzhan\'></i> <a href=javascript:; onclick=addFavorite(this)>收藏本站: 1nav.ml</a> <i class=line></i></div>");
+document.writeln("                <div class=\'item active\'><i class=\'iconfont icon-shoucangbenzhan\'></i> <a href=javascript:; onclick=addFavorite(this)>点我收藏本站</a> <i class=line></i></div>");
 document.writeln("                <ul class=nav-item id=navItem>");
 document.writeln("                    <li><a href=index.html#nice class=active><i class=\'iconfont icon-like-fill\'></i>站长推荐</a></li>");
+document.writeln("                    <li><a href=index.html#docs><i class=\'iconfont icon-jingxuan\'></i>导航网站</a></li>");
 document.writeln("                    <li><a href=index.html#designweb><i class=\'iconfont icon-shejishi\'></i>设计网站</a></li>");
 document.writeln("                    <li><a href=index.html#color><i class=\'iconfont icon-peise\'></i>配色网站</a></li>");
 document.writeln("                    <li><a href=index.html#chajian><i class=\'iconfont icon-annex\'></i>软件插件</a></li>");
 document.writeln("                    <li><a href=index.html#study><i class=\'iconfont icon-ziliaoku\'></i>书籍资源</a></li>");
-document.writeln("                    <li><a href=index.html#docs><i class=\'iconfont icon-jingxuan\'></i>导航网站</a></li>");
 document.writeln("                    <li><a href=index.html#zonghe><i class=\'iconfont icon-zongheziyuan\'></i>综合资源</a></li>");
 document.writeln("                    <li><a href=index.html#software><i class=\'iconfont icon-apply\'></i>软件下载</a></li>");
 document.writeln("                    <li><a href=index.html#bilibili><i class=\'iconfont icon-shipin\'></i>B站大学</a></li>");
@@ -23,6 +23,6 @@ document.writeln("                    <li><a href=index.html#dissertation><i cla
 document.writeln("                    <li><a href=index.html#tuchuang><i class=\'iconfont icon-shuzhuangtu\'></i>在线图床</a></li>");
 document.writeln("                    <li><a href=index.html#links><i class=\'iconfont icon-lianjie\'></i>友情链接</a></li>");
 document.writeln("                </ul>");
-document.writeln("                <div class=\'item comment\'><a target=_blank rel=noopener href=http://mgtv.ml/archives/1nav.html><i class=\'iconfont icon-gengxinrizhi\'></i>网站更新日志</a></div>");
+document.writeln("                <div class=\'item comment\'><a target=_blank rel=noopener href=https://mlmlml.ml/archives/1nav.html><i class=\'iconfont icon-gengxinrizhi\'></i>网站更新日志</a></div>");
 document.writeln("            </nav>");
 document.writeln("        </aside>");

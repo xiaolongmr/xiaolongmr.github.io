@@ -58,7 +58,7 @@ document.querySelector('#cyy_menu').addEventListener('click', function(e) {
             break;
         case "cyy_t5":
             // 日志
-            window.open("https://www.mgtv.ml/archives/1nav.html", "", "height=1000,width=500,location=0,left=200,top=100");
+            window.open("https://mlmlml.ml/archives/1nav.html", "", "height=1000,width=500,location=0,left=200,top=100");
             break;
         case "cyy_t6":
             // 护眼模式
