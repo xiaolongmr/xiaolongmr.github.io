@@ -8,7 +8,7 @@ i[class^=logo] {
     border-radius: 50%;
     background-image: url(logo.webp);
     /* background-image: url(https://gcore.jsdelivr.net/gh/xiaolongmr/image@main/0803/logo.webp); */
-    background-size: 400px 520px;
+    background-size: 400px 560px;
     background-repeat: no-repeat;
 }
 
@@ -612,6 +612,34 @@ i::before {
 
 .logo_itab {
     background-position: -80px -480px
+}
+
+.logo_Screenlane {
+    background-position: -160px -480px
+}
+
+.logo_dribbble {
+    background-position: -200px -480px
+}
+
+.logo_collectui {
+    background-position: -240px -480px
+}
+
+.logo_pixso {
+    background-position: -280px -480px
+}
+
+.logo_streamlinehq {
+    background-position: -320px -480px
+}
+
+.logo_muz {
+    background-position: -360px -480px
+}
+
+.logo_lottie {
+    background-position: -0px -520px
 }
 
 .jiaran {
