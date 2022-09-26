@@ -109,6 +109,10 @@ function test7() {
 function test8() {
     displayAlert("info", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='https://1nav.ml/img/clear.svg'><p>开发中,玩会游戏吧...</p><iframe  src=https://game.crisp.chat style='transform: translate(-50%); border-radius: 20px' height=600 width=1200 scrolling='no' frameborder='0' ></iframe>", 1000000);
 }
+
+function test9() {
+    displayAlert("success", "<img style='width: 100px; border-radius:6px' src='http://tva3.sinaimg.cn/large/006APoFYly8gtkdd9oubmg306o06odrp.gif' referrerpolicy='no-referrer' /> 专业课老师平时上课推荐过的网站!", 1500);
+}
 // 弹窗结束
 
 // 收藏本站

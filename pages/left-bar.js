@@ -7,6 +7,7 @@ document.writeln("            <nav class=nav>");
 document.writeln("                <div class=\'item active\'><i class=\'iconfont icon-shoucangbenzhan\'></i> <a href=javascript:; onclick=addFavorite(this)>点我收藏本站</a> <i class=line></i></div>");
 document.writeln("                <ul class=nav-item id=navItem>");
 document.writeln("                    <li><a href=index.html#nice class=active><i class=\'iconfont icon-like-fill\'></i>站长推荐</a></li>");
+document.writeln("                    <li><a href=index.html#tuchuang><i class=\'iconfont icon-shuzhuangtu\'></i>老师推荐</a></li>");
 document.writeln("                    <li><a href=index.html#docs><i class=\'iconfont icon-jingxuan\'></i>导航网站</a></li>");
 document.writeln("                    <li><a href=index.html#designweb><i class=\'iconfont icon-shejishi\'></i>设计网站</a></li>");
 document.writeln("                    <li><a href=index.html#color><i class=\'iconfont icon-peise\'></i>配色网站</a></li>");
@@ -20,8 +21,7 @@ document.writeln("                    <li><a href=index.html#soutu><i class=\'ic
 document.writeln("                    <li><a href=index.html#tools><i class=\'iconfont icon-gongju\'></i>在线工具</a></li>");
 document.writeln("                    <li><a href=index.html#download><i class=\'iconfont icon-mianfei-xianxing\'></i>资源下载</a></li>");
 document.writeln("                    <li><a href=index.html#dissertation><i class=\'iconfont icon-lunwen\'></i>毕业论文</a></li>");
-document.writeln("                    <li><a href=index.html#tuchuang><i class=\'iconfont icon-shuzhuangtu\'></i>在线图床</a></li>");
-document.writeln("                    <li><a href=index.html#links><i class=\'iconfont icon-lianjie\'></i>友情链接</a></li>");
+// document.writeln("                    <li><a href=index.html#links><i class=\'iconfont icon-lianjie\'></i>友情链接</a></li>");
 document.writeln("                </ul>");
 document.writeln("                <div class=\'item comment\'><a target=_blank rel=noopener href=https://mlmlml.ml/archives/1nav.html><i class=\'iconfont icon-gengxinrizhi\'></i>网站更新日志</a></div>");
 document.writeln("            </nav>");
