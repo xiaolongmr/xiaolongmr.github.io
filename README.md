@@ -3,8 +3,7 @@
 
 <div id=page>
                             <div id=article-container>
-                                <h2><a href=/about.html class=headerlink title="If the moon smiled, she would resemble you.">刷新一言</a></h2>
-                                <blockquote>
+                                 <blockquote>
                                     <p><strong><font color=black>👋前言：</font></strong></p>
                                     <p>做这个网站的最初想法是大一的时候遇到好用的网站，有一位朋友需要用到就得得通过社交软件发送一次网站的链接🔗</p>
                                     <p><code><font color=hotpink>缺点</font></code> 是分享不方便，社交软件无法永久储存，并且无分类</p>
