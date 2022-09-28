@@ -2,12 +2,6 @@
 ✍🏼[视觉传达](https://xiaolongmr.github.io/) 常用的设计类型的一些网站收藏 
 
 <div id=page>
-                            <p>
-                                <script type="text/javascript" src="https://www.ooopn.com/tool/api/yan/api.php?type=js"></script>
-                                “
-                                <script>
-                                    yan()
-                                </script>” ——from 随机一言</p>
                             <div id=article-container>
                                 <h2><a href=/about.html class=headerlink title="If the moon smiled, she would resemble you.">刷新一言</a></h2>
                                 <blockquote>
