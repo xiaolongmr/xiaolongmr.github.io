@@ -95,7 +95,7 @@ function test4() {
 }
 
 function test5() {
-    displayAlert("success", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='https://1nav.ml/img/clear.svg'><div class='card-widget card-info'><div class=item-headline><span>恋爱清单</span></div><div style='text-align: center; color: #888; font-size: 15px; padding: 10px'><div style='width: 220px; margin: 0 auto'><img class='love'src='https://thirdqq.qlogo.cn/g?b=sdk&k=yqjbmdENrko19T7mjIc3vg&s=640&t=1655292317'alt='love'title='小张'style='width: 60px; border-radius: 50%; transition: all .5s;'/><img src='https://m.360buyimg.com/babel/jfs/t1/28239/30/18086/3736/62d530cbE02974f98/e57f9bf1e0ce61c8.gif'alt='love'style='width: 60px; border-radius: 50%'/><img class='love'src='https://thirdqq.qlogo.cn/g?b=sdk&k=Bev4kt2qt6ZBMfNLYbGtSw&s=640&t=1657859177'alt='love'title='小陈'style='width: 60px; border-radius: 50%;transition: all .5s;'/></div><p id='lovepyqSitetime2' style='font-size:0.8rem;margin-top:16px;background:linear-gradient(to right,red,blue);-webkit-background-clip:text;color:transparent;' ></p><div class=author-info__description>If the moon smiled,she would resemble you.</div ></div>", 2500);
+    displayAlert("success", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='/img/clear.svg'><div class='card-widget card-info'><div class=item-headline><span>恋爱清单</span></div><div style='text-align: center; color: #888; font-size: 15px; padding: 10px'><div style='width: 220px; margin: 0 auto'><img class='love'src='https://thirdqq.qlogo.cn/g?b=sdk&k=yqjbmdENrko19T7mjIc3vg&s=640&t=1655292317'alt='love'title='小张'style='width: 60px; border-radius: 50%; transition: all .5s;'/><img src='https://m.360buyimg.com/babel/jfs/t1/28239/30/18086/3736/62d530cbE02974f98/e57f9bf1e0ce61c8.gif'alt='love'style='width: 60px; border-radius: 50%'/><img class='love'src='https://thirdqq.qlogo.cn/g?b=sdk&k=Bev4kt2qt6ZBMfNLYbGtSw&s=640&t=1657859177'alt='love'title='小陈'style='width: 60px; border-radius: 50%;transition: all .5s;'/></div><p id='lovepyqSitetime2' style='font-size:0.8rem;margin-top:16px;background:linear-gradient(to right,red,blue);-webkit-background-clip:text;color:transparent;' ></p><div class=author-info__description>If the moon smiled,she would resemble you.</div ></div>", 2500);
 };
 
 function test6() {
@@ -103,11 +103,11 @@ function test6() {
 };
 
 function test7() {
-    displayAlert("info", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='https://1nav.ml/img/clear.svg'></p><p style='text-align: start'>抱歉，您所使用的浏览器无法完成此操作<br>请使用 Ctrl + D 将本页加入收藏夹！<br>其实是我不会写😅 </p>", 2000);
+    displayAlert("info", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='/img/clear.svg'></p><p style='text-align: start'>抱歉，您所使用的浏览器无法完成此操作<br>请使用 Ctrl + D 将本页加入收藏夹！<br>其实是我不会写😅 </p>", 2000);
 };
 
 function test8() {
-    displayAlert("info", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='https://1nav.ml/img/clear.svg'><p>开发中,玩会游戏吧...</p><iframe  src=https://game.crisp.chat style='transform: translate(-50%); border-radius: 20px' height=600 width=1200 scrolling='no' frameborder='0' ></iframe>", 1000000);
+    displayAlert("info", "<img onclick=window.location.reload(); style='width: 20px; position:absolute; margin:-5px 0px 0px 50%; transform:translate(-25px)' src='/img/clear.svg'><p>开发中,玩会游戏吧...</p><iframe  src=https://game.crisp.chat style='transform: translate(-50%); border-radius: 20px' height=600 width=1200 scrolling='no' frameborder='0' ></iframe>", 1000000);
 }
 
 function test9() {

@@ -23,6 +23,6 @@ document.writeln("                    <li><a href=index.html#download><i class=\
 document.writeln("                    <li><a href=index.html#dissertation><i class=\'iconfont icon-lunwen\'></i>毕业论文</a></li>");
 // document.writeln("                    <li><a href=index.html#links><i class=\'iconfont icon-lianjie\'></i>友情链接</a></li>");
 document.writeln("                </ul>");
-document.writeln("                <div class=\'item comment\'><a target=_blank rel=noopener href=https://mlmlml.ml/archives/1nav.html><i class=\'iconfont icon-gengxinrizhi\'></i>网站更新日志</a></div>");
+document.writeln("                <div class=\'item comment\'><a target=_blank rel=noopener href='https://zl88.github.io/2022/06/12/xiadj.html'><i class=\'iconfont icon-gengxinrizhi\'></i>网站更新日志</a></div>");
 document.writeln("            </nav>");
 document.writeln("        </aside>");
