@@ -40,7 +40,7 @@ function lovepyqSitetime() {
         seconds
     );
     document.getElementById("lovepyqSitetime").innerHTML =
-        "我们相<img class='heartgit' style='width: 20px; vertical-align: middle;' src='https://p.qlogo.cn/hy_personal/3e28f14aa051684243963d5396c2a938078a85c23f2eed887938535a772e251e/0.png'>了：</br>" +
+        "我们相<img class='heartgit' style='width: 20px; vertical-align: middle;' src='https://gcore.jsdelivr.net/gh/xiaolongmr/image@main/gif/xin.gif'>了：</br>" +
         diffYears +
         "年" +
         diffDays +

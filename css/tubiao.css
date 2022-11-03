@@ -618,7 +618,7 @@ i::before {
     background-position: -160px -480px
 }
 
-.logo_dribbble {
+.logo_cgmodel {
     background-position: -200px -480px
 }
 
@@ -640,6 +640,22 @@ i::before {
 
 .logo_lottie {
     background-position: -0px -520px
+}
+
+.logo_gaituya {
+    background-position: -40px -520px
+}
+
+.logo_kim {
+    background-position: -80px -520px
+}
+
+.logo_modown {
+    background-position: -120px -520px
+}
+
+.logo_3d66 {
+    background-position: -160px -520px
 }
 
 .jiaran {

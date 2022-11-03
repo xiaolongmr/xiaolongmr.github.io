@@ -32,7 +32,8 @@
     
     a {
         text-decoration: none;
-        cursor: url(https://xiaolongmr.github.io/test/cur/a1.png), default;
+        cursor: url(https://cdn.custom-cursor.com/db/4655/32/arrow2662.png), default;
+        /* https://xiaolongmr.github.io/test/cur/a1.png */
     }
     
     body {
@@ -41,7 +42,8 @@
         font-family: Helvetica Neue, Microsoft Yahei;
         overflow-x: hidden !important;
         /* 去除横向滚动条 添加日期2022/04/04 */
-        cursor: url(https://xiaolongmr.github.io/test/cur/body.png), default;
+        cursor: url(https://cdn.custom-cursor.com/db/4656/32/arrow2662.png), default;
+        /* https://xiaolongmr.github.io/test/cur/body.png */
         /* 增加高度100vh */
         height: 100vh;
         background-color: var(--BodyBackground-color);

@@ -12,7 +12,7 @@ document.write("    <li id=\"cyy_t7\">▣ &nbsp;更换背景<\/li>");
 document.write("    <li id=\"cyy_t8\">♬ &nbsp;暂停/播放音乐 <\/li>");
 document.write("    <li class=\"hr_break\"><\/li>");
 // 下面是测试的
-document.write("    <li id=\"cyy_t9\">&nbsp;小张&nbsp;<img class='heartgit' style='width: 15px; vertical-align: middle;' src='https://p.qlogo.cn/hy_personal/3e28f14aa051684243963d5396c2a938078a85c23f2eed887938535a772e251e/0.png'>&nbsp;小陈  (送祝福) <\/li>");
+document.write("    <li id=\"cyy_t9\">&nbsp;小张&nbsp;<img class='heartgit' style='width: 15px; vertical-align: middle;' src='https://gcore.jsdelivr.net/gh/xiaolongmr/image@main/gif/xin.gif'>&nbsp;小陈  (送祝福) <\/li>");
 document.write("    <li id=\"cyy_t10\">☘ &nbsp;开发中... <\/li>");
 document.write("<\/ul>");
 document.write("<!-- 右键菜单js -->");

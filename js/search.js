@@ -220,7 +220,7 @@ $(function() {
                 url: 'https://cn.bing.com/search?q='
             }, {
                 name: '图标',
-                icon: 'https://img.alicdn.com/imgextra/i4/O1CN01EYTRnJ297D6vehehJ_!!6000000008020-55-tps-64-64.svg',
+                icon: 'https://img.alicdn.com/imgextra/i4/O1CN01Z5paLz1O0zuCC7osS_!!6000000001644-55-tps-83-82.svg',
                 color: '#ec653b',
                 url: 'https://www.iconfont.cn/search/index?searchType=icon&q='
             }, {
