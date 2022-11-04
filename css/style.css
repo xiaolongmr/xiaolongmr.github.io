@@ -65,7 +65,7 @@
     .container .left-bar {
         position: fixed;
         padding: 0 20px;
-        background: #30333c;
+        background: var(--left-bar-bgcolor);
         color: #6b7386;
         box-sizing: border-box;
         flex-direction: column;
@@ -179,7 +179,7 @@
         font-size: 12px;
         display: inline-block;
         width: 100%;
-        color: #c5c5c5
+        color: var(--left-bar-font-color);
     }
     /* 本站网址的颜色 */
     

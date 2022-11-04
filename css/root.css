@@ -25,4 +25,8 @@
     --ctrm-title-color: #444;
     /* 小尬聊天左边背景颜色 */
     --ctrm-panel-bgcolor: rgba(252, 252, 252, 0.85);
+    /* 左栏背景颜色 */
+    --left-bar-bgcolor: #30333c;
+    /* 左栏a标签的字体颜色 */
+    --left-bar-font-color: #c5c5c5;
 }
