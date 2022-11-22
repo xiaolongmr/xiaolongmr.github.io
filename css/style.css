@@ -227,7 +227,7 @@
         background-image: var(--BoxBackImg);
         backdrop-filter: blur(0.05rem);
         -webkit-backdrop-filter: blur(0.1rem);
-        /*  */
+        transform: translateZ(0);
     }
     
     .box:hover {
