@@ -432,7 +432,7 @@
         background: var(--gototop-back-color);
         position: fixed;
         right: 10px;
-        bottom: 60px;
+        bottom: 100px;
         z-index: 9999;
         box-shadow: rgb(204 230 255) -1px 1px 10px 0px;
         cursor: pointer;
@@ -505,23 +505,25 @@
     .container .box .item .mask {
         display: none;
         position: absolute;
-        top: 0;
+        top: 50%;
         left: 0;
         width: 100%;
-        height: 100%;
-        background: rgba(48, 51, 60, .589);
-        color: #73ff00;
+        height: 77%;
+        background: rgb(82 95 135 / 79%);
+        color: rgb(0, 255, 8);
         text-align: center;
-        line-height: 12px;
-        margin: 3em 0
+        backdrop-filter: blur(0.05rem);
+        line-height: 2em;
+        transform: translateZ(0);
     }
-    
-    .container .box .item:active .mask {
+    /* .container .box .item:active .mask {
         display: block
     }
-    /* .container .box .item:hover .mask {
-    display: block
-} */
+     */
+    
+    .container .box .item:hover .mask {
+        display: block
+    }
     
     iframe {
         position: fixed;
