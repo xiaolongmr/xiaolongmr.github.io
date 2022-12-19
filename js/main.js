@@ -75,7 +75,7 @@ function displayAlert(type, data, time) {
 }
 
 function test0() {
-    displayAlert("success", "账号：1nav\n密码：1nav", 1500);
+    displayAlert("success", '<p class="issue-wrap-gw" style="height: 110px; overflow: hidden;"><span class="wrap-word-gw">名称：XXX <br>网址：https://www.xx.cn <br>描述：这是一个完全免费简单好用的在线...</span></p>', 6000);
 }
 
 function test1() {
@@ -171,9 +171,15 @@ function container(brightness) {
 // ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
 // ==========🎉comments.html🎉=====================🎉=================🎉=================🎉=================🎉========================================================
 // 共享账号
+// 下面这个是之前的，不用了
+// function tips() {
+//     document.getElementById("dome").innerHTML = "<br><strong>1</strong> (未开放注册) 可使用 <font onclick=test0() color=hotpink> 👉共享账号👈 </font> 进行登录留言<br> <strong>2</strong> 右下角客服（站长）头像点击对话";
+// };
 function tips() {
-    document.getElementById("dome").innerHTML = "<br><strong>1</strong> (未开放注册) 可使用 <font onclick=test0() color=hotpink> 👉共享账号👈 </font> 进行登录留言<br> <strong>2</strong> 右下角客服（站长）头像点击对话";
+    document.getElementById("dome").innerHTML = "<br><strong>1</strong> 引用的是第三方评论插件，需要选择<font node-type='header-login'  color=hotpink> 社交账号</font> 进行登录留言<br> <strong>2</strong> 欢迎留言推荐实用的网站，无关留言会定期清理<font node-type='header-login' onclick=test0() color=skyblue > 👉<u>推荐格式</u>👈 </font> ";
 };
+
+
 // 恋爱时间部分
 function lovepyqSitetime2() {
     window.setTimeout("lovepyqSitetime2()", 1000);

@@ -48,10 +48,10 @@
                 <div class=box>
                     <ipsa name=gonggao></ipsa>
                     <div class=sub-category>
-                        <div><i class="fas fa-bullhorn card-announcement-animation"></i> Tips: 现已关闭
+                        <div><i class="fas fa-bullhorn card-announcement-animation"></i> Tips:
 
                             <body onload="tips()">
-                                <span id="dome"></span>
+                                <span id="dome"> 数据加载中,请稍后... </span>
                                 <i style=float:right;padding-right:1em id=tp-weather-widget>
                                 <!-- 这里面是通过js添加的天气的内容 -->
                                 </i>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <!--  -->
-                <script type=text/javascript src=//unpkg.com/artitalk></script>
+                <!-- <script type=text/javascript src=//unpkg.com/artitalk></script>
                 <script type=text/javascript src=//fastly.jsdelivr.net/npm/artitalk></script>
                 <a name=shuoshuo></a>
                 <div class="shuoshuo box" id=artitalk_main></div>
@@ -70,6 +70,15 @@
                         shuoPla: "ヾ(≧▽≦*)o",
                         bgImg: "https://gitee.com/xhcy1116/smile/raw/master/loading/loading1.webp",
                         bgcolor: "#fffeff"
+                    });
+                </script> -->
+                <!--PC版-->
+                <div id="SOHUCS" sid="nav"></div>
+                <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js"></script>
+                <script type="text/javascript">
+                    window.changyan.api.config({
+                        appid: 'cywqWQ3v4',
+                        conf: 'prod_12bd80c75e4e22b1447da7fb7410f56c'
                     });
                 </script>
             </div>
