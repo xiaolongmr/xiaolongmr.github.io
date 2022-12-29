@@ -658,10 +658,34 @@ i::before {
     background-position: -160px -520px
 }
 
+.logo_logosc {
+    background-position: -120px -480px;
+    /* background-image: url(https://img.logosc.cn/_next/static/media/gaitu.0bb400f5.svg) !important;
+    background-size: cover !important; */
+}
+
+.logo_cnddesign {
+    background-position: -200px -520px;
+}
+
+.logo_xxrjzs {
+    background-position: -240px -520px;
+}
+
+.logo_groupdocs {
+    background-position: -280px -520px;
+}
+
+.logo_vectordad {
+    background-position: -320px -520px;
+}
+
 .jiaran {
     float: left;
     display: block;
     height: 45px;
+    /* 下面这个是为了加上面装饰 */
+    position: relative;
     width: 45px;
     border-radius: 50%;
     margin-right: 10px;
@@ -670,13 +694,22 @@ i::before {
     background-size: cover
 }
 
+.jiaran::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    /* 国旗图片 图片替换本地的*/
+    background: url(https://gss0.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/b8389b504fc2d562eb39eeb4ea1190ef76c66cb1.jpg) no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    mask: linear-gradient(110deg, #000 10%, transparent 70%, transparent);
+    -webkit-mask: linear-gradient( 110deg, #000 10%, transparent 70%, transparent);
+}
+
 .jiaran:hover,
 .love:hover {
     transform: scale(1.2) rotate(360deg)
-}
-
-.logo_logosc {
-    background-position: -120px -480px;
-    /* background-image: url(https://img.logosc.cn/_next/static/media/gaitu.0bb400f5.svg) !important;
-    background-size: cover !important; */
 }

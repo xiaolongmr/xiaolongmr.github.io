@@ -16,7 +16,6 @@ document.write("    <li id=\"cyy_t10\">☘ &nbsp;开发中... <\/li>");
 document.write("<\/ul>");
 document.write("<!-- 右键菜单js -->");
 
-
 window.addEventListener('contextmenu', RightClickMenu);
 const rightMenu = document.querySelector('#cyy_menu');
 
