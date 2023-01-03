@@ -53,5 +53,3 @@ function lovetime() {
         "秒啦";
 }
 lovetime();
-Drag and Drop
-The image will be quickly added to Picloud
