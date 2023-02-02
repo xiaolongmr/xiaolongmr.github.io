@@ -24,7 +24,4 @@ document.writeln("                    scrollTop: \'0px\'");
 document.writeln("                }, 800)");
 document.writeln("            });");
 document.writeln("        </script>");
-document.writeln("        <!-- 网页背景 -->");
-document.writeln("        <script src=//fastly.jsdelivr.net/npm/typecho_joe_theme@4.4.5/assets/background/background1.min.js></script>");
-// document.writeln("<script src=https://api.vvhan.com/api/denglong2></script>");
-// document.writeln("<script src ='https://api.vvhan.com/api/snow' > </script>");
+// document.writeln("        <script src=//fastly.jsdelivr.net/npm/typecho_joe_theme@4.4.5/assets/background/background1.min.js></script>");
