@@ -202,16 +202,21 @@ $(function() {
     // $('#search-box').css('height','auto');
     var search = {
         data: [{
-                name: '百度',
-                icon: 'https://xiaolongmr.github.io/test/svg/baidu.svg',
-                color: '#3385ff',
-                url: 'https://www.baidu.com/s?wd='
+                name: '影视',
+                icon: 'https://ymck.me/wp-content/uploads/2022/12/head-removebg-preview-1-1.png',
+                color: '#d2f2f4',
+                url: 'https://search.ymck.me/index.php?q='
             },
             {
                 name: 'F搜',
                 icon: 'https://static.hetaousercontent.com/static/assets/apple-touch-icon.png',
                 color: '#4c8bf5',
                 url: 'https://fsoufsou.com/search?q='
+            }, {
+                name: '百度',
+                icon: 'https://xiaolongmr.github.io/test/svg/baidu.svg',
+                color: '#3385ff',
+                url: 'https://www.baidu.com/s?wd='
             },
             {
                 name: '必应',
