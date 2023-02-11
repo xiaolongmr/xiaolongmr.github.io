@@ -13,7 +13,7 @@ function lovetime() {
     var todayMinute = today.getMinutes();
     var todaySecond = today.getSeconds();
     // 时间设置
-    var t1 = Date.UTC(2022, 6, 3, 24, 00, 00); //年，月，日，时，分，秒
+    var t1 = Date.UTC(2022, 6, 1, 00, 00, 00); //年，月，日，时，分，秒
     var t2 = Date.UTC(
         todayYear,
         todayMonth,
