@@ -229,6 +229,11 @@ $(function() {
                 color: '#ec653b',
                 url: 'https://www.iconfont.cn/search/index?searchType=icon&q='
             }, {
+                name: 'logo',
+                icon: 'http://s.sj33.cn/favicon.ico',
+                color: '#ec653b',
+                url: 'http://s.sj33.cn/search/?s=5844175569310651634&entry=0&ie=utf&nsid=0&ie=utf&q='
+            }, {
                 name: '好搜',
                 icon: 'https://xiaolongmr.github.io/test/svg/so.svg',
                 color: '#f8b616',
