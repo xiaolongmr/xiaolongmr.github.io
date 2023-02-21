@@ -217,6 +217,11 @@ $(function() {
                 icon: 'https://xiaolongmr.github.io/test/svg/baidu.svg',
                 color: '#3385ff',
                 url: 'https://www.baidu.com/s?wd='
+            }, {
+                name: '翻译',
+                icon: 'https://fanyi-cdn.cdn.bcebos.com/webStatic/translation/img/favicon/favicon-32x32.png',
+                color: '#3385ff',
+                url: 'https://fanyi.baidu.com/#zh/en/'
             },
             {
                 name: '必应',
