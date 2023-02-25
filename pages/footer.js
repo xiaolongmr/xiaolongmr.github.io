@@ -1,6 +1,6 @@
 document.writeln("            <footer class=footer>");
 document.writeln("                <div class=copyright>");
-document.writeln("                    <div>©2020-2022<a target=_blank rel=noopener title=\'夏DJ导航站\' href=http://xiaolongmr.github.io> 💖夏DJ导航站💖</a>&nbsp;<img src=https://xiaolongmr.github.io/test/img/icp.png width=20px height=20px alt=萌ICP备案><a title=\'萌ICP备20210214号\' href=\'//icp.gov.moe/?keyword=20210214\' target=_blank");
+document.writeln("                    <div>©2020-2023<a target=_blank rel=noopener title=\'夏DJ导航站\' href=http://xiaolongmr.github.io> 💖夏DJ导航站💖</a>&nbsp;<img src=https://xiaolongmr.github.io/test/img/icp.png width=20px height=20px alt=萌ICP备案><a title=\'萌ICP备20210214号\' href=\'//icp.gov.moe/?keyword=20210214\' target=_blank");
 document.writeln("                            rel=noopener> 萌ICP备20210214号</a>");
 document.writeln("                        <script src=\'//pv.sohu.com/cityjson?ie=utf-8\'></script>&nbsp;&nbsp;&nbsp;欢迎来自");
 document.writeln("<a target=_blank rel=noopener id=\'info.city\' href=\'https://1nav.ml\'>");
