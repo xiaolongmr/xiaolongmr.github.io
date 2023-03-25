@@ -13,7 +13,7 @@ function lovetime() {
     var todayMinute = today.getMinutes();
     var todaySecond = today.getSeconds();
     // 时间设置
-    var t1 = Date.UTC(2022, 6, 1, 00, 00, 00); //年，月，日，时，分，秒
+    var t1 = Date.UTC(2022, 6, 3, 00, 00, 00); //年，月，日，时，分，秒
     var t2 = Date.UTC(
         todayYear,
         todayMonth,
@@ -40,7 +40,7 @@ function lovetime() {
         seconds
     );
     document.getElementById("lovetime").innerHTML =
-        "我们相<img class='heartgit' style='width: 20px; vertical-align: middle;' src='https://gcore.jsdelivr.net/gh/xiaolongmr/image@main/gif/xin.gif'>了：</br>" +
+        "我们相<img class='heartgit' style='width: 20px; vertical-align: middle;' src='https://zlcy.cf/gh/xiaolongmr/image@main/gif/xin.gif'>了：</br>" +
         diffYears +
         "年" +
         diffDays +
