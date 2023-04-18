@@ -22,7 +22,7 @@
 
 * 网址里 `nav`是英语单词 `navigation`的缩写
 
-* 本站基于excell制作,得益于Chat GPT4的代码技术进行动态获取excell表格内容,小白十分钟即可部署这样一个导航网站
+* 本站基于`excell`制作,得益于<span style="color:blue;"> Chat GPT4 </span>的代码技术进行动态获取excell表格内容,小白十分钟即可部署这样一个导航网站
 
   ---
 
