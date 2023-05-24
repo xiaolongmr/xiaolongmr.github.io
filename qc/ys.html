@@ -1,29 +1,69 @@
+<!--
+ * @Author: zl88 zhang1932@foxmail.com
+ * @Date: 2023-05-24 13:40:34
+ * @LastEditors: zl88 zhang1932@foxmail.com
+ * @LastEditTime: 2023-05-24 16:04:16
+ * @FilePath: \qc\ys.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <!DOCTYPE html>
 <html>
-<head>
-	<title>跳转至 演示视频</title>
-	<meta http-equiv="refresh" content="2; URL=https://www.bilibili.com/">
-	<style>
-		body {
-			background-color: #f8f8f8; /* 设置背景颜色 */
-			font-family: Arial, sans-serif; /* 设置字体样式 */
-			text-align: center; /* 居中文本 */
-			margin-top: 100px; /* 上下居中 */
-		}
-		
-		h1 {
-			font-size: 36px; /* 设置标题字体大小 */
-			margin-bottom: 20px; /* 在标题下方添加间距 */
-		}
-		
-		p {
-			font-size: 24px; /* 设置文本字体大小 */
-			color: #666; /* 设置文本颜色 */
-		}
-	</style>
-</head>
-<body>
-    <h1>老友有声——中老年有声书功能UX体验设计</h1>
-	<h2>正在跳转至 演示视频，请稍候...</h2>
-</body>
+  <head>
+    <title>跳转至 演示视频</title>
+    <meta http-equiv="refresh" content="6; URL=https://www.bilibili.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* 设置为垂直方向 */
+        margin: 50px auto;
+      }
+
+      .box img,
+      .box p,
+      .box h1,
+      .box h2 {
+        margin: 0; /* 去除默认的margin */
+        align-self: center; /* 单独设置子元素的align-items属性，使其垂直居中 */
+      }
+
+      h1 {
+        font-size: 24px;
+        margin: 20px 0;
+      }
+      h2 {
+        font-size: 20px;
+        margin: 10px 0;
+      }
+      p {
+        font-size: 18px;
+        color: #666;
+        margin: 10px 0;
+      }
+      img {
+        max-width: 90%;
+        height: auto;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <img
+        src="https://3o.hk/images/2023/05/24/705f1bbe79843125360675273c6f9df5.png"
+        alt=""
+      />
+      <h1>老友有声——中老年有声书功能UX体验设计</h1>
+      <h2>正在跳转至 演示视频，请稍候...</h2>
+    </div>
+  </body>
 </html>
