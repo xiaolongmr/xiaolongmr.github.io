@@ -51,6 +51,3 @@
 </a>
 
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=xiaolongmr/xiaolongmr.github.io&type=Date)](https://star-history.com/#xiaolongmr/xiaolongmr.github.io&Date)
