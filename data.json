@@ -1,0 +1,1633 @@
+{
+  "✨ 置顶网站 <span>本站已开启 <b  style=\"color:#bc37e79e;\">站内搜索</b> 搜索框输入文字试试吧</span>": {
+    "class": "nice",
+    "icon": "icon代码写这里",
+    "children": [
+      {
+        "name": "<i style=\"color:hotpink;\">发布页</i>",
+        "url": "https://link3.cc/xiadj",
+        "desc": "夏dj导航放丢失网址发布页!</br>本站由小张用<i style=\"color:red;\">❤</i>制作",
+        "attr": "tags 收藏 zijiren"
+      },
+      {
+        "name": "QCMoe网址导航",
+        "url": "https://www.qcmoe.com",
+        "desc": "艺术与科技的双重碰撞，也是设计系大学生制作"
+      },
+      {
+        "name": "资源汇社区",
+        "url": "http://ziyuanhuishequ.ys168.com",
+        "desc": "👍全网最大优质免费资源分享社区",
+        "attr": "tags 火"
+      },
+      {
+        "name": "🏫框框大学",
+        "url": "https://www.kkdaxue.com",
+        "desc": "各专业前辈们的学习建议"
+      },
+      {
+        "name": "硬核<i style=\"color:hotpink;\">影视 </i> 指南<i style=\"font-size:0px\">电影电视剧yingshidianyingdianshiju</i>",
+        "url": "https://yinghe.app",
+        "desc": "硬核影视指南是一家专注于收录高清影视站的网站",
+        "attr": "tags 火"
+      },
+      {
+        "name": "FreeOK - 追剧也很卷",
+        "url": "https://www.freeok.pro",
+        "icon": "https://www.freeok.pro/mxtheme/images/favicon.png",
+        "desc": "追剧FreeOK,最新电视剧,最新电影,动漫番剧,学习课程,免费在线观看,电影网站,电视剧大全,免费追剧"
+      },
+      {
+        "name": "克隆窝",
+        "url": "https://www.uy5.net/?aff=7168",
+        "desc": "优质免费资源,技术学习资源交流平台, 找资源可以先上这里看看",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "<i style=\"color:red;\">Vega AI</i>🦄",
+        "url": "https://www.vegaai.net",
+        "desc": "国内免费的ai绘画网站"
+      },
+      {
+        "name": "免费gpt收录站",
+        "url": "https://www.mydyjs.com",
+        "desc": "可以使用，来自没用的研究所收集的chatgpt。"
+      },
+      {
+        "name": "免费ChatGpt",
+        "url": "https://ai.douresources.com/#?u=83957",
+        "desc": "微信看广告增加使用次数，响应速度挺快的，前面的用不了备用这个",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "文件传输网页",
+        "url": "https://wormhole.app",
+        "desc": "室友小白推荐：不限速单文件传输最大10G (免注册)"
+      },
+      {
+        "name": "希尔桌面",
+        "url": "https://www.sharezm.com",
+        "desc": "一款在线的共享桌面 ( 可以把在公司未完成的任务带回家 )"
+      },
+      {
+        "name": "中国好男人🥘",
+        "url": "https://cook.yunyoujun.cn",
+        "desc": "妈妈说男人会做饭，以后更幸福！好的，今天我们来做菜！"
+      },
+      {
+        "name": "本站AI导航",
+        "url": "https://aidh.4everland.app",
+        "desc": "暂时不更新收录了，请点击后面的<i style=\"color:hotpink;\">更多推荐   </i> 查看更多AI相关网站"
+      },
+      {
+        "name": "<i style=\"color:hotpink;\">更多推荐   </i>  <sup>+ChatGpt</sup>",
+        "url": "https://www.zlblog.cf/posts/58959.html",
+        "desc": "🌟收录了其他gpt站点及AI相关网站包括: AI图片无损放大、AI绘画、Ai其他网站"
+      }
+    ]
+  },
+  "👩‍🏫 老师推荐<span>（老师推荐的一些有用的网站 <i  style=\"color:#bc37e79e;\"> UI/UX </i>较多）</span>": {
+    "class": "teacher",
+    "children": [
+      {
+        "name": "   Screenlane",
+        "url": "https://screenlane.com",
+        "icon": "https://pic.zhaotu.me/2023/08/15/84fa3cf1-fbd9-4483-aee4-cf15a0475aa8e5417ad5a717bb4d.png",
+        "desc": "获得灵感, 跟上最新的web和移动应用程序UI设计趋势",
+        "attr": "tags UI"
+      },
+      {
+        "name": "Dribbble",
+        "url": "https://dribbble.com",
+        "desc": "在Dribbble上查找顶级设计师和创意专家。我们是设计师获得灵感、反馈、社区和工作的地方。您最好的资源来发现和联系世界各地的设计师。"
+      },
+      {
+        "name": "Collect UI",
+        "url": "https://collectui.com",
+        "desc": "每日更新， UI设计师社区网站，展示和分享用户界面设计的灵感和创意"
+      },
+      {
+        "name": "Pixso",
+        "url": "https://pixso.cn/community/home",
+        "icon": "https://pic.zhaotu.me/2023/08/15/842b696c-19e6-4eb9-9d3b-7febc94aa3977c7d15d4bee28992.png",
+        "desc": "Pixso官方提供海量优质设计素材，设计系统，图标Icon，组件库，插画，线框图，助力设计师和产品经理快速套用设计模板，提升设计效率"
+      },
+      {
+        "name": "Streamline",
+        "url": "https://www.streamlinehq.com",
+        "icon": "https://framerusercontent.com/images/xYWUE6fSnRyPyBimyskHG7Gws.png",
+        "desc": "Streamline获得了Figma 2022年最佳图形资源奖。世界上最大的图标、插图、表情符号和元素集。"
+      },
+      {
+        "name": "Muzli Search",
+        "url": "https://search.muz.li",
+        "icon": "https://search.muz.li/assets/images/favicon.png",
+        "desc": "搜索、发现、测试并为您的项目创建漂亮的调色板"
+      },
+      {
+        "name": "lottie",
+        "url": "https://lottiefiles.com",
+        "icon": "https://static.lottiefiles.com/favicons-new/favicon-96x96.png",
+        "desc": "世界上最大的洛蒂动画平台。随时随地添加免费动画（即使您不了解运动设计），或使用LottieFiles的设计和开发工具轻松创建、协作和发布运动"
+      },
+      {
+        "name": "后期屋（国内）",
+        "url": "https://lanfucai.com",
+        "desc": "后期屋-ae模板网ae插件网视频素材下载站"
+      },
+      {
+        "name": "aescripts",
+        "url": "https://aescripts.com",
+        "desc": "主流插件网站（国外）"
+      },
+      {
+        "name": "配色集",
+        "url": "https://space.bilibili.com/485723138",
+        "icon": "https://pic.zhaotu.me/2023/08/15/72fa4cf5-53e2-4e2d-a87f-6b07535ce1eb708c8ecfe4ad2b19.png",
+        "desc": "老师推荐的B站分享配色的up主"
+      },
+      {
+        "name": "Xmind",
+        "url": "https://www.uy5.net/pc-xmind/",
+        "icon": "https://api.iowen.cn/favicon/xmind.cn/.png",
+        "desc": "XMind是一种著名的思维导图软件，可以帮助用户快速构建并整理思路，",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "Spline ",
+        "url": "https://spline.design",
+        "desc": "Spline是一款轻量化3D在线协作设计工具，集建模，材质，交互，动画，代码交付于一身。"
+      },
+      {
+        "name": "殷契文渊<i style=\"font-size:0px\">中国甲骨文</i>",
+        "url": "https://jgw.aynu.edu.cn/ajaxpage/home2.0/index.html",
+        "desc": "安阳 :\"数字甲骨\" 一片甲骨惊天下 致力於傳承與弘揚中華民族優秀古典文化遺產。(隔壁安师的)"
+      },
+      {
+        "name": "虎课网",
+        "url": "https://huke88.com",
+        "desc": "提供优质教程视频，涵盖设计、绘画、摄影、办公软件、职业技能等多个领域。用户可根据兴趣和行业选择自主学习，每天一门课程。"
+      }
+    ]
+  },
+  "💎 精选设计资源导航网站<span>（和本站相似，以下每一个导航都汇集了很多 <i  style=\"color:#bc37e79e;\"> 设计人 </i>常用方方面面）</span>": {
+    "class": "docs",
+    "children": [
+      {
+        "name": "千图设计导航",
+        "url": "http://hao.58pic.com",
+        "icon": "https://pic.zhaotu.me/2023/08/15/tmp2DFfdfed8b6a56b7edb.png",
+        "desc": "千图设计导航 · 可以自定义的设计导",
+        "attr": "yyds"
+      },
+      {
+        "name": "SBKKO导航",
+        "url": "http://nav.sbkko.com",
+        "icon": "https://pic.zhaotu.me/2023/08/15/tmpE977d93cdc66b18ac1c8.png",
+        "desc": "精选各类博客,书籍,影视,免费素材,免费图片,设计工具,图片搜索等各类强大的网站。"
+      },
+      {
+        "name": "广告人的网址导航",
+        "url": "http://www.addog.vip",
+        "icon": "https://pic.zhaotu.me/2023/08/15/adddd93ab4efbd45940c6.png",
+        "desc": "广告人的网址导航"
+      },
+      {
+        "name": "优设导航",
+        "url": "http://hao.uisdc.com",
+        "icon": "https://image.uisdc.com/wp-content/uploads/2018/09/nav-dkt-new2018.jpg",
+        "desc": "优设精选设计师网站导航"
+      },
+      {
+        "name": "设计导航",
+        "url": "http://hao.shejidaren.com",
+        "desc": "设计导航 - 精选最好的设计网站大全"
+      },
+      {
+        "name": "上网导航-海阔蓝 ",
+        "url": "https://nav.hklan.top",
+        "icon": "https://nav.hklan.top/data/user/admin/favicon/favicon.ico",
+        "desc": "海阔蓝上网导航 是一款使用PHP + SQLite3/MySQL 开发的简约导航/书签管理器。"
+      },
+      {
+        "name": "设计百宝箱",
+        "url": "http://www.shejibox.cn",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmpFDD665baec687eff2334.png",
+        "desc": "设计百宝箱-全球高质量设计师网址导航大全"
+      },
+      {
+        "name": "资源汇社区",
+        "url": "http://ziyuanhuishequ.ys168.com",
+        "icon": "https://cdn.h5ds.com/space/files/600972551685382144/20230815/615722555340984320.png",
+        "desc": "👍教程Ⅰ软件Ⅰ黑科技Ⅰ心得Ⅰ素材，全网最大优质免费资源分享社区",
+        "attr": "tags 火"
+      },
+      {
+        "name": "灰大设计导航",
+        "url": "http://www.pslkzs.com/nav.php",
+        "desc": "设计师同行灰色执照创建的设计师导航网站",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "UI设计师导航网",
+        "url": "http://so.uigreat.com",
+        "desc": "优阁UI设计师网址导航专注分享优秀设计网站、免费无版权限制可商用的高品质素材，UI设计教程、尺寸规范、配色方案、设计素材和灵感"
+      },
+      {
+        "name": "设计师网站导航",
+        "url": "https://dsxdh.com/design",
+        "desc": " 大师兄导航下的设计师网址导航模块"
+      },
+      {
+        "name": "帮小忙",
+        "url": "https://tool.browser.qq.com",
+        "desc": "腾讯QQ在线工具箱平台，提供证件照生成，表情包制作，PDF转换，文字提取，二维码生成，数据校验、照片修复、等在线服务"
+      },
+      {
+        "name": "搜图导航",
+        "url": "https://www.91sotu.com",
+        "desc": "涵盖了高清无版权图库、创意灵感、素材资源、教程文章、设计工具、绘画涂鸦、建模贴图、设计社区、字体下载、图标下载等领域。"
+      },
+      {
+        "name": "神秘的热心网友",
+        "url": "https://imyshare.com",
+        "desc": "iMyShare - 收集免费实用有趣的东西，做最好的资源导航"
+      },
+      {
+        "name": "LKs Site",
+        "url": "https://lkssite.vip",
+        "desc": "B站博主 -LKs- 每一期B站都有视频讲解《良心到难以置信的网站推荐》"
+      },
+      {
+        "name": "Seeseed",
+        "url": "https://www.seeseed.com",
+        "desc": "设计素材资源导航，无穷尽设计可能, 为设计师提供国内外最全的设计灵感、设计素材、设计工具、设计教程。"
+      },
+      {
+        "name": "设一个计<i style=\"font-size:0px\">考研kaoyan设计书籍shejishuji</i>",
+        "url": "https://kzdh.landall.cn",
+        "icon": "https://kzdh.landall.cn/wp-content/uploads/2022/09/logoliangfssss.png",
+        "desc": "设一个计 | 私人收藏夹,蓝代旗下"
+      },
+      {
+        "name": "doyoudo资源导航",
+        "url": "https://doyoudo.com/resources",
+        "desc": "由doyoudo作者们精心挑选的、免费、好用、国内也能打开的设计资源"
+      }
+    ]
+  },
+  "📐 设计网站 <span>（下面网站右上角带<b> <i  style=\"color:blue;\">   *   </i></b>表示需要 <i  style=\"color:#bc37e79e;\"> 魔法上网 </i>）</span>": {
+    "class": "designweb",
+    "children": [
+      {
+        "name": "CND设计网",
+        "url": "http://www.cndesign.com",
+        "desc": "教程文章，<i  style=\"color:red;\">字体学习</i>是设计领域重要的媒体资讯平台",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "花瓣",
+        "url": "http://huaban.com",
+        "desc": "花瓣，陪你做生活的设计师。图片素材、png素材、电商、插画、灵感、创意"
+      },
+      {
+        "name": "站酷",
+        "url": "http://www.zcool.com.cn",
+        "desc": "打开站酷,发现更好的设计! 设计作品 作品集 设计师"
+      },
+      {
+        "name": "优阁网",
+        "url": "http://www.uigreat.com",
+        "desc": "UI设计新人必上网站，像素范儿ui，设计学习交流社区",
+        "attr": "yyds"
+      },
+      {
+        "name": "UI100Day",
+        "url": "http://www.ui100day.com",
+        "desc": "UI设计师100天练习计划，新增百字斩！"
+      },
+      {
+        "name": "设宝网",
+        "url": "https://www.sheboo.com/",
+        "desc": "设宝网-设计师轻分享交流平台，设计素材分享，作品点评，插画、UI、字体设计师"
+      },
+      {
+        "name": "国外设计欣赏网站",
+        "url": "http://www.doooor.com",
+        "icon": "https://pic.zhaotu.me/2023/04/17/imagef66ab025fc79e3ca.png",
+        "desc": "DOOOOR是一个品鉴国外优秀设计作品创意欣赏类平台。"
+      },
+      {
+        "name": "UI中国",
+        "url": "http://ui.cn",
+        "icon": "https://www.ui.cn/Public/img/favicon.ico",
+        "desc": "UI中国用户体验平台,中国用户体验联盟理事单位。国内极具影响力的设计平台之一。"
+      },
+      {
+        "name": "纹藏",
+        "url": "http://wenzang.art",
+        "desc": "纹藏Wenzang.art中国纹样线上博物馆"
+      },
+      {
+        "name": "动效设计学习网",
+        "url": "http://www.motiongreat.com",
+        "icon": "https://pic.zhaotu.me/2023/08/17/tmp103Ef842268797ce4d4f.png",
+        "desc": "Motion Great动效设计,动效教程,UI动效,MG教程,MG动画,3D动效教程,AE教程"
+      },
+      {
+        "name": "Dribbble <sup> *</sup>",
+        "url": "http://dribbble.com",
+        "desc": "设计作品的交流平台,UI设计师推荐必去网站"
+      },
+      {
+        "name": "Behance <sup> *</sup>",
+        "url": "http://www.behance.net",
+        "desc": "系列设计作品开放平台"
+      },
+      {
+        "name": "Pinterest <sup> *</sup> ",
+        "url": "http://www.pinterest.com",
+        "desc": "一个国外的设计灵感收集地，图片分享类的社交网站",
+        "attr": "tags 火"
+      },
+      {
+        "name": "Boss设计",
+        "url": "http://www.bossdesign.cn",
+        "desc": "收集国外设计素材网站的资源平台。"
+      },
+      {
+        "name": "Instagram <sup> *</sup>",
+        "url": "https://www.instagram.com",
+        "desc": "（需魔法）类似于国内小红书"
+      },
+      {
+        "name": "Canva可画",
+        "url": "https://www.canva.cn",
+        "desc": "一款在线设计工具"
+      },
+      {
+        "name": "稿定设计",
+        "url": "https://www.gaoding.com",
+        "desc": "做图做视频必备_在线设计神器_海量版权素材模板"
+      },
+      {
+        "name": "创客贴",
+        "url": "https://www.chuangkit.com",
+        "desc": "在线编辑名片、海报、ppt、邀请函、贺卡、宣传单、展架、公众号推文图片等社交媒体图片。"
+      },
+      {
+        "name": "比格设计",
+        "url": "https://bigesj.com",
+        "desc": "比格设计是一款在线图片编辑器网站，提供海量正版图片、海报图片、公众号配图、图片模板设计素材，大量图片素材均可免费在线图片制作设计，正版配图设计素材，商用无忧。"
+      },
+      {
+        "name": "比格设计去水印",
+        "url": "https://greasyfork.org/zh-CN/scripts/460290-%E6%AF%94%E6%A0%BC%E8%AE%BE%E8%AE%A1%E5%8E%BB%E6%B0%B4%E5%8D%B0",
+        "icon": "https://api.iowen.cn/favicon/bigesj.com.png",
+        "desc": "搭配这个插件可以免 <b> vip<sup>+</sup></b>下载比格设计的图",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "A站 <sup> *</sup>",
+        "url": "https://www.artstation.com",
+        "desc": "ArtStation 是一个在线 CG 网站，在上面有很多神级的大触"
+      },
+      {
+        "name": "One Page Love",
+        "url": "https://onepagelove.com",
+        "desc": "全球最佳单页网站设计"
+      },
+      {
+        "name": "像素画",
+        "url": "http://hello.eboy.com/pool/~Pixorama/1?q=project",
+        "icon": "https://cdn.yopngs.com/2023/08/15/960bdb56-7fb7-4f6f-87ad-1bfb6506e2a4.jpg",
+        "desc": "一个分享好看的像素画的网站"
+      }
+    ]
+  },
+  "🎨 配色网站": {
+    "class": "color",
+    "children": [
+      {
+        "name": "中国传统色彩",
+        "url": "http://color.uisdc.com",
+        "desc": "中国色彩,中国传统色彩,网页配色,设计配色,配色图表,配色卡,SDC优设网配色工具",
+        "attr": "yyds"
+      },
+      {
+        "name": "Grabient",
+        "url": "http://color.oulu.me",
+        "desc": "Grabient-网页配色"
+      },
+      {
+        "name": "中国色",
+        "url": "http://zhongguose.com",
+        "desc": "中国传统色彩，可复制颜色色值"
+      },
+      {
+        "name": "CSS渐变色工具",
+        "url": "https://lingdaima.com/jianbianse",
+        "icon": "https://lingdaima.com/static/img/jianbianse.png",
+        "desc": "在线生成CSS渐变色工具"
+      },
+      {
+        "name": "Adobe调色盘",
+        "url": "https://color.adobe.com",
+        "desc": "新增辅助工具"
+      },
+      {
+        "name": "Ai配色",
+        "url": "https://aicolors.co",
+        "desc": "👍ai配色，UI手机app配色，pc软件配色"
+      },
+      {
+        "name": "色板",
+        "url": "https://www.91sotu.com/colors/plate",
+        "icon": "http://www.268608.com/imgs/2023/12/25/2645efe5c72bb1ef.jpg",
+        "desc": "拥有近万种设计调色板，每个都是设计师精挑细选，可以免费用于你的设计中。"
+      },
+      {
+        "name": "图片取色",
+        "url": "https://www.91sotu.com/colors/upload",
+        "icon": "https://pic.zhaotu.me/2023/11/18/_2689fb7f3106ca82.jpg",
+        "desc": "上传图片，一键生成调色板，生成色卡"
+      },
+      {
+        "name": "渐变背景",
+        "url": "https://www.91sotu.com/colors/background",
+        "icon": "http://www.268608.com/imgs/2023/12/25/73f1931687a847e9.jpg",
+        "desc": "精选百种流体背景供免费下载。可以免费用于你的设计上。"
+      }
+    ]
+  },
+  "📚️ 书籍搜索导航": {
+    "class": "book",
+    "children": [
+      {
+        "name": "Z-Library",
+        "url": "https://c.aalib.net",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmp5D7E81516fbd69c2485f.png",
+        "desc": "数字图书馆。免费下载书籍，非注册用户一天可下十本"
+      },
+      {
+        "name": "千秋书在（聚合站）",
+        "url": "http://www.qqszz.com",
+        "desc": "千秋书在-专注分享精品电子书，精校kindle电子书,外刊杂志下载PDF漫画下载"
+      },
+      {
+        "name": "鸠摩搜索 ",
+        "url": "https://www.jiumodiary.com",
+        "desc": "鸠摩搜索，书籍搜索引擎，只需输入书名获取下载链接，界面友好，支持多种电子书格式。"
+      },
+      {
+        "name": "熊猫搜书",
+        "url": "https://xmsoushu.com",
+        "desc": "熊猫搜索-聚合文档搜索导航",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "TheFuture书籍搜索",
+        "url": "https://bks.thefuture.top",
+        "desc": "TheFuture书籍搜索是电子书搜索引擎，只需输入书名即可快速找到想看的书籍，让获取书籍变得简单快捷，让知识触手可及。"
+      },
+      {
+        "name": "苦瓜书盘",
+        "url": "http://www.kgbook.com",
+        "icon": "https://imgo.hackhome.com/img2022/7/6/18/2022070618003868270_APP.jpg",
+        "desc": "苦瓜书盘是一个供网友交流适合电纸书阅读的6寸pdf和mobi格式电子书制作技术的网站，提供电子书分享平台。"
+      },
+      {
+        "name": "书格",
+        "url": "https://www.shuge.org",
+        "desc": "自由开放的在线古籍图书馆，致力于开放式分享、介绍、推荐有价值的古籍善本，并鼓励将文化艺术作品数字化归档。"
+      },
+      {
+        "name": "随机电子书",
+        "url": "https://www.mrsd.top",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/63/f3/6d/63f36d4b-63f4-0552-b19b-d21ab375c834/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
+        "desc": "每天推荐100部优质电子书，为书友提供一站式搜索"
+      },
+      {
+        "name": "小鲸鱼搜书",
+        "url": "http://www.3646.net",
+        "desc": "小鲸鱼搜书是一个免费的电子书下载导航网站，汇总电子书免费下载网站，方便书友检索电子书资源"
+      }
+    ]
+  },
+  "🗜 综合资源网<span>（包含各种软件教程、模板、素材等各种资源的自学平台)</span>": {
+    "class": "zonghe",
+    "children": [
+      {
+        "name": "资源熊",
+        "url": "https://ziyuanxiong.cn",
+        "icon": "https://ziyuanxiong.cn/imgs/logoi.png",
+        "desc": "资源熊是一家综合科技网站，致力分享绿色软件、免费游戏、活动线报、网站源码、网络课程、油猴脚本、浏览器插件等免费资源，专注于分享网络技术资源，努力为各位网友呈现最好的资源！"
+      },
+      {
+        "name": "五分钱特效",
+        "url": "http://www.vfxcool.com",
+        "icon": "https://pic.zhaotu.me/2023/04/17/1735b6021f0c714c3.png",
+        "desc": "AE插件 汉化插件 转场插件 AE教程 C4D教程 AE模板 PR模板 视频素材 FCPX插件"
+      },
+      {
+        "name": "CG资源网",
+        "url": "http://www.cgown.com",
+        "desc": "AE模板_PR模板_C4D教程_FCPX插件_视频素材_免费下载"
+      },
+      {
+        "name": "一酷C4D",
+        "url": "https://c4dco.com",
+        "desc": "一酷C4D - 一酷让设计更酷一下，免费C4D资源网站下载"
+      },
+      {
+        "name": "CG咖",
+        "url": "http://cgka3d.com",
+        "desc": "CG咖 - 精选全网 Blender插件 | 3D模型 | 预设等优质CG资源 "
+      },
+      {
+        "name": "书生CG资源站",
+        "url": "https://c4dsky.com",
+        "desc": "C4DSKY|书生 AE模板 FCPX插件 CG教程 CG插件 CG软件 CG素材 CG论坛 免费下载"
+      },
+      {
+        "name": "源库素材",
+        "url": "https://www.akailibrary.com",
+        "icon": "https://www.akailibrary.com/wp-content/uploads/2020/08/1596512049-%E5%A4%B4%E5%83%8F_45_%E8%93%9D%E8%89%B2%E9%80%8F%E5%BA%95.png",
+        "desc": "MG素材,MG动画,AE模板,AE资源,AE素材,AE工程,"
+      },
+      {
+        "name": "建筑学长",
+        "url": "https://www.jianzhuxuezhang.com",
+        "desc": "为青年设计师建立的线上共享云平台，提供海量设计案例、CAD图纸、SU模型、PS素材、软件插件免费下载，提供丰富的设计软件教学与灵感参考素材图库。内容资源涵盖建筑、规划、景观、室内、平面等专业领域。"
+      },
+      {
+        "name": "阿虚同学的储物间",
+        "url": "https://axutongxue.com",
+        "icon": "https://img.alicdn.com/imgextra/i4/2793632751/O1CN01NxIoDh1WC0EKVPhta_!!2793632751.jpg",
+        "desc": "阿虚同学是一个提供各种电脑、手机、网络、视频、音乐等方面的问题解答和教程的个人问答平台。"
+      },
+      {
+        "name": "资源汇社区",
+        "url": "http://ziyuanhuishequ.ys168.com",
+        "icon": "https://pic.zhaotu.me/2023/04/16/12x69a97f65a24ebf1a.png",
+        "desc": "👍教程Ⅰ软件Ⅰ黑科技Ⅰ心得Ⅰ素材，全网最大优质免费资源分享社区",
+        "attr": "tags 荐"
+      }
+    ]
+  },
+  "常用软件 <span>（包含设计方面的手机软件和电脑软件）</span>": {
+    "class": "software",
+    "icon": "iconfont icon-apply",
+    "children": [
+      {
+        "name": "Quicker",
+        "url": "http://getquicker.net",
+        "desc": "quicker它是一款效率软件，可以大幅度解放你的双手，效率倍增！",
+        "attr": "tags 火"
+      },
+      {
+        "name": "Billfish",
+        "url": "https://www.billfish.cn",
+        "desc": "专为设计师打造的图片素材管理工具，可以高效的整理电脑的各类素材：支持PNG、JPG、PSD、AI、GIF、SVG、EPS、CDR等格式。",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "剪映官方最新版下载",
+        "url": "https://lv.ulikecam.com/mobile_portal?_s=4",
+        "icon": "https://lf-cdn-tos.bytescm.com/obj/static/ies/ulike/web/resource/fe_official/assets/imgs/lv/favicon.ico",
+        "desc": "剪映app （官方网站同时提供PC端版本）-添加原因:有些人找到的网站不是官方的"
+      },
+      {
+        "name": "万兴喵影",
+        "url": "https://www.300624.cn/products-solutions/video-creativity/video.html",
+        "desc": "万兴喵影（原名万兴神剪手/喵影工厂），是一款风靡全球的视频剪辑神器，可用于Windows、macOS、Android以及iOS系统。"
+      },
+      {
+        "name": "Adobe全家桶",
+        "url": "https://www.uy5.net/category/download_zy/adobe/?aff=7168",
+        "icon": "https://pic.zhaotu.me/2023/04/17/221f88baea1af3207d.png",
+        "desc": "克隆窝yyds软件分享（不限速下载）"
+      },
+      {
+        "name": "各种设计软件",
+        "url": "http://pan.baidu.com/s/1eYDWh0J9E_Z9FaO2H-A96g#list/path=%2F&vmode=list",
+        "icon": "https://pic.zhaotu.me/2023/08/15/qq826e432cef35f140.png",
+        "desc": "打开是百度网盘链接，有会员的可以用，没用的话还是前面那个吧😂"
+      },
+      {
+        "name": "Snipaste",
+        "url": "http://zh.snipaste.com",
+        "icon": "https://cdn.h5ds.com/space/files/600972551685382144/20230818/616924320318914560.png",
+        "desc": "👍Snipaste 是一个简单但强大的截图工具，也可以让你将截图贴回到屏幕上！",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "各种电脑软件",
+        "url": "http://www.lanzoux.com/s/wp",
+        "desc": "打开是蓝奏云各种电脑软件的下载链接"
+      },
+      {
+        "name": "手机软件",
+        "url": "http://www.lanzoux.com/s/APP",
+        "desc": "只能手机端打开，影视、动漫、小说、工具类等~"
+      },
+      {
+        "name": "破解软件库合集",
+        "url": "http://fx.kuhehe.top/index.php/archives/9",
+        "icon": "https://q1.qlogo.cn/g?b=qq&nk=3111349763&s=100",
+        "desc": "蓝奏PJ软件库合集 (由于爱分享的酷小呵持续更新🔥)"
+      },
+      {
+        "name": "adobe全家桶",
+        "url": "https://flowus.cn/share/ab4b6b86-34a6-4aa0-a679-b4a221b8e41d",
+        "desc": "转载阿虚大佬的（不限速下载）"
+      },
+      {
+        "name": "亿破姐",
+        "url": "http://www.ypojie.com",
+        "desc": "精选互联网优秀软件分享、电脑技术、经验教程、SEO网站优化教程"
+      },
+      {
+        "name": "滚动截屏",
+        "url": "http://snip.qq.com",
+        "icon": "https://img.errui.top/i/2023/10/21/qzdy7g.webp",
+        "desc": "腾讯qq出品-滚动截屏，截图工具"
+      },
+      {
+        "name": "blender布的",
+        "url": "https://blenderco.cn",
+        "desc": "Blender布的提供全面的Blender教程、特效、效果、下载、插件、工程、模型、脚本、渲染、动画、海报、作品欣赏、图片、贴图和灯光预设。",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "423Down",
+        "url": "https://www.423down.com",
+        "desc": "是一家由个人运营的软件下载站博客，专注10年去广告软件，提供电脑、安卓软件和系统镜像下载，快速更新，致力于个人IP品牌。"
+      },
+      {
+        "name": "C4DNB",
+        "url": "http://c4dnb.com",
+        "desc": "C4D软件及相关插件下载-荔枝资源站-更加注重用户体验",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "小蚂蚁资源网",
+        "url": "https://www.xmy7.com/soft",
+        "icon": "https://www.xmy7.com/favicon.ico",
+        "desc": "包含单机游戏 手机软件 <i  style=\"color:red;\">电脑软件</i>，最新版本Xmind亲测可用富文本编辑"
+      },
+      {
+        "name": "小熊软件助手",
+        "url": "https://www.xxrjzs.com",
+        "icon": "https://www.xxrjzs.com/wp-content/uploads/2023/03/123.png",
+        "desc": "该网站没有对软件进行明确的分类，使用搜索即可~"
+      },
+      {
+        "name": "ToDesk远程软件",
+        "url": "https://www.todesk.com",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/4d/16/33/4d1633c6-92ab-9b3f-4b12-792bf73406f6/AppIcon-1x_U007emarketing-0-7-0-0-85-220.png/512x512bb.jpg",
+        "desc": "免费流畅的远程连接电脑手机，<I style=\"color:hotpink;\">精简版</i>支持被控，免安装运行！"
+      },
+      {
+        "name": " FileHorse",
+        "url": "https://www.filehorse.com",
+        "icon": "https://static.filehorse.com/favicon.ico",
+        "desc": "FileHorse提供了最快、最直接的软件下载方式，你只需要找到你想要的软件，点击一下Free Download即可"
+      }
+    ]
+  },
+  "⚙️ 软件插件<span>（也包含软件下载)</span>": {
+    "class": "chajian",
+    "children": [
+      {
+        "name": "LookAE",
+        "url": "http://www.lookae.com",
+        "desc": "一个分享AE插件的地方（大众脸影视后期特效）"
+      },
+      {
+        "name": "LOOK资源网",
+        "url": "http://www.lookzy.cn",
+        "desc": "AE特效|C4D教程|AE模板|Cinema 4D|特效教程|特效合成"
+      },
+      {
+        "name": "Camera Raw",
+        "url": "http://helpx.adobe.com/cn/camera-raw/kb/camera-raw-plug-in-installer.html",
+        "desc": "Camera Raw 增效工具安装程序"
+      },
+      {
+        "name": "PSD缩略图",
+        "url": "http://www.appinn.com/sagethumbs-for-windows/#google_vignette",
+        "icon": "https://a.fsdn.com/allura/p/sagethumbs/icon?1632987128",
+        "desc": "SageThumbs – 在右键菜单预览图片，并可预览 AI, PS, EPS, PDF 缩略图[Win版] 开源免费 提供国内下载地址",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "extfans",
+        "url": "http://www.extfans.com",
+        "desc": "浏览器插件资源, 超级实用！让你效率倍增的浏览器插件"
+      },
+      {
+        "name": "浏览器扩展插件商店",
+        "url": "https://chrome.zzzmh.cn",
+        "desc": "极简插件_Chrome扩展插件商店（无套路）"
+      },
+      {
+        "name": "C4DNB",
+        "url": "http://c4dnb.com",
+        "desc": "C4D软件下载-荔枝资源站-更加注重用户体验"
+      },
+      {
+        "name": "ps插件网",
+        "url": "http://chajianps.cn",
+        "desc": "现在新用户需邀请码（收费）ps插件网-立志帮助更多的中国PS插件用户"
+      },
+      {
+        "name": "建筑G(汉化大佬）",
+        "url": "http://jianzhugo.top",
+        "desc": "目前汉化了PS刺绣特效插件，PS逼真的阴影&模糊插件"
+      },
+      {
+        "name": "iTab新标签页",
+        "url": "https://itab.link",
+        "desc": "👍iTab一款自定义新标签页（强烈推荐，已经安利了好几个人了）",
+        "attr": "tags 火"
+      },
+      {
+        "name": "Infinity新标签页",
+        "url": "http://cn.infinitynewtab.com",
+        "desc": "👍浏览器的新标签页 快速高效的管理你的常用网站"
+      },
+      {
+        "name": "干的库Pr插件",
+        "url": "https://gan.cool",
+        "desc": "国人自主研发的第一款Adobe Premiere Pro全功能插件"
+      },
+      {
+        "name": "新CG儿",
+        "url": "https://www.newcger.com",
+        "desc": "新CG儿 - 数字视觉分享平台 | AE模板_视频素材_免费下载"
+      },
+      {
+        "name": "沉浸式翻译",
+        "url": "https://immersivetranslate.com",
+        "desc": "沉浸式翻译是一款浏览器插件，可以智能识别网页主内容区进行双语翻译，插件支持全平台浏览器，PDF文件翻译，EPUB电子书双语翻译、制作、导出，字幕文件翻译等功能。",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "NB Cutter",
+        "url": "https://www.nbchart.com/nbcutter/index.php",
+        "desc": "无需网络，永久免费\r\nNB Cutter是一款智能切图插件\r\n无需网络，永久免费，NB Cutter是一款智能切图插件支持导出多倍图，适合 Web / Android / iOS 切图",
+        "attr": "tags 火"
+      }
+    ]
+  },
+  "📺️ B站收藏 <span>(禹哥,小白,硕哥和我推荐的一些up主及小红书博主）</span>": {
+    "class": "bilibili",
+    "children": [
+      {
+        "name": "oooooohmygosh",
+        "url": "http://space.bilibili.com/38053181?👋我和小白很早之前就关注的up主，上课老师还放了他的视频",
+        "icon": "https://i2.100024.xyz/2023/11/20/iyfqqe.webp",
+        "desc": "一定存在只有你才能做到的事。",
+        "attr": "tags 佬"
+      },
+      {
+        "name": "英语兔",
+        "url": "https://www.bilibili.com/video/BV1SZ4y1K7Lr",
+        "icon": "https://i2.100024.xyz/2023/12/27/10sdk80.webp",
+        "desc": "最在乎你的英语老师，英语兔🐇 www.YingYuTu.com🥕"
+      },
+      {
+        "name": "CocoPolaris",
+        "url": "https://space.bilibili.com/449144107",
+        "icon": "https://img.errui.top/i/2023/10/21/qrjrlk.webp",
+        "desc": "教资学习必看yyds  身边教资过的朋友都推荐！",
+        "attr": "lytj tags 荐"
+      },
+      {
+        "name": "李翔的C4D入门教学",
+        "url": "http://www.bilibili.com/video/BV177411P7d1?👋这是我推荐的，很棒的教程",
+        "icon": "https://i2.100024.xyz/2023/11/20/iyfvl2.webp",
+        "desc": "川大艺术学院李翔老师讲解，十个案例帮你打开3D世界的大门",
+        "attr": "tags 火"
+      },
+      {
+        "name": "【虚幻4】",
+        "url": "http://www.bilibili.com/video/BV164411Y732?👋禹哥推荐的，兄弟们冲冲冲，学起来,评论区有up主的网站😏",
+        "icon": "https://img.errui.top/i/2023/10/21/qsic8k.webp",
+        "desc": "👍【虚幻4】UE4初学者系列教程合集-全中文新手入门教程",
+        "attr": " buttom djtj"
+      },
+      {
+        "name": "开源AI冒险社区",
+        "url": "https://www.aigodlike.com",
+        "icon": "https://www.aigodlike.com/public/favicon.ico",
+        "desc": "AIGODLIKE-来吧，冒险者！一起在这里建设不一样的AI开源社区~为开源与勇气而战！"
+      },
+      {
+        "name": "辣椒酱Blender",
+        "url": "https://www.bilibili.com/video/BV1zh411Y7LX",
+        "icon": "https://www.aigodlike.com/public/favicon.ico",
+        "desc": "让我们一起为建设未来的开源世界而肝！社区www.aigodlike.com"
+      },
+      {
+        "name": "卑微美工Garry",
+        "url": "https://garryui.cn",
+        "icon": "https://garryui.cn/favicon.8de18.ico",
+        "desc": "Garry大佬的个人网站，很牛"
+      },
+      {
+        "name": "字体设计up主",
+        "url": "http://space.bilibili.com/105133961?👋夏dj的头号粉丝推荐",
+        "icon": "https://img.errui.top/i/2023/10/21/qt5gvs.webp",
+        "desc": "孙慢慢字体设计"
+      },
+      {
+        "name": "PS,AI,PR,AE,C4D教程",
+        "url": "http://space.bilibili.com/25433581",
+        "icon": "https://img.errui.top/i/2023/10/21/qtgf9o.webp",
+        "desc": "up主京译达雅（PS,AI,PR,AE,C4D等教程）"
+      },
+      {
+        "name": "PS2019教程",
+        "url": "http://www.bilibili.com/video/BV12x411f7Gp?p=9",
+        "icon": "https://img.errui.top/i/2023/10/21/qu1mn3.webp",
+        "desc": "PS2019教程(PhotoShop从入门到入土 零基础入门80集)"
+      },
+      {
+        "name": "Pr教程",
+        "url": "http://www.bilibili.com/video/BV1bb411F7Sh/",
+        "icon": "https://img.errui.top/i/2023/10/21/qul9vs.webp",
+        "desc": "Pr2015教程全57集"
+      },
+      {
+        "name": "Nenly同学",
+        "url": "https://www.bilibili.com/video/BV1As4y127HW",
+        "icon": "https://img.errui.top/i/2023/10/21/qv0x0u.webp",
+        "desc": "B站首门系统的AI绘画入门教程,零基础玩转StableDiffusion就看这个系列的视频了！",
+        "attr": "tags 火"
+      },
+      {
+        "name": "系列AE教程",
+        "url": "http://www.bilibili.com/video/BV1EW411171A/",
+        "icon": "https://img.errui.top/i/2023/10/21/qv8158.webp",
+        "desc": "AE软件课程入门【2018全套零基础AE教程】"
+      },
+      {
+        "name": "敬伟PS教程",
+        "url": "https://www.bilibili.com/video/BV1QY411P7E7",
+        "icon": "https://img.errui.top/i/2023/10/21/qwulmq.webp",
+        "desc": "👍敬伟PS教程全集，建议初学者看这个，特别详细！！！",
+        "attr": "tags 火 buttom jwps"
+      },
+      {
+        "name": "doyoudo",
+        "url": "https://space.bilibili.com/20503549",
+        "icon": "https://i2.100024.xyz/2023/11/24/vtj4sy.webp",
+        "desc": "do what you love and master it! Doyoudo是一个设计领域在线学习平台，专注平面设计、视频剪辑、动画包装、音乐音效等艺术设计领域的技能提升，主要以“过程演示+旁白”的讲解形式为主，为用户提供C4D、AE、PS、Premiere 等多种设计类软件的教学。"
+      },
+      {
+        "name": "温酒大人",
+        "url": "https://www.xiaohongshu.com/user/profile/574572d65e87e74f6dc973f7",
+        "icon": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo30si3nkb7jm0g48cjuopdcsvn5u4h9g0?imageView2/2/w/540/format/webp|imageMogr2/strip2",
+        "desc": "💖字节跳动体验设计师\r\n💚得物ui设计师\r\n💙只分享个人ui作品和教程\r\n🤍死磕ui的视觉表现力｜视觉风格定义｜年轻潮流"
+      },
+      {
+        "name": "HR张叔",
+        "url": "https://www.xiaohongshu.com/user/profile/6530a5bf00000000020127bb",
+        "icon": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo30sb4i6jr32dg5p9gkmvgi9trjvnc02o?imageView2/2/w/540/format/webp|imageMogr2/strip2",
+        "desc": "12年hr，➡️前大厂人力资源\r\n一个有效的职场避坑分享"
+      }
+    ]
+  },
+  "🥇 设计比赛": {
+    "class": "designrace",
+    "children": [
+      {
+        "name": "我爱竞赛网",
+        "url": "http://m.52jingsai.com",
+        "desc": "我爱竞赛网-高含金量竞赛平台"
+      },
+      {
+        "name": "全球征集网",
+        "url": "https://www.1zj.com",
+        "desc": "原中国征集网"
+      },
+      {
+        "name": "中国征集网",
+        "url": "https://www.izhengji.cn",
+        "icon": "https://img.urlnode.com/file/f171772c1b0eaf4dc8fd2.png",
+        "desc": "涵盖标识LOGO征集、吉祥物形象、卡通动漫、广告语征集、商品创意、歌曲歌词、标志征集、旅游商品创意、雕塑景观、宣传语、征文…"
+      },
+      {
+        "name": "创意星球 - 学院奖",
+        "url": "http://www.5iidea.com/xyj",
+        "desc": "创意星球 - 学院奖"
+      },
+      {
+        "name": "设计杂志",
+        "url": "http://designmag.cn",
+        "icon": "https://img.errui.top/i/2023/10/21/qy2qdd.webp",
+        "desc": "设计杂志"
+      },
+      {
+        "name": "设计大赛网",
+        "url": "https://www.sjdasai.com",
+        "icon": "https://img.urlnode.com/file/86d318c18f4b905851f4d.png",
+        "desc": "文创-工业-标识（logo）-包装-吉祥物卡通-服装-景观设计大赛征集网"
+      },
+      {
+        "name": "红荔奖",
+        "url": "https://iabocgd.vcgvip.com",
+        "icon": "https://dam-feiyuantu.oss-cn-beijing.aliyuncs.com/vdam-php/others/200067/D27951684218766568.png",
+        "desc": "（视觉中国旗下网站）中国国际农产品品牌建设邀请大赛"
+      },
+      {
+        "name": "设计DNA",
+        "url": "https://www.shejidna.com/task",
+        "icon": "https://www.shejidna.com/favicon.png",
+        "desc": "设计DNA是一个为设计师和雇主提供设计交易服务的垂直在线交易平台"
+      }
+    ]
+  },
+  "🖼️ 在线搜图，动画": {
+    "class": "soutu",
+    "children": [
+      {
+        "name": "百度识图",
+        "url": "http://image.baidu.com/?fr=shitu/",
+        "icon": "https://www.baidu.com/img/baidu_85beaf5496f291521eb75ba38eacbd87.svg",
+        "desc": "百度以图搜图"
+      },
+      {
+        "name": "whatanime",
+        "url": "http://trace.moe",
+        "desc": "whatanime（以图搜动画）"
+      },
+      {
+        "name": "SauceNAO",
+        "url": "http://saucenao.com",
+        "desc": "SauceNAO（专门搜P站图）"
+      },
+      {
+        "name": "搜狗识图",
+        "url": "http://pic.sogou.com",
+        "desc": "搜狗图片 识图"
+      },
+      {
+        "name": "360图片",
+        "url": "http://m.image.so.com",
+        "desc": "360图片（以图搜动画）"
+      },
+      {
+        "name": "iPlant 植物智",
+        "url": "http://www.iplant.cn",
+        "desc": "以图搜植物，中国植物<sup> +</sup> 提供植物物种百科、图片、分布、识别等相关信息和工具"
+      },
+      {
+        "name": "搜图神器",
+        "url": "https://www.soutushenqi.com",
+        "desc": "汇聚全球图片搜索引擎，免费下载海量资源，提供丰富素材满足你的用图需求！支持PC和移动端，包括二次元、插画、唯美、风景、美女壁纸等。"
+      }
+    ]
+  },
+  "🧰 在线工具<span>（包含图片无损放大、文件转换等...）<a target=\"_blank\" href=\"https://www.zlblog.cf/posts/djly.html\"><i style=\"color:hotpink;\">关于老照片修复 站长朋友接单啦~ 比AI靠谱🖱</i></a></span>": {
+    "class": "tools",
+    "children": [
+      {
+        "name": "Bigjpg ",
+        "url": "https://bigjpg.com",
+        "desc": "AI人工智能图片无损放大 - 使用人工智能深度卷积神经网络(CNN)无损放大图片"
+      },
+      {
+        "name": "图片清晰吧",
+        "url": "https://www.tpqxb.com",
+        "icon": "https://www.tpqxb.com/favicon.ico",
+        "desc": "专业的图片处理网站，提供图片变清晰和人像修图两大功能。"
+      },
+      {
+        "name": "老照片修复",
+        "url": "https://jpghd.com",
+        "icon": "https://jpghd.com/htdocs/favicon.ico",
+        "desc": "利用2023年最先进人工智能 AI 将老照片无损高清修复（支持老照片修复、老照片上色和魔法动态照片）"
+      },
+      {
+        "name": "水印一键去去去",
+        "url": "https://quququ.cn",
+        "icon": "https://quququ.cn/icon.png",
+        "desc": "一款图片在线去水印网站，永久免费，使用人工智能技术，支持批量去除图片中的文字、标志，多余物体等多种水印，去水印不留痕，不压画质， 高质不糊图！"
+      },
+      {
+        "name": "excalidraw流程图",
+        "url": "https://excalidraw.akimio.top",
+        "icon": "https://excalidraw.akimio.top/favicon.ico",
+        "desc": "<b>在线</b>流程图制作，免费使用无需登录，由 <a href=\"https://blog.akimio.top\"> 秋澪大佬搭建🔗</a> 可配合思维导图使用。",
+        "attr": "tags 火"
+      },
+      {
+        "name": "在线xmind",
+        "url": "https://tools.fun/xmind.html",
+        "icon": "https://tools.fun/assets/image/6f33286edb.png",
+        "desc": "Xmind在线思维导图制作,和前面的流程图互补使用"
+      },
+      {
+        "name": "ProcessOn",
+        "url": "http://www.processon.com",
+        "desc": "思维导图,流程图,免费在线作图工具,在线流程图..."
+      },
+      {
+        "name": "改图鸭",
+        "url": "https://www.gaituya.com",
+        "desc": "在线证件照、图片压缩、图片编辑、图片格式转换工具"
+      },
+      {
+        "name": "改图神器",
+        "url": "https://img.logosc.cn",
+        "desc": "这是一款完全免费简单好用的在线万能图片编辑器，无需注册即开即用，支持多种格式图片。功能包括：图片编辑、一键抠图、格式转换、水印添加、图片压缩、无损放大、漫画头像、证件照制作、转矢量图、透明背景、GIF编辑器",
+        "attr": "sqsl"
+      },
+      {
+        "name": "PDF工具",
+        "url": "http://www.bossdesign.cn/pdftools",
+        "desc": "👍免费PDF在线转换工具合辑——boss设计"
+      },
+      {
+        "name": "iLovePDF",
+        "url": "https://www.ilovepdf.com/zh-cn",
+        "icon": "https://www.ilovepdf.com/img/app-icon.png",
+        "desc": "为PDF爱好者提供的PDF文件在线处理工具，解锁 合并 压缩 拆分 转换…",
+        "attr": "tags 火"
+      },
+      {
+        "name": "在线PDF",
+        "url": "https://www.pdf2go.com/zh",
+        "desc": "免费PDF在线转换工具"
+      },
+      {
+        "name": "迅捷PDF转换器",
+        "url": "http://app.xunjiepdf.com",
+        "desc": "👍迅捷PDF转换器，免费版可以借我的会员有效期：2023-4-3"
+      },
+      {
+        "name": "文档格式在线转换",
+        "url": "http://smallpdf.com",
+        "desc": "英文的网站，文档格式在线转换"
+      },
+      {
+        "name": "在线转换",
+        "url": "http://www.aconvert.com/cn/",
+        "desc": "👍 文档转换，视频压缩，可以转换各种文件类型，如影片、音讯、文件、文件和图像。"
+      },
+      {
+        "name": "在线格式转换",
+        "url": "http://zhuanhuan.supfree.net",
+        "desc": "格式转换,在线解压,在线压缩,压缩包格式,图片格式,音频格式,视频格式,电子文档格式,幻灯片格式,电子表格格式,电子书格式,字体格式,CAD格式,矢量格式,网站抓图"
+      },
+      {
+        "name": "Zamzar 在线格式转换",
+        "url": "http://www.zamzar.com",
+        "desc": "打开是英文的，英语不是很好也能差不多能看懂"
+      },
+      {
+        "name": "在线文件转换",
+        "url": "https://products.groupdocs.app/zh/conversion/total",
+        "desc": "使用 Chrome 和 Firefox 等现代浏览器从任何设备在线转换文档。"
+      },
+      {
+        "name": "免费视频压缩",
+        "url": "https://www.flexclip.com/cn/tools/compress-video/",
+        "icon": "https://api.iowen.cn/favicon/www.flexclip.com.png",
+        "desc": "兵哥推荐，免费的视频压缩工具"
+      },
+      {
+        "name": "png压缩",
+        "url": "http://tinify.cn",
+        "desc": "TinyPNG使用智能有损压缩技术将WebP, PNG and JPEG图片的文件大小降低，图片压缩",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "图片压缩",
+        "url": "http://www.yasuotu.com",
+        "desc": "在线图片压缩工具，支持GIF压缩、PNG压缩、JPG压缩"
+      },
+      {
+        "name": "图片压缩",
+        "url": "https://wch666.com/api/b/img_zip_new/",
+        "icon": "https://i2.100024.xyz/2023/11/22/p41qt7.webp",
+        "desc": "特色地方: 非常美的UI，让你的体验更上一层楼",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "千图抠图工具",
+        "url": "http://koutu.58pic.com",
+        "desc": "AI自动抠图-千图网旗下抠图工具"
+      },
+      {
+        "name": "png→svg",
+        "url": "http://www.pngtosvg.com",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmpB96274f4c16c6a1f365e.png",
+        "desc": "在线png→svg,在线图片转矢量，png转矢量，png转svg"
+      },
+      {
+        "name": "在线抠图",
+        "url": "https://www.remove.bg/zh",
+        "desc": "只需单击一下，即可在5秒钟内自动删除图像背景。<a rel=\"noopener external nofollow noreferrer\" target=\"_blank\" href=\"https://www.remove.bg/r/pUvF2eAR6p4Z1sqHBqh5sz6s?locale=zh\">点我注册送积分</a>",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "GIF闪图在线制作",
+        "url": "https://tools.kalvinbg.cn/image/gif",
+        "desc": "多张静态图片合成Gif动态图片，支持生成表情包动图、自定义配置顺序、gif闪动速度等"
+      },
+      {
+        "name": "gif编辑器",
+        "url": "https://ezgif.com",
+        "desc": "亲测可以制作动态qq头像"
+      },
+      {
+        "name": "UI尺寸规范",
+        "url": "http://tool.lanrentuku.com/guifan/ui.html",
+        "icon": "https://pic.zhaotu.me/2023/08/17/tmp9C5F031035118aaa34a7.png",
+        "desc": "iPhone/iPad/Android UI尺寸规范"
+      },
+      {
+        "name": "Screen Sizes",
+        "url": "http://screensiz.es/",
+        "desc": "在线查询不同设备的屏幕尺寸"
+      },
+      {
+        "name": "iOS设计规范",
+        "url": "https://blog.zhheo.com/p/c85bf44b.html",
+        "icon": "https://i2.100024.xyz/2023/11/04/ywdr29.webp",
+        "desc": "每年都会发一下最新的iOS的设计尺寸介绍，由产设学长撰写更新，值得推荐的一位博主~"
+      },
+      {
+        "name": "安卓尺寸",
+        "url": "http://material.io/blog/device-metrics",
+        "desc": "Google安卓主流设备尺寸"
+      },
+      {
+        "name": "图片像素转换器",
+        "url": "https://pixel.heyfe.org",
+        "desc": "将你的图片转成像素风"
+      },
+      {
+        "name": "在线矢量设计",
+        "url": "https://vectordad.com",
+        "desc": "图像艺术矢量化"
+      },
+      {
+        "name": "即时工具",
+        "url": "https://www.67tool.com",
+        "desc": "即时工具-致力打造即用即走型在线工具箱"
+      },
+      {
+        "name": "草料二维码",
+        "url": "http://cli.im",
+        "desc": "免费在线二维码解码器"
+      },
+      {
+        "name": "去除gif背景",
+        "url": "http://www.unscreen.com/upload",
+        "desc": "AI自动抠图去除gif背景"
+      },
+      {
+        "name": "AI 视频无损放大/补帧",
+        "url": "https://bigmp4.com",
+        "icon": "https://bigmp4.com/htdocs/favicon.ico",
+        "desc": "人工智能视频无损放大, 使用2023年最先进人工智能 AI 模型，能将视频无损高清放大、增强画质、智能补帧使画面丝滑流畅栩栩如生同时支持黑白视频上色和慢动作"
+      }
+    ]
+  },
+  "🆓 免费资源下载<span>（PPT模板,字体,设计素材，样机...）</span>": {
+    "class": "download",
+    "children": [
+      {
+        "name": "资源汇社区",
+        "url": "http://ziyuanhuishequ.ys168.com",
+        "icon": "https://pic.zhaotu.me/2023/04/16/12x69a97f65a24ebf1a.png",
+        "desc": "👍教程Ⅰ软件Ⅰ黑科技Ⅰ心得Ⅰ素材，全网最大优质免费资源分享社区,生活站点、影剧站点、资源搜索、阅读书库、在线工具、隐私安全、各类网页、电脑软件、电脑辅助、软件插件、手机软件、学习专栏、学点知识、设计素材、影视剪辑、优质线报、网络资源、办公资源、"
+      },
+      {
+        "name": "品牌vi手册下载",
+        "url": "https://brandingstyleguides.com/guide",
+        "desc": "品牌vi手册下载| Branding Style Guides（注册需要科学上网）"
+      },
+      {
+        "name": "克隆窝素材解析",
+        "url": "https://www.uy5.net/Resource_function/yuanjx/C/?aff=1799",
+        "icon": "https://cdn.h5ds.com/space/files/600972551685382144/20230813/615122782997979136.png",
+        "desc": "陪伴大学四年的一个全能网站, 素材解析成本太高，窝长快坚持不住了"
+      },
+      {
+        "name": "MOCKUP免费样机",
+        "url": "https://mockupplanet.com",
+        "desc": "国外免费样机下载网站  Great Collection of Best Free Mockups From The Web"
+      },
+      {
+        "name": "西田样机",
+        "url": "https://mockup.sitapix.com",
+        "desc": "专门提供免费高质量的样机素材。包括美妆洗化、食品饮料、包装盒袋、办公用品等，下载链接百度网盘上"
+      },
+      {
+        "name": "免费高质量样机",
+        "url": "http://www.ls.graphics",
+        "desc": "免费高质量样机、插和UI工具"
+      },
+      {
+        "name": "✨freepik✨",
+        "url": "https://www.freepik.com",
+        "desc": "矢量图，照片，psd免费样机等免费下载"
+      },
+      {
+        "name": "resourceboy（免费）",
+        "url": "https://resourceboy.com",
+        "desc": "免费样机，缺点是只能英文搜(可以先用本站搜索集成的百度翻译先翻译成英文后搜索)"
+      },
+      {
+        "name": "ANTHONY BOYD GRAPHICS",
+        "url": "https://www.anthonyboyd.graphics",
+        "desc": "高质量样机，常更新，以及贴图"
+      },
+      {
+        "name": "MockDrop在线样机",
+        "url": "https://mockdrop.io",
+        "desc": "MockDrop | 在线生成免费样机模型界面"
+      },
+      {
+        "name": "云米素材（部分免费）",
+        "url": "http://www.yunmiss.com/list/1.html",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmpFAF6a666cdd1736da0c3.png",
+        "desc": "云米创意,素材,原创设计,创意平台,psd素材,贴图素材,高清素材"
+      },
+      {
+        "name": "模库网",
+        "url": "http://www.mcool.com/free.php",
+        "icon": "https://www.mcool.com/favicon.ico",
+        "desc": "免费设计素材模板下载图库共享网站"
+      },
+      {
+        "name": "魔酷网",
+        "url": "https://blender.kim",
+        "desc": "Blender插件-Blender模型Blender贴图魔酷网模型一站式下载"
+      },
+      {
+        "name": "魔顿网",
+        "url": "http://www.modown.cn/?aff=70874",
+        "icon": "https://api.iowen.cn/favicon/www.modown.cn.png",
+        "desc": "免费C4D资源下载设计,高效,3d模型,c4d模型 ,魔顿,C4D插件,纹理贴图贴图"
+      },
+      {
+        "name": "3D溜溜网",
+        "url": "https://www.3d66.com",
+        "desc": "【3D模型免费下载】打造一流的3DMax模型库_3D溜溜网 3d66.com"
+      },
+      {
+        "name": "CG模型网",
+        "url": "https://www.cgmodel.com",
+        "desc": "专注多品类3D模型下载、原创作品分享、软件学习"
+      },
+      {
+        "name": "51PPT",
+        "url": "http://www.51pptmoban.com",
+        "desc": "51PPT模板网 - 幻灯片演示模板及素材下载"
+      },
+      {
+        "name": "比格PPT",
+        "url": "http://www.tretars.com",
+        "desc": "免费PPT模板下载和个人博客网站，分享PPT制作教程和素材下载，由李益达博主维护。",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "第一PPT",
+        "url": "http://www.1ppt.com",
+        "desc": "免费ppt下载网站，广告超多，注意甄别！！"
+      },
+      {
+        "name": "PPT教程",
+        "url": "http://www.pptfans.cn/pptcourse",
+        "desc": "专业级的PPT设计教程，PPT技能自我提升必备教程",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "灵感PPT-一键生成PPT",
+        "url": "https://s663.linganoffice.com",
+        "icon": "https://s663.linganoffice.com/favicon.ico",
+        "desc": "只需输入您的内容主题，一键即可快速生成主题内容文案、配图，并自动完成内容排版，PPT直接导出可用。"
+      },
+      {
+        "name": "爱给网",
+        "url": "http://aigei.com/design/?m=b_4425938",
+        "icon": "https://pic.zhaotu.me/2023/10/30/imagebe36eabde79ccbe2.png",
+        "desc": "免费提供效配乐|3D模型|视频|游戏素材资源下载  PS素材,png素材，PS笔刷，AE模板，MG动画，PS样机 免抠元素 免抠背景 PPT  图库 字体 网页模板 UI界面 灵感"
+      },
+      {
+        "name": "觅元素",
+        "url": "http://www.51yuansu.com",
+        "desc": "免抠素材,位图,透明背景素材,透明背景图片,免抠png,高清png"
+      },
+      {
+        "name": "矢量插画下载",
+        "url": "http://undraw.co/illustrations",
+        "desc": "免抠矢量插画下载"
+      },
+      {
+        "name": "音效下载",
+        "url": "http://www.huiyi8.com/yinxiao",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmp5DB2fc09b40e450cd61.png",
+        "desc": "绘艺素材音效网提供各类音效下载",
+        "attr": "tags 火"
+      },
+      {
+        "name": "免费中文字体收集计划<i style=\"font-size:0px\">ziti</i>",
+        "url": "https://flowus.cn/share/12828fe3-8806-4350-bfbe-4fc1d032e5db#b767fbea-6aa4-41ce-beea-afddf1e0cf5e",
+        "icon": "https://cdn.h5ds.com/space/files/600972551685382144/20230806/612647991352705024.svg",
+        "desc": "收集自互联网公开信息，由doyoudo.com的展哥维护。"
+      },
+      {
+        "name": "免费商用字体<i style=\"font-size:0px\">ziti</i>",
+        "url": "http://www.zifh.com",
+        "desc": "字风华-最全最新的免费可商用中英文字体下载网站！"
+      },
+      {
+        "name": "猫啃网(免费字体)<i style=\"font-size:0px\">ziti</i>",
+        "url": "http://www.maoken.com",
+        "icon": "https://pic.zhaotu.me/2023/10/30/tmp9664bdac1b06592f933c.png",
+        "desc": "免费下载无版权可商用字体-英文中文字体",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "找字体<i style=\"font-size:0px\">ziti</i>",
+        "url": "https://zfont.cn",
+        "desc": "免费商用中文字体，显示字体使用许可范围，无套路下载",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "100font<i style=\"font-size:0px\">ziti</i>",
+        "url": "http://www.100font.com",
+        "desc": "免费下载无版权可商用字体-英文中文字体"
+      },
+      {
+        "name": "Fonts2u<i style=\"font-size:0px\">ziti</i>",
+        "url": "http://zh.fonts2u.com",
+        "desc": "免费上提供了大量的中文字体和英文字体"
+      },
+      {
+        "name": "图片字体可商用<i style=\"font-size:0px\">ziti</i>",
+        "url": "https://www.thosefree.com/design",
+        "icon": "https://img.thosefree.com/static/logo.png",
+        "desc": "\r\n免费商用图库\r\n免费商用字体\r\n免费商用视频\r\n免费商用音频"
+      },
+      {
+        "name": "免费商用字体",
+        "url": "https://uiiiuiii.com/tool/typeface",
+        "icon": "https://uiiiuiii.com/favicon.ico",
+        "desc": "优设网收集的免费商用中文字体，还是更推荐猫啃网和找字体—版权更清晰。"
+      },
+      {
+        "name": "免抠图片网",
+        "url": "https://miankoutupian.com",
+        "desc": "免费的免抠图片素材网站,png透明背景图片素材库，支持以图搜图功能，提供了海量的高质量免抠图片素材免费下载，专门为设计师搜索和分享优质的无背景图和剪贴画，用户无需注册即可免费下载使用。",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "PNG素材网",
+        "url": "https://www.pngsucai.com",
+        "desc": "PNG素材网提供免费的PNG图片下载服务，并保持内容的持续更新。"
+      },
+      {
+        "name": "免费无版权图片素材",
+        "url": "https://getquicker.net/Sharedaction?code=4eb8bf9f-b28b-498e-bb76-08db3a59838c",
+        "icon": "https://files.getquicker.net/_icons/16E29181C09DA59F9A66F79852C87BBB122BB5B7.png",
+        "desc": "免费、无版权、高质量图片网站。由我收藏整理"
+      },
+      {
+        "name": "免费 Icon",
+        "url": "https://www.mingcute.com",
+        "desc": "MingCute 一套极简风格的开源图标库，这套图标目前包含线性和填充 2 种图标形式"
+      },
+      {
+        "name": "电影海报下载<i style=\"font-size:0px\">poster</i>",
+        "url": "http://www.impawards.com",
+        "desc": "全国电影高清海报下载，中文搜不到搜电影的英文名"
+      },
+      {
+        "name": "视觉传达",
+        "url": "https://shijuechuanda.com",
+        "desc": "免费素材共享平台，专注海外商业设计精品素材。PS插件,PS动作,PS软件,AI,软件设计软件,图层样式,PS笔刷,AI笔刷,AI动作"
+      },
+      {
+        "name": "Poly Haven",
+        "url": "https://polyhaven.com",
+        "desc": "3D免费资产库，UE5,Blender",
+        "attr": "tags 荐"
+      }
+    ]
+  },
+  "💯 学术论文<span>（知网等网站在校内IP范围内部分免费，具体看学校有没有买）</span>": {
+    "class": "dissertation",
+    "children": [
+      {
+        "name": "站长代下<i style=\"font-size:0px\">学术lunwen知网zhiwang</i>",
+        "url": "http://wpa.qq.com/msgrd?v=3&uin=1474728874&site=qq&menu=yes",
+        "icon": "https://thirdqq.qlogo.cn/g?b=sdk&k=yqjbmdENrko19T7mjIc3vg&s=100&t=1655292317",
+        "desc": "代下知网论文，仅作为学习使用+qq: 1474728874",
+        "attr": "tags 火 "
+      },
+      {
+        "name": "毕业论文资源导航",
+        "url": "http://by.360xueke.com",
+        "desc": "👍毕业论文资源,文献综述,文献综述模板,毕业论文降重,论文降重,毕业论文任务书",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "知网",
+        "url": "http://www.cnki.net",
+        "desc": "(付费）校内IP范围内免费-正常的话学校都买了知网的"
+      },
+      {
+        "name": "万方数据",
+        "url": "http://www.wanfangdata.com.cn",
+        "desc": "(付费）校内IP范围内免费 万方数据、论文、文献"
+      },
+      {
+        "name": "维普网",
+        "url": "http://www.cqvip.com",
+        "desc": "(付费）校内IP范围内免费 提供各类学术论文等文献下载"
+      },
+      {
+        "name": "免费论文查重-1",
+        "url": "http://www.paperask.com",
+        "desc": "这几个每天免费一次，用完一个换一个就行了"
+      },
+      {
+        "name": "免费论文查重-2",
+        "url": "http://www.paperray.com",
+        "desc": "这几个每天免费一次，用完一个换一个就行了"
+      },
+      {
+        "name": "免费论文查重-3",
+        "url": "http://www.paperfree.cn",
+        "desc": "这几个每天免费一次，用完一个换一个就行了"
+      },
+      {
+        "name": "万方查重✨",
+        "url": "https://chsi.wanfangtech.net",
+        "desc": "应届毕业生享万方免费查重一次"
+      },
+      {
+        "name": "PaperOK",
+        "url": "https://www.paperok.com",
+        "desc": "PaperOK论文查重 - 专注免费论文查重，论文查重免费，不限类型"
+      },
+      {
+        "name": "赛特新思",
+        "url": "https://www.citexs.com",
+        "desc": "专业、免费、开放的科研平台,SCI写作&润色&降重"
+      },
+      {
+        "name": "百度文库解析",
+        "url": "https://www.lexueduosi.com/#/",
+        "desc": "可以解析下载百度文库付费资源，千万文档免费下载",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "大木虫学术导航",
+        "url": "http://4243.net",
+        "desc": "本站涵盖Google学术入口，Sci-hub最新网址，国内外文献免费下载入口，科研工具、专利标准、基金申请、期刊信息，科研成果等科研人员必备良站，为广大科研人员提供最简单便捷的科研学术上网导航服务。"
+      },
+      {
+        "name": "文献部落",
+        "url": "http://459.org",
+        "desc": "文献部落是一个免费下载文献的学术导航网站，汇总最新免费下载国内外文献的网站，为广大研究生提供最便捷的文献下载方法"
+      },
+      {
+        "name": "谷歌学术",
+        "url": "https://www.google-hub.com"
+      }
+    ]
+  },
+  "😍 在线解析": {
+    "class": "jiexi",
+    "children": [
+      {
+        "name": "网易云音乐",
+        "url": "https://api.toubiec.cn/wyapi.html",
+        "icon": "https://p3.music.126.net/tBTNafgjNnTL1KlZMt7lVA==/18885211718935735.jpg",
+        "desc": "提供简单方便的网易云音乐无损解析下载服务"
+      },
+      {
+        "name": "百度文库解析",
+        "url": "https://www.lexueduosi.com/#/",
+        "desc": "可以解析下载百度文库付费资源，千万文档免费下载",
+        "attr": "tags 荐"
+      },
+      {
+        "name": "克隆窝素材解析",
+        "url": "https://www.uy5.net/Resource_function/yuanjx/C/?aff=1799",
+        "icon": "https://cdn.h5ds.com/space/files/600972551685382144/20230813/615122782997979136.png",
+        "desc": "陪伴大学四年的一个全能网站, 素材解析成本太高，窝长快坚持不住了"
+      }
+    ]
+  },
+  "🙇 友情链接 <span><a target=\"_blank\" href=\"https://www.zlblog.cf/posts/djly.html\">点我申请友情链接</a>  共同进步！</span>": {
+    "class": "links",
+    "children": [
+      {
+        "name": "QCMoe网址导航",
+        "url": "https://www.qcmoe.com",
+        "icon": "https://thirdqq.qlogo.cn/g?b=sdk&k=5xRdd9uNmWVckXArSWok5g&kti=ZLVsYAAAAAA&s=100&t=1611901576",
+        "desc": "艺术与科技的双重碰撞，也是设计系大学生制作 也是倾丞博客站长",
+        "attr": "tags 火 "
+      },
+      {
+        "name": "站长博客",
+        "url": "https://www.zlblog.cf",
+        "icon": "https://thirdqq.qlogo.cn/g?b=sdk&k=yqjbmdENrko19T7mjIc3vg&s=100&t=1655292317",
+        "desc": "低调存在，无人问津，专注无用，深度浅薄。"
+      },
+      {
+        "name": "维洛书签-羽.cn",
+        "url": "https://xn--xu0a.cn",
+        "icon": "https://xn--xu0a.cn/favicon.ico",
+        "desc": "维洛个人书签页多搜索引擎网站导航"
+      },
+      {
+        "name": "夏DJ导航站",
+        "url": "http://dh.xiadj.cf",
+        "icon": "https://qiniu.production.link3.cc/profile_images/1693202613621",
+        "desc": "夏DJ导航站的其他域名，建议收藏，以备本站失联"
+      },
+      {
+        "name": "Kalvin在线工具箱",
+        "url": "https://tools.kalvinbg.cn",
+        "icon": "https://tools.kalvinbg.cn/static/favicon.ico",
+        "desc": "Kalvin在线工具旨在为大家提供便利、实用及有趣好玩的工具集合，如：证件照换底色、图片转卡通/素描/黑白图、人像动漫化、ASCII艺术字生成、压力测试、文章生成器、营销号生成器等工具。"
+      },
+      {
+        "name": "资源熊",
+        "url": "https://ziyuanxiong.cn",
+        "icon": "https://ziyuanxiong.cn/imgs/logoi.png",
+        "desc": "资源熊是一家综合科技网站，致力分享绿色软件、免费游戏、活动线报、网站源码、网络课程、油猴脚本、浏览器插件等免费资源，专注于分享网络技术资源，努力为各位网友呈现最好的资源！"
+      }
+    ]
+  },
+  "😍 测试": {
+    "class": "test",
+    "children": [
+      {
+        "name": "一个彩蛋<i style=\"font-size:0px\">#003</i>",
+        "url": "https://www.bilibili.com/video/BV1GJ411x7h7",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple111/v4/42/6d/24/426d2404-3a9a-bde8-bde6-a6f31a146ed3/pr_source.png/512x512bb.jpg",
+        "desc": "<i style=\"font-size:12px\">恭喜你发现了一个彩蛋，快来点我上当吧（不是🤐）</i>"
+      },
+      {
+        "name": "温馨提示<I style=\"font-size:0px\">自杀zisha</i>",
+        "url": "https://www.douyin.com/video/7156574576867151144",
+        "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/89/1c/37/891c37c3-69fd-15d5-d7a1-7194c4c651eb/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-85-220.jpeg/512x512bb.jpg",
+        "desc": "<i >世界虽不完美，但我们仍可疗愈自己。全国24小时心理援助热线：010-82951332</i>"
+      },
+      {
+        "name": "公益404<i style=\"font-size:0px\">404页面</i>",
+        "url": "https://volunteer.cdn-go.cn/404/latest/404.html",
+        "icon": "https://volunteer.cdn-go.cn/404/latest/img/dream4schoolQR.png",
+        "desc": "和腾讯志愿者一起为孩子们点亮一个梦想"
+      },
+      {
+        "name": "人生的意义",
+        "url": "https://www.bilibili.com/video/BV1j34y1N7pw",
+        "icon": "https://img.urlnode.com/file/84a2ef4eb135cd4dc8b42.png",
+        "desc": "人生的意义到底是什么呢？我认为人生的意义是学会爱别人。"
+      },
+      {
+        "name": "习题打印生成器",
+        "url": "https://www.dayin.page",
+        "desc": "强大、易用的一键生成数学题、描红字帖及各种空白模板。适合幼儿园、幼小衔接、小学一年级、二年级等各年龄段使用。"
+      },
+      {
+        "name": "在线端口检测",
+        "url": "http://coolaf.com/tool/port",
+        "icon": "http://coolaf.com/static/img/favicon3.ico",
+        "desc": "在线检测、扫描域名或者ip的端口是否开放"
+      },
+      {
+        "name": "流量消耗器",
+        "url": "https://api.vv1234.cn/llxhq",
+        "icon": "https://ts3.cn.mm.bing.net/th?id=OIP-C.EtyZqZ26FNEkqEBUifET-AAAAA&w=",
+        "desc": "流量消耗器,流量消失器,多线程消耗流量,消耗定向流量,流量杀手"
+      },
+      {
+        "name": "胖东来",
+        "url": "https://i.azpdl.com/pdl-index/event/index.html?s=cn",
+        "icon": "https://i.azpdl.cn/pdl-index/favicon.ico",
+        "desc": "爱在胖东来"
+      },
+      {
+        "name": "ChatGPT3.5",
+        "url": "https://chat.oaifree.com",
+        "icon": "https://chat.oaifree.com/_next/static/media/apple-touch-icon.59f2e898.png",
+        "desc": "免费ChatGpt,真正的openai使用自己的账号"
+      }
+    ]
+  }
+}
