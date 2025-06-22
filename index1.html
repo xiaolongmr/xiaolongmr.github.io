@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="视传导航站">
+    <title>夏DJ导航站-很有范的导航站</title>
+    <meta name="description" content="大三视传人自制，方便自己已经朋友而存在的导航网站夏dj导航-设计师必备导航站。">
+    <meta name=keywords content="夏dj,夏dj站,视传导航网,设计导航网,夏DJ导航,夏DJ导航站">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="apple-mobile-web-app-title" content="夏DJ导航">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="https://jsd.cdn.zzko.cn/gh/xiaolongmr/test@main/1.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./favicon.png">
+
+    <!-- style本地文件和外链 style是本地测试带有嵌套关系的css， output.css是解析嵌套后的 -->
+    <link rel=stylesheet href="css/style.css">
+    <!-- <link rel=stylesheet href=css/output.css> -->
+    <!-- <link rel="stylesheet" href="https://jsd.012700.xyz/gh/xiaolongmr/dh/css/style.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.h5ds.com/space/files/600972551685382144/20240714/736843635572895744.css"> -->
+    <!-- end -->
+
+    <!-- RSS搜索结果样式 -->
+    <style>
+        /* 强制覆盖网站所有网格布局，确保RSS结果是单列布局 */
+        .rss-wrapper {
+            display: block !important;
+            width: 100% !important;
+            grid-column: 1 / -1 !important;
+            clear: both !important;
+            float: none !important;
+            margin-top: 20px !important;
+        }
+
+        /* .rss-outer-container {
+            width: 100% !important;
+            clear: both !important;
+            display: block !important;
+            margin-top: 20px !important;
+            padding-top: 15px !important;
+            position: relative !important;
+            float: none !important;
+            border-top: 1px solid #dbe3f0 !important;
+            background-color: rgba(210, 242, 255, 0.1) !important;
+            padding: 15px !important;
+            border-radius: 10px !important;
+        } */
+
+        /* RSS搜索结果标题 */
+        .rss-results-title {
+            width: 100% !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            margin: 0 0 15px 0 !important;
+            color: #3273dc !important;
+            clear: both !important;
+            display: block !important;
+            padding-left: 8px !important;
+        }
+
+        /* RSS结果容器 - 使用网格布局 */
+        .rss-results-container {
+            width: 100% !important;
+            clear: both !important;
+            margin-top: 10px !important;
+            float: none !important;
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+            gap: 15px !important;
+        }
+
+        /* 确保RSS结果容器使用正确的网格布局 */
+        #searchResults .box-card .rss-results-container {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+            gap: 15px !important;
+        }
+
+        /* 响应式布局调整 */
+        @media screen and (max-width: 768px) {
+
+            .rss-results-container,
+            #searchResults .box-card .rss-results-container {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .rss-item {
+            border: 1px solid #dbe3f0 !important;
+            border-radius: 10px !important;
+            background: linear-gradient(135deg, #e8f4ff 0%, #f0f0ff 100%) !important;
+            margin-bottom: 0 !important;
+            padding: 12px !important;
+            overflow: hidden !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: block !important;
+            box-shadow: 1px 2px 5px 0px #dceaf6 !important;
+            transition: all 0.3s !important;
+            height: 100% !important;
+        }
+
+        .rss-item:hover {
+            box-shadow: 1px 2px 10px #9fc4d6 !important;
+            border: 1px solid #62a6e2 !important;
+        }
+
+        .rss-item a {
+            display: block !important;
+            text-decoration: none !important;
+            color: inherit !important;
+            height: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .rss-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #2c6ecb !important;
+            margin-bottom: 8px !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+        }
+
+        .rss-summary {
+            font-size: 12px !important;
+            color: rgb(89, 89, 89) !important;
+            margin-bottom: 5px !important;
+            line-height: 1.4 !important;
+            overflow-wrap: break-word !important;
+            display: -webkit-box !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            -webkit-line-clamp: 2 !important;
+            flex-grow: 1 !important;
+        }
+
+        .rss-info {
+            font-size: 12px !important;
+            color: #999 !important;
+            border-top: 1px dashed #e0e7f5 !important;
+            padding-top: 8px !important;
+            margin-top: 5px !important;
+        }
+    </style>
+    <!-- end -->
+
+    <!-- 核心文件，解析excel表格  已上传到希尔桌面-->
+    <!-- <script src="https://cdn.staticfile.org/xlsx/0.18.5/xlsx.core.min.js" type="application/javascript"></script> -->
+    <script src="https://cdn.h5ds.com/space/files/600972551685382144/20240307/690223055768350720.js"
+        type="application/javascript"></script><!-- <script src="js/xlsx.full.min.js"></script> -->
+    <!-- 镜像地址： 官网找到插件,dist目录下有很多个JS文件，一般情况下用xlsx.core.min.js就够了，xlsx.full.min.js则是包含了所有功能模块。
+                https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js 
+                https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/xlsx/0.18.2/xlsx.core.min.js -->
+    <!-- end -->
+
+    <!-- jquery本地文件和外链 -->
+    <script src='https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js'></script>
+    <!-- 最新引入的js 2023年7月1日改为字节跳动cdn,缓存时间是一个月 -->
+    <!-- end -->
+
+    <!-- 新手引导 -->
+    <script src="https://gcore.jsdelivr.net/npm/driver.js@1.3.6/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/driver.js@1.3.6/dist/driver.css" />
+    <!-- end -->
+
+    <!-- 在页面加载时执行 适配一些安卓手机底部带工具条时，网站侧边栏超出显示 -->
+    <script>
+        // 在页面加载时执行 适配一些安卓手机底部带工具条时，网站侧边栏超出显示
+        document.addEventListener('DOMContentLoaded', adjustMaxHeight);
+        function adjustMaxHeight() {
+            // 获取用户代理字符串
+            var userAgent = navigator.userAgent.toLowerCase();
+            // 判断是否为安卓设备
+            var isAndroid = userAgent.indexOf("android") > -1;
+            // 判断是否为苹果设备
+            var isApple = /iphone|ipad|ipod|macintosh/i.test(navigator.userAgent) && !window.MSStream;
+            // 应用不同样式
+            if (isAndroid) {
+                document.documentElement.style.setProperty('--adjustment', '225px'); /* 155px + 225px */
+            } else {
+                document.documentElement.style.setProperty('--adjustment', '155px');
+            }
+        }
+    </script>
+    <!-- end -->
+
+</head>
+
+<body>
+    <div class="container" id="container">
+
+        <!-- 左边导航栏 -->
+        <aside class=left-bar id=leftBar>
+            <div class=title>
+                <a href="https://blog.z-l.top" target="_blank" rel=noopener title=关于本站>
+                    <i class=jiaran></i></a>
+                <!-- h1是方便搜索引擎,设置隐藏` -->
+                <h1 style="display:none;">夏dj导航站</h1><a target=_blank rel=noopener
+                    href="https://cn.bing.com/search?q=夏dj导航">夏DJ导航站</a>
+            </div>
+            <nav class=nav>
+                <div class="item active"><i class="iconfont icon-shoucangbenzhan"></i>
+                    <a href="#" id="addToFavorites">✨点我收藏本站👈</a>
+                    <i class=line></i>
+                </div>
+                <div class="scroll-container">
+                    <ul class=nav-item id=navItem>
+                        <!-- 此处由js动态生成 -->
+                    </ul>
+                </div>
+                <div class="item comment"><a target=_blank rel=noopener href='//blog.z-l.top/posts/56198.html'><i
+                            class="iconfont icon-gengxinrizhi"></i>更新日志</a>
+                    <a class="number"></a>
+                </div>
+            </nav>
+        </aside>
+        <!-- end -->
+
+        <!-- 主体部分 -->
+        <section id="main" class=main>
+            <div id="mainContent">
+                <div id=menu-box>
+                    <div id=menu><input type=checkbox id=menu-form><label for=menu-form class=menu-spin>
+                            <div class="line diagonal line-1"></div>
+                            <div class="line horizontal"></div>
+                            <div class="line diagonal line-2"></div>
+                        </label></div>
+                </div>
+                <div class=header>
+                    <nav>
+                        <a id="buttonId">🔯使用引导</a>
+                        <a target=_blank rel=noopener href="//blog.z-l.top/posts/djly.html" id="last">📖评论留言</a>
+                        <a target=_blank rel=noopener href="//blog.z-l.top/posts/aboutdj.html">👦关于本站</a>
+                    </nav>
+                </div>
+
+                <!-- 搜索🔍模块 -->
+                <div id=content>
+                    <div class=con>
+                        <section class=sousuo>
+                            <div class=search>
+                                <div class=search-box><i id="search-icon"
+                                        style="color:#3385ff;background:url(https://soupian.pro/favicon.ico) no-repeat center/cover"></i>
+                                    <input autocomplete=off class=search-input id=txt
+                                        placeholder="&nbsp;输入关键字进行搜索，站内搜索默认开启">
+                                    <input id=search-clear
+                                        style="background:url(https://cdn.h5ds.com/space/files/600972551685382144/20230826/619717930667061248.svg) no-repeat center/cover;display:none">
+                                    <button class=search-btn title="搜索按钮"></button>
+                                </div>
+                                <!-- <div class="box search-hot-text" id=search-box style="display:none">
+                                    quicker1
+                                    <ul></ul>
+                                </div> -->
+                                <div class=search-engine style=" display:none ">
+                                    <div class=search-engine-head>
+                                        <strong class="search-engine-tit">选择搜索引擎：</strong>
+                                        <div class=search-engine-tool>任意搜索引擎均可站内搜索</div>
+                                    </div>
+                                    <ul class=search-engine-list></ul>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- 本地测试时的搜索的js -->
+                <script src=js/search.js></script>
+                <!-- 上传时的搜索js -->
+                <!-- <script
+                    src='https://cdn.h5ds.com/space/files/600972551685382144/20240706/734071112778821632.js'></script> -->
+                <!-- end -->
+
+                <!-- ✨简短公告 -->
+                <div class="box" id="公告">
+                    <!-- quicker2 -->
+                    <a name=gonggao></a>
+                    <div class=sub-category>
+                        <span id="dome" class="left">
+                            👋本站由<span class=scr> 小张 </span>制作，方便自己和朋友而存在的一个设计导航网站 👉<a class=scr
+                                href="https://link3.cc/xiadj">加载不出来点我</a>👈
+                        </span>
+                        <span class="right" id="UpTime">最后更新</span>
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- 搜索结果 -->
+                <div class="box" id="searchResults" style="display:none;">
+                    <a href="#" name="搜索结果" title="搜索结果"></a>
+                    <div class="sub-category">
+                        <div><i class="undefined"></i>🔍本站搜索结果<span>&nbsp; 可继续使用当前搜索引擎搜索😀</span></div>
+                    </div>
+                    <div class="box-card">
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- 我的导航 -->
+                <!-- 我的导航css样式 -->
+                <style>
+                    .box#my-fav-box {
+                        display: none;
+                    }
+
+                    .my-fav-box-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                    }
+
+                    .my-fav-box-title {
+                        font-size: 20px;
+                        font-weight: bold;
+                        letter-spacing: 1px;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .my-fav-box-title-icon {
+                        margin-right: 10px;
+                    }
+
+
+
+                    .my-fav-box-actions {
+                        display: flex;
+                        gap: 10px;
+                    }
+
+                    .my-fav-box-btn {
+                        background: #f0f4ff;
+                        color: #3273dc;
+                        border: 1px solid #d4d7dd;
+                        border-radius: 8px;
+                        padding: 4px 16px;
+                        cursor: pointer;
+                        font-size: 15px;
+                    }
+                </style>
+
+                <div class="box" id="my-fav-box">
+                    <div class="my-fav-box">
+                        <div class="my-fav-box-header">
+                            <div class="my-fav-box-title">
+                                <span class="my-fav-box-title-icon">🌟 我的导航</span>
+                                <!-- <span class="my-fav-box-desc">（可自定义添加、分类，批量管理，分享，仅自己可见）</span> -->
+                                <!-- （可自定义添加、分类，批量管理，分享，仅自己可见 -->
+
+                            </div>
+                            <div class="my-fav-box-actions">
+                                <button id="fav-custom-btn" class="my-fav-box-btn">
+                                    <span>⚙️编辑</span>
+                                </button>
+                                <button id="fav-batch-add-btn" class="my-fav-box-btn">
+                                    <span>➕ 本站数据</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="fav-list">
+                            <!-- 收藏卡片由JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end -->
+
+                <!-- 这里是excel表格的数据,由js动态生成 -->
+                <div class="excel" id="excel" style="font-family: auto;"></div>
+                <!-- end -->
+            </div>
+            <!-- 🍀页脚模块 -->
+            <footer class="footer">
+                <div class="copyright">
+                    <div>
+                        &copy;2020 - 2024 By
+                        <a target="_blank" rel="noopener" title="夏DJ导航站" href="https://blog.z-l.top">小张</a>
+                        -
+                        <a title="萌ICP备20210214号" href="//icp.gov.moe/?keyword=20210214" target="_blank"
+                            rel="noopener">萌ICP备20210214号</a>
+                        -
+                        <a target="_blank" rel="noopener" title="51LA网站统计"
+                            href="https://v6.51.la/land/K2FRAEqwdJ3Zqlj6">51LA统计</a>
+                        -
+                        <span id="span"></span>
+                        <script type="text/javascript">
+                            function runtime() {
+                                var X = new Date('6/1/2021 8:32:00');
+                                var Y = new Date();
+                                var T = Y.getTime() - X.getTime();
+                                var M = 86400000; // 1000 * 60 * 60 * 24
+                                var a = T / M;
+                                var A = Math.floor(a);
+                                var b = 24 * (a - A);
+                                var B = Math.floor(b);
+                                var c = 60 * (b - B);
+                                var C = Math.floor(c);
+                                var D = Math.floor(60 * (c - C));
+                                document.getElementById('span').innerHTML = '网站已艰难运行: ' + A + '天' + B + '小时' + C + '分' + D + '秒';
+                            }
+                            setInterval(runtime, 1000);
+                        </script>
+                    </div>
+                </div>
+            </footer>
+            <!-- 🍀 -->
+        </section>
+    </div>
+
+    <!-- 返回顶部和背景以及自适应pc和📱 -->
+    <script src="pages/backtotop-bg.js"></script>
+    <!-- end -->
+
+    <!-- 51la网站统计 51la性能监控系统 -->
+    <script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
+    <script>LA.init({ id: "K2FRAEqwdJ3Zqlj6", ck: "K2FRAEqwdJ3Zqlj6" })</script>
+    <script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+    <script>
+        new LingQue.Monitor().init({ id: "K2QGHIaETNJVc7Yp" });
+    </script>
+    <!-- end -->
+
+    <!-- ChatGpt4：excel解析到页面 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const url = "https://dh.z-l.top/zl.xlsx";
+            fetch(url)
+                .then((res) => res.blob())
+                .then((blob) => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const data = e.target.result;
+                        const workbook = XLSX.read(data, { type: "binary" });
+                        const navItem = document.getElementById('navItem');
+                        const mainContent = document.getElementById('excel');
+
+                        // 从workbook中获取sheet1中C1、D1的值 分别是更新日期和公告
+                        const sheet1 = workbook.Sheets[workbook.SheetNames[0]];
+                        const cellValueC1 = sheet1["C1"].v;
+                        const cellValueD1 = sheet1["D1"].v;
+                        // 将值插入到页面中id为UpTime的span元素中
+                        document.getElementById('UpTime').innerHTML = cellValueC1;
+                        document.getElementById('dome').innerHTML = cellValueD1;
+
+                        workbook.SheetNames.forEach((sheetName, index) => {
+                            const sheet = workbook.Sheets[sheetName];
+                            const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+
+                            // 左侧导航列表大分类
+                            const navLinkLi = document.createElement('li');
+                            const navLink = document.createElement('a');
+                            navLink.href = `#${sheetName}`;
+                            const bigClass = sheet["F1"].v; // 保持不变
+                            navLink.innerHTML = `<i class="iconfont ${bigClass}"></i>${sheetName}`; // 保持不变
+                            // 如果是第一个大分类，则添加 active 类
+                            if (index === 0) {
+                                navLink.classList.add('active');
+                            }
+                            navLinkLi.appendChild(navLink);
+                            // 这里开始计算小分类的数量
+                            let subCategoryCount = json[0].reduce((count, cell, cellIndex) => {
+                                return cellIndex % 6 === 0 && cell ? count + 1 : count;
+                            }, 0);
+                            // 如果有多于一个小分类，才创建二级目录
+                            if (subCategoryCount > 1) {
+                                const subNavList = document.createElement('ul');
+                                subNavList.style.display = index === 0 ? "block" : "none";
+                                navLinkLi.appendChild(subNavList);
+                                // 修改点：在确认需要二级目录后，再遍历创建小分类导航
+                                json[0].forEach((cell, cellIndex) => {
+                                    if (cellIndex % 6 === 0 && cell) {
+                                        const subCategoryName = cell;
+                                        // const subCategoryClass = json[0][cellIndex + 1];
+                                        const subNavLinkLi = document.createElement('li');
+                                        const subNavLink = document.createElement('a');
+                                        // const chineseCharacters = subCategoryName.match(/[\u4e00-\u9fa5]{1,4}/);
+                                        // const truncatedName = chineseCharacters ? chineseCharacters[0] : subCategoryName;
+                                        // 匹配中文字符和常见标点符号，但排除了一些特殊字符和表情符号
+                                        // 匹配中文字符、英文字符和常见标点符号，但排除了一些特殊字符和表情符号
+                                        const chineseAndEnglish = subCategoryName.match(/[\u4e00-\u9fa5a-zA-Z,.\-()\/\[\]\{\}]+/g);
+                                        const truncatedName = chineseAndEnglish ? chineseAndEnglish.join('').trim() : subCategoryName;
+                                        subNavLink.innerHTML = truncatedName;
+                                        // subNavLink.className = subCategoryClass;
+                                        subNavLink.href = `#${sheetName}-${truncatedName}`;
+                                        subNavLinkLi.appendChild(subNavLink);
+                                        subNavList.appendChild(subNavLinkLi);
+                                    }
+                                });
+                            }
+                            navItem.appendChild(navLinkLi);
+
+
+                            const categoryDiv = document.createElement('div');
+                            categoryDiv.id = sheetName;
+                            categoryDiv.className = 'box';
+                            mainContent.appendChild(categoryDiv);
+
+                            // 获取当前大分类下的小分类数量
+                            const numSubCategories = json[0].filter((_, index) => index % 6 === 0 && json[0][index]).length;
+
+                            // 如果小分类数量大于 1，则显示大分类名称
+                            if (numSubCategories > 1) {
+                                categoryDiv.innerHTML = `<div class="sub-category">${sheetName}</div>`;
+                            }
+
+                            // 创建和填充内容的逻辑调整以匹配所需结构
+                            // 注意：这里假设json数组的第一行包含列标题，实际数据从第二行开始
+                            for (let n = 0; n < json[0].length; n += 6) {
+                                const subCategoryName = json[0][n]; // 网站小分类名
+                                const subCategoryNamedesc = json[0][n + 1]; // 网站小分类的介绍
+                                const subCategoryId = json[0][n].match(/[\u4e00-\u9fa5a-zA-Z,.\-()\/\[\]\{\}]+/g); // 获取小分类的除去字体图标的剩余文字作为id
+
+                                if (!subCategoryName) continue;
+
+                                let subCategoryDiv = document.getElementById(`${sheetName}-${subCategoryId}`); // 小分类的前四个中文汉字作为id
+                                if (!subCategoryDiv) {
+                                    subCategoryDiv = document.createElement('div');
+                                    subCategoryDiv.id = `${sheetName}-${subCategoryId}`; // 小分类的前四个中文汉字作为id 以便左侧导航点击
+                                    categoryDiv.appendChild(subCategoryDiv);
+                                }
+
+                                const subCategoryTitle = document.createElement('h2');
+
+                                // 检查 subCategoryNamedesc 是否为空
+                                const subCategoryTitleContent = subCategoryNamedesc ? `${subCategoryName} <span> ${subCategoryNamedesc}</span>` : subCategoryName;
+
+                                // 设置 subCategoryTitle 的 innerHTML
+                                subCategoryTitle.innerHTML = subCategoryTitleContent;
+
+                                subCategoryDiv.appendChild(subCategoryTitle);
+
+                                const card = document.createElement("div");
+                                card.className = "box-card";
+                                subCategoryDiv.appendChild(card);
+
+                                for (let i = 1; i < json.length; i++) {
+                                    const rowData = json[i];
+                                    if (!rowData[n]) continue;
+
+                                    const name = rowData[n];
+                                    const url = rowData[n + 1];
+                                    const icon = rowData[n + 2];
+                                    const desc = rowData[n + 3];
+                                    const badge = rowData[n + 4];
+
+                                    const itemWrapper = document.createElement("div");
+                                    const itemLink = document.createElement("a");
+                                    itemLink.setAttribute("rel", "noopener external nofollow noreferrer");
+                                    itemLink.target = "_blank";
+                                    itemLink.href = url;
+
+                                    const item = document.createElement("div");
+                                    // item.className = `item tags ${badge ? badge : ''}`.trim();
+                                    item.className = 'item';
+                                    // 现在将角标逻辑放在这里，确保它紧接在item创建之后
+                                    if (badge) {
+                                        const badgeClasses = badge.split(/\s+/).join(' ').trim();
+                                        const badgeClassList = badgeClasses.split(' ');
+                                        item.classList.add("tags", ...badgeClassList);
+
+                                        const lastBadgeClass = badgeClassList[badgeClassList.length - 1].toLowerCase();
+                                        const styleContent = `.${lastBadgeClass}::after { content: "${badgeClassList[badgeClassList.length - 1]}"; }`;
+
+                                        let styleExists = false;
+                                        let existingStyleTag = document.getElementById("角标样式");
+                                        if (!existingStyleTag) {
+                                            existingStyleTag = document.createElement("style");
+                                            existingStyleTag.id = "角标样式";
+                                            document.head.appendChild(existingStyleTag);
+                                        } else if (existingStyleTag.textContent.includes(styleContent)) {
+                                            styleExists = true;
+                                        }
+
+                                        if (!styleExists) {
+                                            existingStyleTag.textContent += styleContent;
+                                        }
+
+                                        item.classList.add(lastBadgeClass);
+                                    }
+                                    const logoDiv = document.createElement('div');
+                                    logoDiv.className = "logo";
+                                    const logoImg = document.createElement('img');
+                                    logoImg.loading = "lazy";
+                                    logoImg.src = icon || `https://ico.cxr.cool/${new URL(url).hostname}.ico`;
+                                    // 添加图标加载失败时的回退方案
+                                    logoImg.onerror = function () {
+                                        const originalSrc = this.src;
+                                        this.src = "https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png?failed=" + originalSrc;
+                                        // 防止循环触发onerror
+                                        this.onerror = null;
+                                    };
+                                    // logoImg.src = icon || `https://api.hn/ico.php?url=https://${new URL(url).hostname}`;
+                                    // logoImg.src = icon || `https://api.iowen.cn/favicon/${new URL(url).hostname}.png`;
+                                    //备用：https://api.hn/ico.php?url=https://dh.z-l.top https://ui-avatars.com/api/?name=
+                                    const logoSpan = document.createElement('span');
+                                    logoSpan.innerHTML = name;
+                                    logoDiv.appendChild(logoImg);
+                                    logoDiv.appendChild(logoSpan);
+
+                                    const siteDesc = document.createElement('div');
+                                    siteDesc.className = "desc";
+                                    siteDesc.innerHTML = desc || '描述加载中...';
+                                    if (!desc) {  // 如果没有提供描述，尝试使用API获取
+                                        // let siteUrl = new URL(url).hostname;
+                                        let siteUrl = url.replace(/^http(s)?:\/\//i, "").split('/')[0];
+                                        let descApiUrl = `https://v.api.aa1.cn/api/api-web-head/index.php?url=${siteUrl}&type=2`;
+                                        fetch(descApiUrl)
+                                            .then(response => response.text())
+                                            .then(data => {
+                                                siteDesc.innerHTML = data || '无描述信息';
+                                            })
+                                            .catch(error => {
+                                                console.error('获取描述失败:', error);
+                                                siteDesc.innerHTML = '无描述信息';
+                                            });
+                                    }
+
+                                    // 组装item结构
+                                    item.appendChild(logoDiv);
+                                    item.appendChild(siteDesc);
+                                    itemLink.appendChild(item);
+                                    itemWrapper.appendChild(itemLink);
+                                    card.appendChild(itemWrapper);
+
+                                }
+                            }
+                        });
+
+
+                    };
+                    reader.readAsBinaryString(blob);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+
+        // 二级菜单显示隐藏和点击平滑滚动效果
+        $(document).ready(function () {
+            // 左侧菜单栏点击事件处理
+            document.body.addEventListener('click', function (e) {
+                if (e.target.matches('#navItem > li > a')) {
+                    e.preventDefault();
+                    // 移除所有分类的激活状态
+                    document.querySelectorAll('#navItem a').forEach(nav => nav.classList.remove('active'));
+                    // 隐藏所有小分类列表
+                    document.querySelectorAll('#navItem > li > ul').forEach(subNav => subNav.style.display = 'none');
+
+                    // 为当前点击的大分类添加激活状态，并显示它的小分类列表
+                    e.target.classList.add('active');
+                    const nextElement = e.target.nextElementSibling;
+                    if (nextElement && nextElement.tagName === 'UL') {
+                        nextElement.style.display = 'block';
+                    }
+
+                    // 获取目标元素
+                    const targetId = e.target.getAttribute('href').split('#')[1];
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        // 使用 jQuery animate() 方法添加平滑的页面滚动
+                        $('html, body').animate({
+                            scrollTop: $(targetElement).offset().top
+                        }, 500);
+                        // 修改URL栏内容
+                        history.pushState(null, null, `#${targetId}`);
+                    }
+                }
+
+                if (e.target.tagName === 'A' && e.target.parentElement.parentElement.tagName === 'UL') {
+                    e.preventDefault();
+                    // 移除所有分类的激活状态
+                    document.querySelectorAll('#navItem a').forEach(nav => nav.classList.remove('active'));
+
+                    // 为当前点击的小分类添加激活状态
+                    e.target.classList.add('active');
+
+                    // 获取目标元素
+                    const targetId = e.target.getAttribute('href').split('#')[1];
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        // 使用 jQuery animate() 方法添加平滑的页面滚动
+                        $('html, body').animate({
+                            scrollTop: $(targetElement).offset().top
+                        }, 500);
+                        // 修改URL栏内容
+                        history.pushState(null, null, `#${targetId}`);
+                    }
+                }
+            });
+        });
+
+
+    </script>
+    <!-- end -->
+
+    <!-- 用户引导js代码部分 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const driver = window.driver.js.driver;
+            const driverObj = driver({
+                showProgress: true,
+                overlayColor: 'black',
+                overlayOpacity: 0.75,
+                stagePadding: 8,
+                showButtons: ['下一步', '上一步'],
+                nextBtnText: '下一步', // Next button text for this step 下一步按钮的文字
+                prevBtnText: '上一步', // Previous button text for this step 上一步按钮文字
+                showButtons: true, // Do not show control buttons in footer 是否在底部显示按钮
+                doneBtnText: '完成', // Text on the final button 完成按钮的文字
+                popoverClass: "driverjs-theme",
+                steps: [
+                    { element: '#公告', popover: { title: '开始之前', description: '这是一个关于本站的简单介绍，想要了解本站可点击上方 👦关于本站（电脑可使用方向键进行本引导）', side: "bottom", align: 'center', nextBtnText: "开始！", } },
+                    { element: '.search-box', popover: { title: '搜索模块', description: '内置多款引擎搜索，同时提供 <span style="color:hotpink"> 站内搜索</span>', side: "bottom", align: 'center' } },
+                    { element: '.sousuo .search-box #search-icon', popover: { title: '超多搜索引擎', description: '点击此处切换搜索引擎，总有一款适合你~', side: "bottom", align: 'start' } },
+                    { element: '.nav-item', popover: { title: '网站分类', description: '点击左侧这里的分类右边就会跳转至相应位置 (手机端点击右下角  <b>≡</b> )', side: "left", align: 'center' } },
+                    { element: '.excel #置顶网站-置顶推荐', popover: { title: '主要组成', description: '每一个大卡片是一个大分类，包含若干小分类，每个小卡片是一个网站，网站配有图标和网站的介绍！', side: "top", align: 'center' } },
+                    { element: '.excel .box:nth-child(1) .box-card div:nth-child(1)', popover: { title: '角标', description: '角标种类：🔥，收藏，推荐，UI，大佬。目前仅由站长评估添加，欢迎<span style="color:hotpink"> 留言探讨</span>', side: "right", align: 'start' } },
+                    { element: '.ctrm-title', popover: { title: '匿名聊天室', description: '在这里可以和其他浏览者畅所欲言，但要注意文明交流哦！', side: "top", align: 'center' } },
+                    { element: '#last', popover: { title: '结束！', description: '最后，偷偷告诉你，网站数据全部储存在excel表格里！同时欢迎您的推荐<img alt=":大哭:" src="https://cdn.h5ds.com/space/files/600972551685382144/20230820/617614164123377664.png" style="width: 2rem;margin-left: 0.5rem;">', side: "bottom", align: 'center' } },
+                ]
+            });
+            // driverObj.drive();
+            document.getElementById('buttonId').addEventListener('click', function () {
+                // 启动引导
+                driverObj.drive();
+            });
+        });
+    </script>
+    <!-- end -->
+
+    <!-- 网站收录数量 收藏本站 国家纪念日自动变灰   -->
+    <script>
+        // 网站收录数量
+        window.onload = function () {
+            // 获取class为logo的元素数量
+            var logoNum = document.getElementsByClassName('logo').length;
+            // 将数量打印到页面上
+            document.getElementsByClassName('number')[0].innerHTML = '   网站数:' + logoNum;
+        }
+
+        // 收藏本站
+        document.getElementById("addToFavorites").addEventListener("click", function (event) {
+            event.preventDefault();
+            alert("请使用 Ctrl+D（或 Command+D 在 Mac 上）来收藏本站");
+        });
+
+        //国家纪念日自动变灰 - 智能识别节日功能
+        function handleMemorialDays() {
+            // 获取当前日期
+            var currentDate = new Date();
+            var mon = currentDate.getMonth() + 1;
+            var date = currentDate.getDate();
+            var dateKey = mon + '.' + date;
+
+            // 通用样式和提示文本
+            var siteNotice = '<br><span style="color:#999;font-size:0.9em;">全站已切换为黑白模式, 关闭匿名聊天!</span>';
+
+            // 外链资源URL 
+            var sweetalertUrl = "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/limonte-sweetalert2/8.19.0/sweetalert2.all.min.js";
+            var animateCssUrl = "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/animate.css/4.1.1/animate.min.css";
+            var fontAwesomeUrl = "https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css";
+            var specialScriptUrl = "js/chatzl-uploader-fixed.js"; //聊天脚本
+            // var specialScriptUrl = "js/chatzl.js"; //本地测试尬聊
+            // var specialScriptUrl = "https://z-l.top/chat.js"; //上传时候的尬聊，需要改名字和位置
+            // var specialScriptUrl = "js/chat-原版.js"; //尬聊
+
+            // 建立纪念日映射表，关联日期和纪念日名称及相关信息
+            var memorialDays = {
+                '4.4': {
+                    name: '清明节',
+                    description: '缅怀逝者、寄托哀思的传统节日。',
+                    icon: 'fa-solid fa-leaf',
+                    image: 'https://img.z-l.top/file/dh/Biauf37s.jpeg',
+                    link: 'https://baike.baidu.com/item/清明节',
+                    buttonText: '缅怀先人',
+                    buttonIcon: 'fa-solid fa-flower'
+                },
+                '6.12': {
+                    name: '汶川地震纪念日',
+                    description: '纪念2008年汶川8.0级地震遇难同胞。',
+                    icon: 'fa-solid fa-house-crack',
+                    image: 'https://img.z-l.top/file/dh/HthPHf7z.jpeg',
+                    link: 'https://baike.baidu.com/item/汶川大地震',
+                    buttonText: '祈福平安',
+                    buttonIcon: 'fa-solid fa-candle-holder'
+                },
+                '7.7': {
+                    name: '七七事变纪念日',
+                    description: '1937年全面抗战爆发，勿忘国耻。',
+                    icon: 'fa-solid fa-flag',
+                    image: 'https://www.huaxia.com/upload/resources/image/2022/07/07/326449_375x230c.jpg',
+                    link: 'https://baike.baidu.com/item/七七事变',
+                    buttonText: '勿忘国耻',
+                    buttonIcon: 'fa-solid fa-flag'
+                },
+                '9.9': {
+                    name: '毛泽东主席逝世纪念日',
+                    description: '缅怀伟人永垂不朽。',
+                    icon: 'fa-solid fa-star',
+                    image: 'https://img.z-l.top/file/dh/ZYntsBWA.jpeg',
+                    link: 'https://baike.baidu.com/item/毛泽东',
+                    buttonText: '缅怀伟人',
+                    buttonIcon: 'fa-solid fa-star'
+                },
+                '9.18': {
+                    name: '九一八事变纪念日',
+                    description: '1931年日本侵略中国东北，勿忘国耻。',
+                    icon: 'fa-solid fa-bell',
+                    image: 'https://img.z-l.top/file/dh/kXi768dJ.jpeg',
+                    link: 'https://baike.baidu.com/item/九一八事变',
+                    buttonText: '勿忘国耻',
+                    buttonIcon: 'fa-solid fa-flag'
+                },
+                '12.13': {
+                    name: '南京大屠杀死难者国家公祭日',
+                    description: '铭记历史，缅怀遇难同胞，珍爱和平。',
+                    icon: 'fa-solid fa-dove',
+                    image: 'https://img.z-l.top/file/dh/95a3cXdB.png',
+                    link: 'https://baike.baidu.com/item/南京大屠杀',
+                    buttonText: '和平永存',
+                    buttonIcon: 'fa-solid fa-dove'
+                }
+            };
+
+            // 检查当前日期是否是纪念日
+            function isMemorialDay() {
+                return memorialDays.hasOwnProperty(dateKey);
+            }
+
+            // 处理纪念日显示
+            function showMemorialDayAlert() {
+                var memorial = memorialDays[dateKey];
+
+                // 应用灰色滤镜
+                var styleElement = document.createElement('style');
+                styleElement.textContent = 'html {filter: gray!important; -webkit-filter: grayscale(95%)!important; filter: grayscale(95%)!important;} @media screen and(max-width:768px) {.layout{filter: gray!important; -webkit-filter: grayscale(95%)!important; filter: grayscale(95%)!important;}}';
+                document.head.appendChild(styleElement);
+
+                // 加载外部资源
+                loadExternalResource('link', fontAwesomeUrl, function () {
+                    loadExternalResource('link', animateCssUrl, function () {
+                        loadExternalResource('script', sweetalertUrl, function () {
+                            // 全部资源加载完毕，显示弹窗
+                            Swal.fire({
+                                title: `<strong><i class="${memorial.icon}"></i> 今天是  <a href="${memorial.link}" target="_blank" >${memorial.name}</a></strong>`,
+                                html: `${memorial.description}${siteNotice}`,
+                                imageUrl: memorial.image,
+                                imageWidth: 400,
+                                imageHeight: 200,
+                                imageAlt: memorial.name,
+                                focusConfirm: false,
+                                confirmButtonText: `<i class="${memorial.buttonIcon}"></i> ${memorial.buttonText}`,
+                                animation: true,
+                                customClass: {
+                                    popup: 'kapian animated rubberBand'
+                                },
+                                padding: '1.5em 1em',
+                                background: '#ffffffcf bottom right repeat',
+                                backdrop: `rgba(0,0,123,0.4)`,
+                                timer: 999999,
+                            });
+                        });
+                    });
+                });
+            }
+
+            // 辅助函数：按顺序加载外部资源
+            function loadExternalResource(type, url, callback) {
+                let element;
+                if (type === 'script') {
+                    element = document.createElement('script');
+                    element.src = url;
+                    element.async = true;
+                } else if (type === 'link') {
+                    element = document.createElement('link');
+                    element.rel = 'stylesheet';
+                    element.href = url;
+                }
+
+                if (callback) {
+                    element.onload = callback;
+                }
+
+                document.head.appendChild(element);
+                return element;
+            }
+
+            // 加载聊天脚本
+            function loadChatScript() {
+                var script = document.createElement('script');
+                script.src = specialScriptUrl;
+                script.async = true;
+                script.setAttribute('fold', '');
+                document.body.appendChild(script);
+            }
+
+            // 主处理逻辑
+            if (isMemorialDay()) {
+                document.addEventListener('DOMContentLoaded', showMemorialDayAlert);
+            } else {
+                loadChatScript();
+            }
+        }
+        // 调用纪念日处理函数
+        handleMemorialDays();
+
+    </script>
+    <!-- end -->
+
+    <!-- 添加站内搜索 - 支持拼音模糊搜索 -->
+    <!-- 引入汉字转拼音库 -->
+    <script src="https://cdn.jsdelivr.net/npm/pinyin-pro/dist/index.js"></script>
+    <script>
+        /**
+         * 搜索功能配置选项
+         * 可根据需要修改下面的配置参数
+         */
+        const searchConfig = {
+            // 是否在控制台输出调试信息
+            debug: false,
+
+            // 搜索结果最大显示数量
+            maxResults: 50,
+
+            // 是否显示匹配类型标签 (如[拼音匹配], [精准匹配]等)
+            showMatchType: true,
+
+            // 拼音匹配相关配置
+            pinyin: {
+                // 是否启用拼音搜索
+                enabled: true,
+                // 是否启用首字母搜索
+                enableFirstLetter: true,
+                // 是否支持输入法拼音状态
+                supportInputMethod: true
+            },
+
+            // RSS源配置
+            rss: {
+                // 是否启用RSS源搜索
+                enabled: true,
+                // RSS源列表
+                sources: [
+                    "https://rss.z-l.top/",
+                    "https://www.axure.com.cn/feed",
+                    "https://feeds.appinn.com/appinns/",
+                    "https://blog.zhheo.com/rss.xml",
+                    "https://www.bossdesign.cn/feed/",
+                    "https://www.bossdesign.cn/design-software/feed/",
+                    "https://www.bossdesign.cn/computer-skills/feed/",
+                    "https://rss.app/feeds/v9FbHSRvCj75ZQW2.xml",
+                    "https://www.ftium4.com/rss.xml",
+                    "https://www.woshipm.com/feed",
+                    "https://www.uy5.net/feed/",
+                    "https://moonvy.com/blog/rss.xml",
+                    "https://rss.app/feeds/tdY4NN4FTTkG8tDk.xml",
+                    "https://rss.app/feeds/mh0pDllvY0Slfz0X.xml",
+                    "https://uiiiuiii.com/feed",
+                    "https://rss.app/feeds/5oAM8rklMrtj7Xqa.xml",
+                    "https://rss.app/feeds/krVDP1roF2B3MaMa.xml",
+                    "https://blenderco.cn/feed",
+                    "https://www.lookae.com/qitarjcj/pszy/feed/",
+                ],
+                // RSS条目的最大数量限制
+                maxEntries: 50
+            },
+
+            // 搜索结果样式配置
+            style: {
+                // 匹配类型标签颜色
+                exactMatchColor: '#4caf50',    // 精准匹配
+                pinyinMatchColor: '#2196f3',   // 拼音匹配
+                descMatchColor: '#9e9e9e',     // 描述匹配
+                rssMatchColor: '#ff9800'       // RSS匹配
+            }
+        };
+
+        // 初始化搜索数据
+        var searchableItems = [];
+        // 存储RSS数据
+        var rssItems = [];
+
+        // DOM加载完成后初始化搜索数据
+        document.addEventListener('DOMContentLoaded', function () {
+            // 等待Excel数据加载完成后执行
+            setTimeout(function () {
+                initSearchData();
+                // 如果启用了RSS搜索，加载RSS数据
+                if (searchConfig.rss && searchConfig.rss.enabled) {
+                    loadRssData();
+                }
+            }, 1000);
+        });
+
+        // 初始化搜索数据函数
+        function initSearchData() {
+            var items = document.querySelectorAll('.box-card .item');
+            if (searchConfig.debug) {
+                console.log('开始初始化搜索数据，找到项目数: ' + items.length);
+            }
+
+            // 检查拼音库是否加载
+            if (!window.pinyinPro) {
+                if (searchConfig.debug) {
+                    console.error('拼音库未加载，尝试重新加载');
+                }
+                // 如果拼音库未加载，尝试重新加载
+                var script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/pinyin-pro/dist/index.js';
+                script.onload = function () {
+                    if (searchConfig.debug) {
+                        console.log('拼音库加载成功，重新初始化');
+                    }
+                    initSearchData();
+                };
+                document.head.appendChild(script);
+                return;
+            }
+
+            items.forEach(function (item, index) {
+                var descElement = item.querySelector('.desc');
+                var logoElement = item.querySelector('.logo');
+
+                if (!descElement || !logoElement) return;
+
+                // 提取文本
+                var desc = extractTextContent(descElement);
+                var title = logoElement.textContent.trim();
+
+                // 生成拼音 - 增强版
+                var titlePinyin = '';
+                var titlePinyinFirst = '';
+                var titlePinyinNone = ''; // 不带声调的拼音
+
+                try {
+                    // 使用pinyin-pro库
+                    // 全拼（不带声调）
+                    titlePinyin = pinyinPro.pinyin(title, { toneType: 'none' }).toLowerCase();
+
+                    // 首字母 - 同时保存带空格和不带空格的版本
+                    titlePinyinFirst = pinyinPro.pinyin(title, { pattern: 'first', toneType: 'none' }).toLowerCase();
+
+                    // 不带声调的拼音（与titlePinyin相同，但保留变量名以兼容现有代码）
+                    titlePinyinNone = titlePinyin;
+
+                    // 根据配置决定是否打印调试信息
+                    if (searchConfig.debug && index % 5 === 0) {
+                        console.log(`[${index}] 标题: ${title}`);
+                        console.log(`     - 全拼: ${titlePinyin}`);
+                        console.log(`     - 首字母: ${titlePinyinFirst}`);
+                        console.log(`     - 无声调: ${titlePinyinNone}`);
+                    }
+
+                } catch (e) {
+                    console.error(`拼音转换出错 [${title}]:`, e);
+                }
+
+                // 存储搜索数据
+                searchableItems.push({
+                    element: item.parentElement,
+                    title: title.toLowerCase(),
+                    desc: desc.toLowerCase(),
+                    titlePinyin: titlePinyin,
+                    titlePinyinNone: titlePinyinNone,
+                    titlePinyinFirst: titlePinyinFirst
+                });
+            });
+
+            if (searchConfig.debug) {
+                console.log('搜索数据初始化完成，包含 ' + searchableItems.length + ' 项');
+            }
+        }
+
+        // 提取元素中的所有文本内容
+        function extractTextContent(element) {
+            let text = '';
+            for (var i = 0; i < element.childNodes.length; i++) {
+                var childNode = element.childNodes[i];
+                if (childNode.nodeType === Node.TEXT_NODE) {
+                    text += childNode.textContent;
+                } else if (childNode.nodeType === Node.ELEMENT_NODE) {
+                    text += childNode.textContent;
+                }
+            }
+            return text.trim();
+        }
+
+        // 专门用于拼音输入状态的搜索函数
+        function performPinyinSearch(pinyinKeyword) {
+            pinyinKeyword = pinyinKeyword.toLowerCase().trim();
+            var results = [];
+
+            if (searchConfig.debug) {
+                console.log('执行拼音输入状态搜索: "' + pinyinKeyword + '"');
+            }
+
+            // 如果关键词为空或拼音搜索被禁用，直接返回空结果
+            if (!pinyinKeyword || !searchConfig.pinyin.enabled) {
+                return results;
+            }
+
+            // 提取纯拼音部分（去除可能的标点和特殊字符）
+            const pureKeyword = pinyinKeyword.replace(/[^a-z0-9]/g, '');
+
+            // 搜索所有项目
+            searchableItems.forEach(function (item) {
+                // 1. 检查拼音全拼是否包含搜索词
+                if (item.titlePinyin && item.titlePinyin.includes(pureKeyword)) {
+                    item.matchType = 'pinyin_input';
+                    item.matchWeight = 75;
+                    results.push({ ...item }); // 创建副本以避免重复添加
+                    return;
+                }
+
+                // 2. 检查拼音首字母是否匹配
+                let compactFirstLetters = item.titlePinyinFirst.replace(/\s+/g, '');
+                if (compactFirstLetters.includes(pureKeyword)) {
+                    item.matchType = 'pinyin_input_first';
+                    item.matchWeight = 70;
+                    results.push({ ...item }); // 创建副本以避免重复添加
+                    return;
+                }
+
+                // 3. 尝试匹配拼音的开头部分（例如：输入"zhangc"可以匹配"张春"）
+                if (item.titlePinyin && item.titlePinyin.startsWith(pureKeyword)) {
+                    item.matchType = 'pinyin_input_start';
+                    item.matchWeight = 80; // 给予更高权重
+                    results.push({ ...item });
+                    return;
+                }
+
+                // 4. 尝试匹配单个汉字的拼音（针对输入法状态）
+                const titleChars = item.title.split('');
+                let matched = false;
+
+                for (let i = 0; i < titleChars.length; i++) {
+                    if (/[\u4e00-\u9fa5]/.test(titleChars[i])) { // 是否为汉字
+                        try {
+                            // 获取单个汉字的拼音
+                            const charPinyin = pinyinPro.pinyin(titleChars[i], { toneType: 'none' }).toLowerCase();
+                            // 检查是否匹配输入的开头部分
+                            if (charPinyin.startsWith(pureKeyword) || pureKeyword.startsWith(charPinyin)) {
+                                matched = true;
+                                break;
+                            }
+                        } catch (e) {
+                            if (searchConfig.debug) {
+                                console.error('单字拼音匹配出错:', e);
+                            }
+                        }
+                    }
+                }
+
+                if (matched) {
+                    item.matchType = 'pinyin_input_char';
+                    item.matchWeight = 65;
+                    results.push({ ...item });
+                    return;
+                }
+            });
+
+            // 按匹配权重排序
+            results.sort(function (a, b) {
+                return b.matchWeight - a.matchWeight;
+            });
+
+            return results;
+        }
+
+        // 常规搜索函数
+        function performSearch(keyword) {
+            keyword = keyword.toLowerCase().trim();
+            var results = [];
+
+            if (searchConfig.debug) {
+                console.log('执行关键词搜索（非拼音搜索模式）');
+            }
+
+            // 处理输入法拼音状态下的输入
+            // 检查是否启用输入法支持并包含拼音分隔符
+            if (searchConfig.pinyin.supportInputMethod && /['`·,，]/.test(keyword)) {
+                // 尝试清理拼音分隔符进行搜索
+                let cleanKeyword = keyword.replace(/['`·,，\s]+/g, '');
+
+                if (searchConfig.debug) {
+                    console.log('检测到输入法状态，清理后:', cleanKeyword);
+                }
+
+                // 如果清理后的关键词与原关键词不同，使用清理后的关键词搜索
+                if (cleanKeyword !== keyword) {
+                    return performPinyinSearch(cleanKeyword);
+                }
+            }
+
+            // 如果搜索数据还未初始化，尝试初始化
+            if (searchableItems.length === 0) {
+                console.log('搜索数据为空，尝试初始化');
+                initSearchData();
+
+                // 如果仍然为空，显示错误信息
+                if (searchableItems.length === 0) {
+                    if (searchConfig.debug) {
+                        console.error('搜索数据初始化失败');
+                    }
+                    return [];
+                }
+            }
+
+            // 记录一下有多少可搜索项目
+            if (searchConfig.debug) {
+                console.log('当前可搜索项目数: ' + searchableItems.length);
+                console.log('当前RSS项目数: ' + rssItems.length);
+
+                // 用于调试的日志
+                if (keyword.length > 0) {
+                    console.log('执行关键词搜索（非拼音搜索模式）');
+                }
+            }
+
+            // 搜索逻辑增强版
+            searchableItems.forEach(function (item, index) {
+                // 标题完全匹配（最高优先级）
+                if (item.title === keyword) {
+                    item.matchType = 'exact_title';
+                    item.matchWeight = 100;
+                    results.push(item);
+                    return;
+                }
+
+                // 标题包含匹配
+                if (item.title.includes(keyword)) {
+                    item.matchType = 'title';
+                    item.matchWeight = 90;
+                    results.push(item);
+                    return;
+                }
+
+                // 标题拼音无声调匹配（增加此选项）
+                if (item.titlePinyinNone && item.titlePinyinNone.includes(keyword)) {
+                    item.matchType = 'pinyin_none';
+                    item.matchWeight = 85;
+                    results.push(item);
+                    return;
+                }
+
+                // 标题拼音全拼匹配
+                if (item.titlePinyin && item.titlePinyin.includes(keyword)) {
+                    item.matchType = 'pinyin';
+                    item.matchWeight = 80;
+                    results.push(item);
+                    return;
+                }
+
+                // 标题拼音首字母匹配 - 增强版
+                if (item.titlePinyinFirst && searchConfig.pinyin.enableFirstLetter) {
+                    // 1. 常规首字母匹配
+                    if (item.titlePinyinFirst.includes(keyword)) {
+                        item.matchType = 'pinyin_first';
+                        item.matchWeight = 60;
+                        results.push(item);
+                        return;
+                    }
+
+                    // 2. 处理连续首字母输入（无空格）
+                    // 例如：用户输入"zbsc"应该能匹配"站长博客"(zhan chang bo ke)
+                    let compactFirstLetters = item.titlePinyinFirst.replace(/\s+/g, '');
+                    if (compactFirstLetters.includes(keyword)) {
+                        item.matchType = 'pinyin_first_compact';
+                        item.matchWeight = 58;
+                        results.push(item);
+                        return;
+                    }
+                }
+
+                // 增加单字拼音匹配（针对多字词组）
+                if (keyword.length >= 2 && item.title.length >= 2) {
+                    let chars = item.title.split('');
+                    let singlePinyins = [];
+
+                    try {
+                        for (let i = 0; i < chars.length; i++) {
+                            let char = chars[i];
+                            if (/[\u4e00-\u9fa5]/.test(char)) { // 是否为汉字
+                                let p = pinyinPro.pinyin(char, { toneType: 'none' });
+                                if (p) {
+                                    singlePinyins.push(p.toLowerCase());
+                                }
+                            }
+                        }
+
+                        let singlePinyinStr = singlePinyins.join('');
+                        if (singlePinyinStr.includes(keyword)) {
+                            item.matchType = 'single_pinyin';
+                            item.matchWeight = 55;
+                            results.push(item);
+                            return;
+                        }
+                    } catch (e) {
+                        if (searchConfig.debug) {
+                            console.error('单字拼音匹配出错:', e);
+                        }
+                    }
+                }
+
+                // 描述匹配（最低优先级）
+                if (item.desc.includes(keyword)) {
+                    item.matchType = 'desc';
+                    item.matchWeight = 40;
+                    results.push(item);
+                    return;
+                }
+            });
+
+            // 如果启用了RSS搜索，搜索RSS数据
+            if (searchConfig.rss && searchConfig.rss.enabled && rssItems.length > 0) {
+                rssItems.forEach(function (item) {
+                    // 标题完全匹配
+                    if (item.title === keyword) {
+                        item.matchType = 'rss_exact_title';
+                        item.matchWeight = 95;
+                        item.isRss = true;
+                        results.push(item);
+                        return;
+                    }
+
+                    // 标题包含匹配
+                    if (item.title.includes(keyword)) {
+                        item.matchType = 'rss_title';
+                        item.matchWeight = 85;
+                        item.isRss = true;
+                        results.push(item);
+                        return;
+                    }
+
+                    // 标题拼音匹配
+                    if (item.titlePinyin && item.titlePinyin.includes(keyword)) {
+                        item.matchType = 'rss_pinyin';
+                        item.matchWeight = 75;
+                        item.isRss = true;
+                        results.push(item);
+                        return;
+                    }
+
+                    // 标题拼音首字母匹配
+                    if (item.titlePinyinFirst && searchConfig.pinyin.enableFirstLetter) {
+                        if (item.titlePinyinFirst.includes(keyword)) {
+                            item.matchType = 'rss_pinyin_first';
+                            item.matchWeight = 55;
+                            item.isRss = true;
+                            results.push(item);
+                            return;
+                        }
+
+                        // 处理连续首字母输入（无空格）
+                        let compactFirstLetters = item.titlePinyinFirst.replace(/\s+/g, '');
+                        if (compactFirstLetters.includes(keyword)) {
+                            item.matchType = 'rss_pinyin_first_compact';
+                            item.matchWeight = 53;
+                            item.isRss = true;
+                            results.push(item);
+                            return;
+                        }
+                    }
+
+                    // 内容匹配
+                    if (item.summary && item.summary.includes(keyword)) {
+                        item.matchType = 'rss_content';
+                        item.matchWeight = 45;
+                        item.isRss = true;
+                        results.push(item);
+                        return;
+                    }
+
+                    // 分类标签匹配
+                    if (item.categories && item.categories.includes(keyword)) {
+                        item.matchType = 'rss_category';
+                        item.matchWeight = 50;
+                        item.isRss = true;
+                        results.push(item);
+                        return;
+                    }
+                });
+            }
+
+            // 按匹配权重排序
+            results.sort(function (a, b) {
+                return b.matchWeight - a.matchWeight;
+            });
+
+            if (searchConfig.debug) {
+                console.log('搜索结果数: ' + results.length);
+                if (results.length > 0) {
+                    console.log('第一个结果: ' + results[0].title + ', 匹配类型: ' + results[0].matchType);
+                }
+            }
+
+            return results;
+        }
+
+        // 搜索输入监听
+        document.getElementById('txt').addEventListener('input', function () {
+            var searchKeyword = this.value.trim();
+            var searchResults = document.getElementById('searchResults');
+            var searchResultsContainer = searchResults.querySelector('.box-card');
+            searchResultsContainer.innerHTML = '';
+
+            if (searchKeyword.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // 支持输入法拼音状态下的搜索
+            // 当用户正在输入拼音但尚未选择汉字时，也进行搜索
+            var matchedItems = performSearch(searchKeyword);
+
+            // 如果没有搜索结果并且输入内容包含拼音字符，尝试作为拼音搜索
+            if (matchedItems.length === 0 && /[a-zA-Z]/.test(searchKeyword) && searchConfig.pinyin.enabled) {
+                // 清理输入法状态下的分隔符（如 z'z'b'k）
+                let cleanKeyword = searchKeyword.replace(/['`·,，\s]+/g, '');
+
+                if (searchConfig.debug) {
+                    console.log('尝试作为拼音搜索:', searchKeyword, '→', cleanKeyword);
+                }
+
+                // 将清理后的输入视为拼音，再次搜索
+                matchedItems = performPinyinSearch(cleanKeyword);
+            }
+
+            if (matchedItems.length > 0) {
+                searchResults.style.display = 'block';
+
+                // 清空搜索结果容器内的所有内容
+                searchResultsContainer.innerHTML = '';
+
+                // 限制最多显示结果数量
+                matchedItems = matchedItems.slice(0, searchConfig.maxResults);
+
+                // 分离站内搜索结果和RSS搜索结果
+                var regularResults = matchedItems.filter(item => !item.isRss);
+                var rssResults = matchedItems.filter(item => item.isRss);
+
+                var displayedItems = new Set();
+
+                // 先显示站内搜索结果
+                if (regularResults.length > 0) {
+                    regularResults.forEach(function (item) {
+                        // 克隆元素以避免移动原始元素
+                        var clonedItem = item.element.cloneNode(true);
+
+                        // 获取标题元素并根据匹配类型添加高亮
+                        var titleElem = clonedItem.querySelector('.logo span');
+                        if (titleElem && item.matchType && searchConfig.showMatchType) {
+                            var matchTypeText = '';
+                            var matchColor = '#999';
+
+                            switch (item.matchType) {
+                                case 'exact_title':
+                                    matchTypeText = ' [精准匹配]';
+                                    matchColor = searchConfig.style.exactMatchColor;
+                                    break;
+                                case 'pinyin_none':
+                                    matchTypeText = ' [拼音匹配]';
+                                    break;
+                                case 'pinyin':
+                                    matchTypeText = ' [拼音匹配]';
+                                    break;
+                                case 'pinyin_first':
+                                    matchTypeText = ' [首字母匹配]';
+                                    break;
+                                case 'pinyin_first_compact':
+                                    matchTypeText = ' [首字母匹配]';
+                                    break;
+                                case 'pinyin_input':
+                                    matchTypeText = ' [拼音输入匹配]';
+                                    matchColor = searchConfig.style.pinyinMatchColor;
+                                    break;
+                                case 'pinyin_input_first':
+                                    matchTypeText = ' [拼音首字母匹配]';
+                                    matchColor = searchConfig.style.pinyinMatchColor;
+                                    break;
+                                case 'pinyin_input_start':
+                                    matchTypeText = ' [拼音前缀匹配]';
+                                    matchColor = searchConfig.style.pinyinMatchColor;
+                                    break;
+                                case 'pinyin_input_char':
+                                    matchTypeText = ' [单字拼音匹配]';
+                                    matchColor = searchConfig.style.pinyinMatchColor;
+                                    break;
+                                case 'single_pinyin':
+                                    matchTypeText = ' [词组拼音]';
+                                    break;
+                                case 'desc':
+                                    matchTypeText = ' [描述匹配]';
+                                    matchColor = searchConfig.style.descMatchColor;
+                                    break;
+                            }
+
+                            if (matchTypeText) {
+                                var small = document.createElement('small');
+                                small.style.fontSize = '0.7em';
+                                small.style.color = matchColor;
+                                small.textContent = matchTypeText;
+                                titleElem.appendChild(small);
+                            }
+                        }
+
+                        // 判断是否已经显示过该item
+                        if (!displayedItems.has(item.title)) {
+                            searchResultsContainer.appendChild(clonedItem);
+                            displayedItems.add(item.title);
+                        }
+                    });
+                }
+
+                // 如果有RSS结果，添加分隔线和RSS结果标题
+                if (rssResults.length > 0) {
+                    // 确保常规结果后有一个清除浮动的元素
+                    if (regularResults.length > 0) {
+                        var clearFloats = document.createElement('div');
+                        clearFloats.style.clear = 'both';
+                        clearFloats.style.width = '100%';
+                        clearFloats.style.height = '1px';
+                        clearFloats.style.display = 'block';
+                        searchResultsContainer.appendChild(clearFloats);
+                    }
+
+                    // 创建一个新的外部容器，完全独立于站内搜索结果
+                    var rssOuterContainer = document.createElement('div');
+                    rssOuterContainer.className = 'rss-outer-container';
+
+                    // 添加RSS标识图标
+                    var rssIcon = document.createElement('span');
+                    rssIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#3273dc" style="vertical-align: middle; margin-right: 5px;"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>';
+                    rssIcon.style.marginRight = '5px';
+
+                    // 添加RSS结果标题
+                    var rssResultsTitle = document.createElement('div');
+                    rssResultsTitle.className = 'rss-results-title';
+
+                    // 将RSS图标添加到标题
+                    rssResultsTitle.appendChild(rssIcon);
+                    rssResultsTitle.appendChild(document.createTextNode(`RSS文章搜索结果 (${rssResults.length}条)`));
+
+                    rssOuterContainer.appendChild(rssResultsTitle);
+
+                    // 添加RSS结果容器 - 使用独立容器确保完全另起一行
+                    var rssResultsContainer = document.createElement('div');
+                    rssResultsContainer.className = 'rss-results-container';
+                    // 强制使用单列布局，不使用网格布局
+                    rssResultsContainer.style.display = 'flex';
+                    rssResultsContainer.style.flexDirection = 'column';
+                    rssResultsContainer.style.gridTemplateColumns = 'none';
+                    rssOuterContainer.appendChild(rssResultsContainer);
+
+                    // 将整个RSS外部容器添加到搜索结果容器中，但确保它不继承网格布局
+                    // 先创建一个包装容器，确保RSS结果不受网格布局影响
+                    var rssWrapper = document.createElement('div');
+                    rssWrapper.className = 'rss-wrapper';
+
+                    rssWrapper.appendChild(rssOuterContainer);
+                    searchResultsContainer.appendChild(rssWrapper);
+
+                    // 显示RSS搜索结果
+                    rssResults.forEach(function (item) {
+                        // 创建RSS项目的显示元素
+                        var rssItemDiv = document.createElement('div');
+                        rssItemDiv.className = 'rss-item';
+
+                        // 创建链接元素
+                        var rssLink = document.createElement('a');
+                        rssLink.href = item.link;
+                        rssLink.target = '_blank';
+                        rssLink.rel = 'noopener external nofollow noreferrer';
+
+                        // 创建标题元素
+                        var rssTitle = document.createElement('div');
+                        rssTitle.className = 'rss-title';
+
+                        // 创建标题文本
+                        var rssTitleText = document.createElement('span');
+                        rssTitleText.textContent = item.title.charAt(0).toUpperCase() + item.title.slice(1); // 首字母大写
+                        rssTitle.appendChild(rssTitleText);
+
+                        // 添加匹配类型标签
+                        if (item.matchType && searchConfig.showMatchType) {
+                            var matchTypeText = '';
+                            var matchColor = '#999';
+
+                            switch (item.matchType) {
+                                case 'rss_exact_title':
+                                    matchTypeText = ' [精准匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                                case 'rss_title':
+                                    matchTypeText = ' [标题匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                                case 'rss_pinyin':
+                                    matchTypeText = ' [拼音匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                                case 'rss_pinyin_first':
+                                    matchTypeText = ' [首字母匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                                case 'rss_content':
+                                    matchTypeText = ' [内容匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                                case 'rss_category':
+                                    matchTypeText = ' [分类匹配]';
+                                    matchColor = searchConfig.style.rssMatchColor;
+                                    break;
+                            }
+
+                            if (matchTypeText) {
+                                var small = document.createElement('small');
+                                small.style.fontSize = '0.7em';
+                                small.style.color = matchColor;
+                                small.textContent = matchTypeText;
+                                rssTitle.appendChild(small);
+                            }
+                        }
+
+                        // 创建摘要元素
+                        var rssSummary = document.createElement('div');
+                        rssSummary.className = 'rss-summary';
+
+                        // 清理HTML标签，只保留纯文本
+                        var summaryText = item.summary.replace(/<[^>]*>/g, '');
+                        // 限制摘要长度
+                        if (summaryText.length > 150) {
+                            summaryText = summaryText.substring(0, 150) + '...';
+                        }
+                        rssSummary.textContent = summaryText;
+
+                        // 创建日期和分类元素
+                        var rssInfo = document.createElement('div');
+                        rssInfo.className = 'rss-info';
+
+                        // 格式化日期
+                        var pubDate = '';
+                        try {
+                            pubDate = new Date(item.published).toLocaleDateString();
+                        } catch (e) {
+                            pubDate = item.published;
+                        }
+
+                        // 添加来源信息
+                        var sourceText = item.sourceHost || '未知来源';
+                        rssInfo.textContent = `${pubDate} · ${sourceText}`;
+
+                        // 如果有分类，添加分类信息
+                        if (item.categories && item.categories.length > 0) {
+                            rssInfo.textContent += ` · ${item.categories}`;
+                        }
+
+                        // 组装RSS项目
+                        rssLink.appendChild(rssTitle);
+                        rssLink.appendChild(rssSummary);
+                        rssLink.appendChild(rssInfo);
+                        rssItemDiv.appendChild(rssLink);
+
+                        // 添加到RSS结果容器
+                        if (!displayedItems.has(item.link)) {
+                            rssResultsContainer.appendChild(rssItemDiv);
+                            displayedItems.add(item.link);
+                        }
+                    });
+                }
+            } else {
+                searchResults.style.display = 'block';
+                var noResultItem = document.createElement('div');
+                noResultItem.textContent = '小张提醒：未找到相关结果，可以尝试拼音或不同关键词搜索';
+                noResultItem.classList.add('notfind');
+                searchResultsContainer.appendChild(noResultItem);
+            }
+        });
+
+        // 加载RSS数据
+        function loadRssData() {
+            if (!searchConfig.rss.sources || searchConfig.rss.sources.length === 0) {
+                if (searchConfig.debug) {
+                    console.log('未配置RSS源');
+                }
+                return;
+            }
+
+            // 遍历所有RSS源
+            searchConfig.rss.sources.forEach(function (rssUrl) {
+                if (searchConfig.debug) {
+                    console.log('加载RSS源: ' + rssUrl);
+                }
+
+                // 使用CORS代理解决跨域问题
+                const corsProxyUrl = 'https://api.allorigins.win/raw?url=';
+                const fetchUrl = corsProxyUrl + encodeURIComponent(rssUrl);
+
+                // 使用fetch API获取RSS数据
+                fetch(fetchUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(str => {
+                        try {
+                            return new window.DOMParser().parseFromString(str, "text/xml");
+                        } catch (e) {
+                            console.error('解析XML失败:', e);
+                            throw e;
+                        }
+                    })
+                    .then(data => {
+                        if (searchConfig.debug) {
+                            console.log('RSS数据加载成功: ' + rssUrl);
+                        }
+
+                        // 解析RSS数据
+                        parseRssData(data, rssUrl);
+                    })
+                    .catch(error => {
+                        console.error('加载RSS数据失败 (' + rssUrl + '):', error);
+
+                        // 尝试使用备用CORS代理
+                        const backupProxyUrl = 'https://corsproxy.io/?';
+                        const backupFetchUrl = backupProxyUrl + encodeURIComponent(rssUrl);
+
+                        console.log('尝试使用备用代理重新加载: ' + rssUrl);
+
+                        fetch(backupFetchUrl)
+                            .then(response => response.text())
+                            .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+                            .then(data => {
+                                if (searchConfig.debug) {
+                                    console.log('使用备用代理成功加载RSS: ' + rssUrl);
+                                }
+                                parseRssData(data, rssUrl);
+                            })
+                            .catch(error => {
+                                console.error('备用代理加载失败 (' + rssUrl + '):', error);
+                            });
+                    });
+            });
+        }
+
+        // 解析RSS数据
+        function parseRssData(xml, rssUrl) {
+            try {
+                // 获取RSS源的域名，用于显示来源
+                let sourceHost = '';
+                try {
+                    const url = new URL(rssUrl);
+                    sourceHost = url.hostname;
+                } catch (e) {
+                    sourceHost = rssUrl;
+                }
+
+                // 尝试解析Atom格式
+                const entries = xml.querySelectorAll('entry');
+                if (entries.length > 0) {
+                    if (searchConfig.debug) {
+                        console.log('检测到Atom格式RSS，条目数: ' + entries.length);
+                    }
+
+                    // 限制条目数量
+                    const maxEntries = Math.min(entries.length, searchConfig.rss.maxEntries || 50);
+
+                    for (let i = 0; i < maxEntries; i++) {
+                        const entry = entries[i];
+                        const title = entry.querySelector('title') ? entry.querySelector('title').textContent : '';
+                        const link = entry.querySelector('link') ? entry.querySelector('link').getAttribute('href') : '';
+                        const summary = entry.querySelector('summary') ? entry.querySelector('summary').textContent : '';
+                        const content = entry.querySelector('content') ? entry.querySelector('content').textContent : summary;
+                        const published = entry.querySelector('published') ? entry.querySelector('published').textContent : '';
+                        const updated = entry.querySelector('updated') ? entry.querySelector('updated').textContent : '';
+
+                        // 获取分类标签
+                        const categories = [];
+                        entry.querySelectorAll('category').forEach(cat => {
+                            categories.push(cat.getAttribute('term'));
+                        });
+
+                        // 创建RSS项目对象
+                        const rssItem = {
+                            title: title.toLowerCase(),
+                            link: link,
+                            summary: summary.toLowerCase(),
+                            content: content.toLowerCase(),
+                            published: published,
+                            updated: updated,
+                            categories: categories.join(', ').toLowerCase(),
+                            source: 'atom',
+                            sourceUrl: rssUrl,
+                            sourceHost: sourceHost,
+                            titlePinyin: '',
+                            titlePinyinFirst: '',
+                            titlePinyinNone: ''
+                        };
+
+                        // 生成拼音数据
+                        try {
+                            if (window.pinyinPro) {
+                                rssItem.titlePinyin = pinyinPro.pinyin(title, { toneType: 'none' }).toLowerCase();
+                                rssItem.titlePinyinFirst = pinyinPro.pinyin(title, { pattern: 'first', toneType: 'none' }).toLowerCase();
+                                rssItem.titlePinyinNone = rssItem.titlePinyin;
+                            }
+                        } catch (e) {
+                            if (searchConfig.debug) {
+                                console.error('RSS标题拼音转换出错:', e);
+                            }
+                        }
+
+                        // 添加到RSS项目列表
+                        rssItems.push(rssItem);
+                    }
+                } else {
+                    // 尝试解析RSS 2.0格式
+                    const items = xml.querySelectorAll('item');
+                    if (items.length > 0) {
+                        if (searchConfig.debug) {
+                            console.log('检测到RSS 2.0格式，条目数: ' + items.length);
+                        }
+
+                        // 限制条目数量
+                        const maxItems = Math.min(items.length, searchConfig.rss.maxEntries || 50);
+
+                        for (let i = 0; i < maxItems; i++) {
+                            const item = items[i];
+                            const title = item.querySelector('title') ? item.querySelector('title').textContent : '';
+                            const link = item.querySelector('link') ? item.querySelector('link').textContent : '';
+                            const description = item.querySelector('description') ? item.querySelector('description').textContent : '';
+                            const pubDate = item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : '';
+
+                            // 获取分类标签
+                            const categories = [];
+                            item.querySelectorAll('category').forEach(cat => {
+                                categories.push(cat.textContent);
+                            });
+
+                            // 创建RSS项目对象
+                            const rssItem = {
+                                title: title.toLowerCase(),
+                                link: link,
+                                summary: description.toLowerCase(),
+                                content: description.toLowerCase(),
+                                published: pubDate,
+                                updated: pubDate,
+                                categories: categories.join(', ').toLowerCase(),
+                                source: 'rss',
+                                sourceUrl: rssUrl,
+                                sourceHost: sourceHost,
+                                titlePinyin: '',
+                                titlePinyinFirst: '',
+                                titlePinyinNone: ''
+                            };
+
+                            // 生成拼音数据
+                            try {
+                                if (window.pinyinPro) {
+                                    rssItem.titlePinyin = pinyinPro.pinyin(title, { toneType: 'none' }).toLowerCase();
+                                    rssItem.titlePinyinFirst = pinyinPro.pinyin(title, { pattern: 'first', toneType: 'none' }).toLowerCase();
+                                    rssItem.titlePinyinNone = rssItem.titlePinyin;
+                                }
+                            } catch (e) {
+                                if (searchConfig.debug) {
+                                    console.error('RSS标题拼音转换出错:', e);
+                                }
+                            }
+
+                            // 添加到RSS项目列表
+                            rssItems.push(rssItem);
+                        }
+                    } else {
+                        if (searchConfig.debug) {
+                            console.error('未识别的RSS格式');
+                        }
+                    }
+                }
+
+                if (searchConfig.debug) {
+                    console.log('成功解析RSS数据，共 ' + rssItems.length + ' 条');
+                }
+            } catch (error) {
+                console.error('解析RSS数据出错:', error);
+            }
+        }
+    </script>
+    <!-- end -->
+
+    <!-- 收藏添加弹窗 -->
+    <div id="fav-modal"
+        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
+        <div style="background:#fff;padding:24px 32px;border-radius:10px;min-width:320px;box-shadow:0 2px 16px #0001;">
+            <h3 style="margin-bottom:16px;">添加收藏</h3>
+            <div style="margin-bottom:10px;">
+                <input id="fav-title" placeholder="网站名称" style="width:100%;padding:6px 8px;">
+            </div>
+            <div style="margin-bottom:10px;">
+                <input id="fav-url" placeholder="网址（含http/https）" style="width:100%;padding:6px 8px;">
+            </div>
+            <div style="margin-bottom:10px;">
+                <input id="fav-icon" placeholder="图标URL（可选）" style="width:100%;padding:6px 8px;">
+            </div>
+            <div style="margin-bottom:10px;">
+                <input id="fav-desc" placeholder="描述（可选）" style="width:100%;padding:6px 8px;">
+            </div>
+            <div style="text-align:right;">
+                <button onclick="closeFavModal()" style="margin-right:10px;">取消</button>
+                <button onclick="saveFav()"
+                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 顶部登录按钮 -->
+    <div id="top-login-btn" style="position:fixed;top:18px;right:32px;z-index:10000;">
+        <button onclick="showLoginModal()"
+            style="background:#3385ff;color:#fff;border:none;padding:8px 22px;border-radius:20px;font-size:16px;box-shadow:0 2px 8px #0001;cursor:pointer;">登录</button>
+    </div>
+
+    <!-- 登录弹窗 -->
+    <div id="login-modal"
+        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
+        <div
+            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:320px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;">
+            <h3 style="margin-bottom:18px;">用户登录</h3>
+            <p>注册功能完善中~~</p>
+            <input id="login-email" type="email" placeholder="邮箱"
+                style="width:220px;padding:8px 10px;margin-bottom:12px;">
+            <input id="login-password" type="password" placeholder="密码"
+                style="width:220px;padding:8px 10px;margin-bottom:18px;">
+            <div style="width:100%;display:flex;justify-content:space-between;">
+                <button onclick="closeLoginModal()"
+                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
+                <button onclick="login()"
+                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">登录</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加收藏弹窗（新版） -->
+    <div id="fav-form-modal"
+        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
+        <div
+            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:340px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;">
+            <h3 style="margin-bottom:18px;">添加收藏</h3>
+            <div style="width:100%;margin-bottom:12px;">
+                <label>*URL链接地址:</label>
+                <input id="fav-form-url" type="text" placeholder="完整链接或域名"
+                    style="width:100%;padding:8px 10px;margin-top:4px;">
+                <button type="button" onclick="autoGetIcon()"
+                    style="margin-top:6px;float:right;font-size:12px;">自动获取</button>
+            </div>
+            <div style="width:100%;margin-bottom:12px;">
+                <label>*网站名称:</label>
+                <input id="fav-form-title" type="text" placeholder="网站名称"
+                    style="width:100%;padding:8px 10px;margin-top:4px;">
+            </div>
+            <div style="width:100%;margin-bottom:12px;">
+                <label>网站图标:</label>
+                <input id="fav-form-icon" type="text" placeholder="填写图标的URL地址"
+                    style="width:100%;padding:8px 10px;margin-top:4px;">
+                <div style="font-size:12px;color:#f55;margin-top:2px;">
+                    填写图标的URL地址，如：http://www.xxx.com/logo.png<br>部分网站无法自动获取，请手动填写</div>
+            </div>
+            <div style="width:100%;margin-bottom:12px;">
+                <label>网站描述:</label>
+                <input id="fav-form-desc" type="text" placeholder="网站描述（可选）"
+                    style="width:100%;padding:8px 10px;margin-top:4px;">
+            </div>
+            <div style="width:100%;display:flex;justify-content:space-between;margin-top:10px;">
+                <button type="button" onclick="closeFavForm()"
+                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
+                <button type="button" onclick="submitFavForm()"
+                    style="background:#38cfa6;color:#fff;border:none;padding:6px 18px;border-radius:6px;">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 选择已有站点弹窗 -->
+    <div id="select-site-modal"
+        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
+        <div
+            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:340px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;max-height:80vh;overflow:auto;">
+            <h3 style="margin-bottom:18px;">选择已有站点收藏</h3>
+            <div id="site-list" style="width:100%;max-height:300px;overflow:auto;margin-bottom:16px;"></div>
+            <div style="width:100%;display:flex;justify-content:space-between;">
+                <button type="button" onclick="closeSelectSiteModal()"
+                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
+                <button type="button" onclick="addSelectedSitesToFav()"
+                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">添加到我的收藏</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 父容器设置 flex 布局，实现多行排列 */
+        #fav-list {
+            margin-top: 16px;
+            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .fav-card {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 8px;
+            border: 1px solid #d4d7dd;
+            background-color: #ffffff;
+            background: var(--BoxItemBackground-color);
+            position: relative;
+            /* flex: 0 0 25%; */
+            /* max-width: 25%; */
+        }
+
+        /* 鼠标悬停卡片动画 */
+        .fav-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        #fav-add-card {
+            border: 1px dashed rgb(188, 220, 255);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        /* 链接容器设置 flex，让图标和文字垂直居中 */
+        .fav-link {
+            box-sizing: border-box;
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 图标样式，控制尺寸 */
+        .fav-icon {
+            display: block;
+            width: auto;
+            height: 90%;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .fav-context {
+            padding-left: 7px;
+        }
+
+        .fav-title {
+            font-weight: bold;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            word-break: break-all;
+            white-space: nowrap;
+            color: var(--Body-font-color);
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+
+        .fav-desc {
+            text-overflow: ellipsis;
+            transition: .3s;
+            font-size: 12px;
+            overflow-wrap: break-word;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+            line-height: 1.4;
+            color: #888;
+            /* white-space: nowrap; */
+        }
+
+        .fav-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            cursor: pointer;
+            width: 14px;
+            height: 14px;
+            color: #ffffff;
+            line-height: 14px;
+            text-align: center;
+            border-radius: 50px;
+            background: #ff0000;
+            font-size: 20px;
+            z-index: 2;
+        }
+    </style>
+
+    <script type="module">
+        // 引入Firebase相关SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiz-O33R3gAm4SfWyh8lSKMX-_4HdPrvg",
+            authDomain: "excel-6ffce.firebaseapp.com",
+            projectId: "excel-6ffce",
+            storageBucket: "excel-6ffce.firebasestorage.app",
+            messagingSenderId: "380737839136",
+            appId: "1:380737839136:web:1f1ab3e046b761106c5c45",
+            measurementId: "G-WXCMT6NDXZ"
+        };
+
+        // 初始化Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUid = null;
+        let favsCache = [];
+        window.isCustomizing = false;
+
+        // 登录状态切换时，控制按钮和弹窗显示
+        function updateLoginUI(loggedIn) {
+            document.getElementById('top-login-btn').style.display = loggedIn ? 'none' : 'block';
+            if (loggedIn) closeLoginModal();
+        }
+
+        // 监听登录状态变化
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                updateLoginUI(true);
+                document.getElementById('my-fav-box').style.display = 'block';
+                currentUid = user.uid;
+                await loadFavsFromCloud();
+            } else {
+                updateLoginUI(false);
+                document.getElementById('my-fav-box').style.display = 'none';
+                currentUid = null;
+                favsCache = [];
+                renderFavs();
+            }
+        });
+
+        // 加载云端收藏
+        async function loadFavsFromCloud() {
+            if (!currentUid) return;
+            const userDoc = doc(db, 'userFavs', currentUid);
+            try {
+                const snap = await getDoc(userDoc);
+                favsCache = (snap.exists() && snap.data().favs) ? snap.data().favs : [];
+                renderFavs();
+            } catch (e) {
+                favsCache = [];
+                renderFavs();
+            }
+        }
+
+        // 保存到云端
+        async function saveFavToCloud(fav) {
+            if (!currentUid) return;
+            const userDoc = doc(db, 'userFavs', currentUid);
+            await setDoc(userDoc, { favs: arrayUnion(fav) }, { merge: true });
+            favsCache.push(fav);
+            renderFavs();
+        }
+
+        // 删除云端收藏
+        async function removeFavFromCloud(idx) {
+            if (!currentUid) return;
+            const userDoc = doc(db, 'userFavs', currentUid);
+            const favToRemove = favsCache[idx];
+            await updateDoc(userDoc, { favs: arrayRemove(favToRemove) });
+            favsCache.splice(idx, 1);
+            renderFavs();
+        }
+
+        // 显示登录弹窗
+        window.showLoginModal = function () {
+            document.getElementById('login-modal').style.display = 'flex';
+        };
+
+        // 关闭登录弹窗
+        window.closeLoginModal = function () {
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+        };
+
+        // 登录事件
+        window.login = function () {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            signInWithEmailAndPassword(auth, email, password)
+                .catch((error) => {
+                    alert('登录失败：' + error.message);
+                });
+        };
+
+        // 登出事件
+        window.logout = function () {
+            signOut(auth);
+        };
+
+        // 切换编辑模式
+        window.toggleCustomMode = function () {
+            window.isCustomizing = !window.isCustomizing;
+            renderFavs();
+            // 按钮文字切换
+            var btn = document.getElementById('fav-custom-btn');
+            if (btn) btn.innerHTML = window.isCustomizing ? '<span style="font-size:15px;">💾 保存</span>' : '<span style="font-size:15px;">⚙️编辑</span>';
+        };
+
+        // 渲染收藏
+        window.renderFavs = function () {
+            const list = document.getElementById('fav-list');
+            list.innerHTML = '';
+
+            // 添加收藏卡片
+            const addCard = document.createElement('div');
+            addCard.id = 'fav-add-card';
+            addCard.className = 'fav-card';
+            addCard.innerHTML = '<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill: #3385ff;width: 22px;margin-right: 10px;"><path d="M577.088 0H448.96v448.512H0v128h448.96V1024h128.128V576.512H1024v-128H577.088z"></path></svg><div style="color:#3385ff;">添加链接</div>';
+            addCard.onclick = openFavForm;
+            list.appendChild(addCard);
+
+            // 渲染收藏卡片
+            favsCache.forEach((fav, idx) => {
+                const card = document.createElement('div');
+                card.className = 'fav-card';
+                card.innerHTML = `
+    <a href="${fav.url}" target="_blank" class="fav-link">
+      <img src="${fav.icon || 'https://ico.cxr.cool/' + (fav.url.replace(/^https?:\/\//, '').split('/')[0]) + '.ico'}" class="fav-icon" onerror="this.src='https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png';this.onerror=null;">
+      <div class="fav-context"><div class="fav-title">${fav.title}</div>
+      <div class="fav-desc">${fav.desc || ''}</div></div>
+    </a>
+    ${window.isCustomizing ? `<span onclick="removeFav(${idx})" class="fav-remove">×</span>` : ''}
+  `;
+                list.appendChild(card);
+            });
+        };
+
+        // 删除收藏
+        window.removeFav = function (idx) {
+            removeFavFromCloud(idx);
+        };
+
+        // "+"加号卡片弹窗
+        function openFavForm() {
+            document.getElementById('fav-form-modal').style.display = 'flex';
+        }
+
+        window.closeFavForm = function () {
+            document.getElementById('fav-form-modal').style.display = 'none';
+            document.getElementById('fav-form-url').value = '';
+            document.getElementById('fav-form-title').value = '';
+            document.getElementById('fav-form-icon').value = '';
+            document.getElementById('fav-form-desc').value = '';
+        };
+
+        // 使用新API获取网站信息
+        window.autoGetIcon = async function () {
+            const urlInput = document.getElementById('fav-form-url');
+            const url = urlInput.value.trim();
+
+            if (!url) {
+                alert('请先填写网址');
+                return;
+            }
+
+            // 确保URL包含协议头
+            let fullUrl = url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                fullUrl = 'https://' + url;
+                urlInput.value = fullUrl;
+            }
+
+            try {
+                // 显示加载状态
+                document.getElementById('fav-form-title').value = '加载中...';
+                document.getElementById('fav-form-icon').value = '';
+                document.getElementById('fav-form-desc').value = '';
+
+                // 调用新API
+                const response = await fetch('https://v.api.aa1.cn/api/api-web-head-json/index.php?url=' + encodeURIComponent(fullUrl));
+                const data = await response.json();
+
+                if (data && data.code === 200) {
+                    // 填充表单
+                    document.getElementById('fav-form-title').value = data.title || '';
+                    document.getElementById('fav-form-icon').value = 'https://ico.cxr.cool/' + (data.url.replace(/^https?:\/\//, '').split('/')[0]) + '.ico';
+                    document.getElementById('fav-form-desc').value = data.description || '';
+                } else {
+                    alert('获取网站信息失败，请手动填写');
+                    document.getElementById('fav-form-title').value = '';
+                }
+            } catch (error) {
+                console.error('获取网站信息出错:', error);
+                alert('获取网站信息出错，请手动填写');
+                document.getElementById('fav-form-title').value = '';
+            }
+        };
+
+        window.submitFavForm = async function () {
+            const url = document.getElementById('fav-form-url').value.trim();
+            const title = document.getElementById('fav-form-title').value.trim();
+            const icon = document.getElementById('fav-form-icon').value.trim();
+            const desc = document.getElementById('fav-form-desc').value.trim();
+
+            if (!url || !title) {
+                alert('请填写完整信息');
+                return;
+            }
+
+            const fav = { title, url, icon, desc };
+            await saveFavToCloud(fav);
+            closeFavForm();
+        };
+
+        // "自定义"按钮弹窗
+        window.openSelectSiteModal = function () {
+            document.getElementById('select-site-modal').style.display = 'flex';
+            renderSiteList();
+        };
+
+        window.closeSelectSiteModal = function () {
+            document.getElementById('select-site-modal').style.display = 'none';
+        };
+
+        // 渲染站点列表
+        window.renderSiteList = function () {
+            const siteList = document.getElementById('site-list');
+            siteList.innerHTML = '';
+
+            // 构建二级分组结构 {大类: {小类: [site, ...]}}
+            const groupMap = {};
+            (window.allSites || []).forEach(site => {
+                const main = site.group ? site.group.split('>')[0].trim() : '未分组';
+                const sub = site.group && site.group.includes('>') ? site.group.split('>')[1].trim() : '';
+                if (!groupMap[main]) groupMap[main] = {};
+                if (!groupMap[main][sub]) groupMap[main][sub] = [];
+                groupMap[main][sub].push(site);
+            });
+
+            const mains = Object.keys(groupMap);
+
+            // 一级Tab
+            const tabBarMain = document.createElement('div');
+            tabBarMain.className = 'tab-bar tab-bar-main';
+            tabBarMain.style = 'display:flex;gap:8px;overflow-x:auto;margin-bottom:8px;padding-bottom:4px;';
+
+            mains.forEach((main, i) => {
+                const tab = document.createElement('button');
+                tab.innerText = main;
+                tab.className = 'tab-btn' + (i === 0 ? ' active' : '');
+                tab.onclick = function () {
+                    document.querySelectorAll('#site-list .tab-bar-main .tab-btn').forEach(btn => btn.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.querySelectorAll('#site-list .tab-bar-sub').forEach(c => c.style.display = 'none');
+                    document.getElementById('tab-bar-sub-' + i).style.display = 'flex';
+
+                    // 默认激活第一个二级tab
+                    const firstSub = document.getElementById('tab-bar-sub-' + i).querySelector('.tab-btn');
+                    if (firstSub) firstSub.click();
+                };
+                tabBarMain.appendChild(tab);
+            });
+
+            siteList.appendChild(tabBarMain);
+
+            // 二级Tab和内容
+            mains.forEach((main, i) => {
+                const subs = Object.keys(groupMap[main]);
+                const tabBarSub = document.createElement('div');
+                tabBarSub.className = 'tab-bar tab-bar-sub';
+                tabBarSub.id = 'tab-bar-sub-' + i;
+                tabBarSub.style = 'display:' + (i === 0 ? 'flex' : 'none') + ';gap:8px;overflow-x:auto;margin-bottom:12px;';
+
+                subs.forEach((sub, j) => {
+                    const tab = document.createElement('button');
+                    tab.innerText = sub || main;
+                    tab.className = 'tab-btn' + (j === 0 ? ' active' : '');
+                    tab.onclick = function () {
+                        document.querySelectorAll('#tab-bar-sub-' + i + ' .tab-btn').forEach(btn => btn.classList.remove('active'));
+                        tab.classList.add('active');
+                        document.querySelectorAll('#site-list .site-list-content').forEach(c => c.style.display = 'none');
+                        document.getElementById('site-list-content-' + i + '-' + j).style.display = 'flex';
+                    };
+                    tabBarSub.appendChild(tab);
+                });
+
+                siteList.appendChild(tabBarSub);
+
+                // 内容区
+                subs.forEach((sub, j) => {
+                    const content = document.createElement('div');
+                    content.className = 'site-list site-list-content';
+                    content.id = 'site-list-content-' + i + '-' + j;
+                    content.style = 'flex-wrap:wrap;gap:16px;' + (j === 0 && i === 0 ? 'display:flex;' : 'display:none;');
+
+                    groupMap[main][sub].forEach((site, idx) => {
+                        const card = document.createElement('div');
+                        card.className = 'site-card';
+                        card.innerHTML = `<input type="checkbox" value="${window.allSites.indexOf(site)}" style="margin-right:8px;">
+                      <span>${site.title}</span>
+                      <small>${site.url}</small>`;
+                        content.appendChild(card);
+                    });
+
+                    siteList.appendChild(content);
+                });
+            });
+        };
+
+        window.addSelectedSitesToFav = async function () {
+            const checked = Array.from(document.querySelectorAll('#site-list input[type=checkbox]:checked'));
+            if (!checked.length) { alert('请选择要添加的站点'); return; }
+
+            let added = 0;
+            for (const cb of checked) {
+                const site = window.allSites[cb.value];
+                if (favsCache.some(f => f.url === site.url)) continue; // 已有则跳过
+
+                await saveFavToCloud(site);
+                added++;
+            }
+
+            if (added === 0) alert('所选站点均已收藏，无需重复添加！');
+            closeSelectSiteModal();
+        };
+
+        // Excel加载后自动生成window.allSites
+        window.allSites = [];
+        function collectAllSitesFromExcel() {
+            try {
+                const mainContent = document.getElementById('excel');
+                const cards = mainContent.querySelectorAll('.box-card');
+                let sites = [];
+
+                cards.forEach(card => {
+                    const items = card.querySelectorAll('a');
+                    items.forEach(a => {
+                        const title = a.querySelector('.logo span') ? a.querySelector('.logo span').textContent.trim() : '';
+                        const url = a.href;
+                        const icon = a.querySelector('img') ? a.querySelector('img').src : '';
+                        const desc = a.querySelector('.desc') ? a.querySelector('.desc').textContent.trim() : '';
+
+                        // 分组可用父级h2或box标题
+                        let group = '';
+                        let parent = a.closest('.box');
+                        if (parent) {
+                            let h2 = parent.querySelector('h2');
+                            if (h2) group = h2.textContent.trim();
+                        }
+
+                        sites.push({ title, url, icon, group, desc });
+                    });
+                });
+
+                window.allSites = sites;
+            } catch (e) {
+                window.allSites = [];
+                console.error('收集站点数据失败:', e);
+            }
+        }
+
+        // 优化批量添加弹窗样式
+        (function () {
+            var style = document.createElement('style');
+            style.innerHTML = `
+            #select-site-modal .tab-bar { gap: 4px !important; overflow-x: auto !important; padding-bottom: 2px !important; }
+            #select-site-modal .tab-btn { font-size: 13px !important; padding: 3px 10px !important; border-radius: 14px !important; border: none; background: #f0f4ff; color: #3273dc; margin-right: 2px; white-space: nowrap; }
+            #select-site-modal .tab-btn.active { background: #3385ff; color: #fff; }
+            #select-site-modal .site-list-content { display: flex; flex-wrap: wrap; gap: 12px; }
+            #select-site-modal .site-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #e0e7ef; padding: 10px 8px; min-width: 0; max-width: 320px; width: 30%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; font-size: 14px; word-break: break-all; }
+            #select-site-modal .site-card span { font-weight: bold; font-size: 14px; margin-bottom: 2px; word-break: break-all; }
+            #select-site-modal .site-card small { color: #888; font-size: 12px; margin-top: 2px; }
+            @media (max-width: 800px) { 
+                #select-site-modal .site-list-content { flex-direction: column; gap: 8px; } 
+                #select-site-modal .site-card { width: 100%; font-size: 13px; padding: 8px 6px; } 
+            }
+        `;
+            document.head.appendChild(style);
+        })();
+
+        // 绑定按钮事件
+        document.addEventListener('DOMContentLoaded', function () {
+            // 绑定添加按钮
+            var addBtn = document.getElementById('fav-add-card');
+            if (addBtn) addBtn.onclick = openFavForm;
+
+            // 绑定自定义按钮
+            var customBtn = document.getElementById('fav-custom-btn');
+            if (customBtn) customBtn.onclick = window.toggleCustomMode;
+
+            // 绑定批量添加按钮
+            var batchBtn = document.getElementById('fav-batch-add-btn');
+            if (batchBtn) batchBtn.onclick = window.openSelectSiteModal;
+
+            // 收集所有站点数据
+            setTimeout(collectAllSitesFromExcel, 1500); // Excel异步加载，延迟收集
+        });
+    </script>
+
+
+
+</body>
+
+</html>
