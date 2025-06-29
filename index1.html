@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="视传导航站">
     <title>夏DJ导航站-很有范的导航站</title>
-    <meta name="description" content="大三视传人自制，方便自己已经朋友而存在的导航网站夏dj导航-设计师必备导航站。">
+    <meta name="description" content="大三视传人自制,方便自己已经朋友而存在的导航网站夏dj导航-设计师必备导航站。">
     <meta name=keywords content="夏dj,夏dj站,视传导航网,设计导航网,夏DJ导航,夏DJ导航站">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="apple-mobile-web-app-title" content="夏DJ导航">
@@ -20,6 +20,9 @@
 
     <!-- style本地文件和外链 style是本地测试带有嵌套关系的css， output.css是解析嵌套后的 -->
     <link rel=stylesheet href="css/style.css">
+    <link rel="stylesheet" href="css/firebase-auth.css">
+    <link rel="stylesheet" href="css/favorites.css">
+    <!-- <link rel="stylesheet" href="css/fav-drag.css"> -->
     <!-- <link rel=stylesheet href=css/output.css> -->
     <!-- <link rel="stylesheet" href="https://jsd.012700.xyz/gh/xiaolongmr/dh/css/style.css"> -->
     <!-- <link rel="stylesheet" href="https://cdn.h5ds.com/space/files/600972551685382144/20240714/736843635572895744.css"> -->
@@ -37,7 +40,7 @@
             margin-top: 20px !important;
         }
 
-        /* .rss-outer-container {
+        .rss-outer-container {
             width: 100% !important;
             clear: both !important;
             display: block !important;
@@ -49,7 +52,7 @@
             background-color: rgba(210, 242, 255, 0.1) !important;
             padding: 15px !important;
             border-radius: 10px !important;
-        } */
+        }
 
         /* RSS搜索结果标题 */
         .rss-results-title {
@@ -191,6 +194,8 @@
     </script>
     <!-- end -->
 
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
 </head>
 
 <body>
@@ -305,7 +310,7 @@
 
                 <!-- 我的导航 -->
                 <!-- 我的导航css样式 -->
-                <style>
+                <!-- <style>
                     .box#my-fav-box {
                         display: none;
                     }
@@ -345,7 +350,7 @@
                         cursor: pointer;
                         font-size: 15px;
                     }
-                </style>
+                </style> -->
 
                 <div class="box" id="my-fav-box">
                     <div class="my-fav-box">
@@ -366,7 +371,7 @@
                             </div>
                         </div>
                         <div id="fav-list">
-                            <!-- 收藏卡片由JS动态生成 -->
+                            <!-- 添加已有站点 由JS动态生成 -->
                         </div>
                     </div>
                 </div>
@@ -996,9 +1001,12 @@
                 initSearchData();
                 // 如果启用了RSS搜索，加载RSS数据
                 if (searchConfig.rss && searchConfig.rss.enabled) {
+                    if (searchConfig.debug) {
+                        console.log('开始加载RSS数据...');
+                    }
                     loadRssData();
                 }
-            }, 1000);
+            }, 2000); // 增加延迟时间到2秒，确保Excel数据完全加载
         });
 
         // 初始化搜索数据函数
@@ -1406,6 +1414,13 @@
             return results;
         }
 
+        // 将搜索函数暴露到全局作用域，供选择站点弹窗使用
+        window.performSearch = performSearch;
+        window.performPinyinSearch = performPinyinSearch;
+
+        // 将RSS数据暴露到全局作用域，供选择站点弹窗使用
+        window.rssItems = rssItems;
+
         // 搜索输入监听
         document.getElementById('txt').addEventListener('input', function () {
             var searchKeyword = this.value.trim();
@@ -1416,6 +1431,13 @@
             if (searchKeyword.length === 0) {
                 searchResults.style.display = 'none';
                 return;
+            }
+
+            // 添加调试信息
+            if (searchConfig.debug) {
+                console.log('搜索关键词:', searchKeyword);
+                console.log('当前RSS项目数:', rssItems.length);
+                console.log('当前可搜索项目数:', searchableItems.length);
             }
 
             // 支持输入法拼音状态下的搜索
@@ -1433,6 +1455,15 @@
 
                 // 将清理后的输入视为拼音，再次搜索
                 matchedItems = performPinyinSearch(cleanKeyword);
+            }
+
+            // 添加调试信息
+            if (searchConfig.debug) {
+                console.log('搜索结果总数:', matchedItems.length);
+                var rssResults = matchedItems.filter(item => item.isRss);
+                var regularResults = matchedItems.filter(item => !item.isRss);
+                console.log('RSS结果数:', rssResults.length);
+                console.log('站内结果数:', regularResults.length);
             }
 
             if (matchedItems.length > 0) {
@@ -1555,10 +1586,7 @@
                     // 添加RSS结果容器 - 使用独立容器确保完全另起一行
                     var rssResultsContainer = document.createElement('div');
                     rssResultsContainer.className = 'rss-results-container';
-                    // 强制使用单列布局，不使用网格布局
-                    rssResultsContainer.style.display = 'flex';
-                    rssResultsContainer.style.flexDirection = 'column';
-                    rssResultsContainer.style.gridTemplateColumns = 'none';
+                    // 移除可能冲突的样式设置，让CSS控制布局
                     rssOuterContainer.appendChild(rssResultsContainer);
 
                     // 将整个RSS外部容器添加到搜索结果容器中，但确保它不继承网格布局
@@ -1695,10 +1723,14 @@
                 return;
             }
 
+            if (searchConfig.debug) {
+                console.log('开始加载RSS数据，共配置了 ' + searchConfig.rss.sources.length + ' 个RSS源');
+            }
+
             // 遍历所有RSS源
             searchConfig.rss.sources.forEach(function (rssUrl) {
                 if (searchConfig.debug) {
-                    console.log('加载RSS源: ' + rssUrl);
+                    console.log('正在加载RSS源: ' + rssUrl);
                 }
 
                 // 使用CORS代理解决跨域问题
@@ -1709,11 +1741,14 @@
                 fetch(fetchUrl)
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            throw new Error('Network response was not ok: ' + response.status);
                         }
                         return response.text();
                     })
                     .then(str => {
+                        if (searchConfig.debug) {
+                            console.log('RSS原始数据长度:', str.length);
+                        }
                         try {
                             return new window.DOMParser().parseFromString(str, "text/xml");
                         } catch (e) {
@@ -1736,7 +1771,9 @@
                         const backupProxyUrl = 'https://corsproxy.io/?';
                         const backupFetchUrl = backupProxyUrl + encodeURIComponent(rssUrl);
 
-                        console.log('尝试使用备用代理重新加载: ' + rssUrl);
+                        if (searchConfig.debug) {
+                            console.log('尝试使用备用代理重新加载: ' + rssUrl);
+                        }
 
                         fetch(backupFetchUrl)
                             .then(response => response.text())
@@ -1895,631 +1932,152 @@
                 console.error('解析RSS数据出错:', error);
             }
         }
+
+        // 添加一个函数来检查RSS数据状态
+        function checkRssDataStatus() {
+            if (searchConfig.debug) {
+                console.log('=== RSS数据状态检查 ===');
+                console.log('RSS项目总数:', rssItems.length);
+                if (rssItems.length > 0) {
+                    console.log('前3个RSS项目:');
+                    rssItems.slice(0, 3).forEach((item, index) => {
+                        console.log(`  ${index + 1}. ${item.title} (${item.sourceHost})`);
+                    });
+                }
+                console.log('======================');
+            }
+        }
+
+        // 在页面加载完成后5秒检查RSS数据状态
+        setTimeout(checkRssDataStatus, 5000);
     </script>
     <!-- end -->
 
-    <!-- 收藏添加弹窗 -->
-    <div id="fav-modal"
-        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
-        <div style="background:#fff;padding:24px 32px;border-radius:10px;min-width:320px;box-shadow:0 2px 16px #0001;">
-            <h3 style="margin-bottom:16px;">添加收藏</h3>
-            <div style="margin-bottom:10px;">
-                <input id="fav-title" placeholder="网站名称" style="width:100%;padding:6px 8px;">
-            </div>
-            <div style="margin-bottom:10px;">
-                <input id="fav-url" placeholder="网址（含http/https）" style="width:100%;padding:6px 8px;">
-            </div>
-            <div style="margin-bottom:10px;">
-                <input id="fav-icon" placeholder="图标URL（可选）" style="width:100%;padding:6px 8px;">
-            </div>
-            <div style="margin-bottom:10px;">
-                <input id="fav-desc" placeholder="描述（可选）" style="width:100%;padding:6px 8px;">
-            </div>
-            <div style="text-align:right;">
-                <button onclick="closeFavModal()" style="margin-right:10px;">取消</button>
-                <button onclick="saveFav()"
-                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">保存</button>
-            </div>
-        </div>
-    </div>
+
 
     <!-- 顶部登录按钮 -->
-    <div id="top-login-btn" style="position:fixed;top:18px;right:32px;z-index:10000;">
-        <button onclick="showLoginModal()"
-            style="background:#3385ff;color:#fff;border:none;padding:8px 22px;border-radius:20px;font-size:16px;box-shadow:0 2px 8px #0001;cursor:pointer;">登录</button>
+    <div id="top-login-btn">
+        <button onclick="showLoginModal()">登录</button>
     </div>
-
+    <!-- 用户头像按钮（登录后显示） -->
+    <div id="user-avatar-btn" style="display:none;">
+        <div id="user-avatar-container" class="user-avatar-container">
+            <img class="user-avatar" src="" alt="用户头像">
+            <span class="user-info">
+                <span class="user-name"></span>
+                <svg class="dropdown-arrow" viewBox="0 0 16 16">
+                    <path d="M4 6l4 4 4-4" stroke="#888" stroke-width="2" fill="none" />
+                </svg>
+            </span>
+        </div>
+        <div class="user-dropdown">
+            <a class="dropdown-item" href="#">个人中心</a>
+            <a class="dropdown-item" href="#">系统通知</a>
+            <a class="dropdown-item" href="#">账号设置</a>
+            <a class="dropdown-item" href="#" onclick="logout()">退出登录</a>
+        </div>
+    </div>
     <!-- 登录弹窗 -->
-    <div id="login-modal"
-        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
-        <div
-            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:320px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;">
-            <h3 style="margin-bottom:18px;">用户登录</h3>
-            <p>注册功能完善中~~</p>
-            <input id="login-email" type="email" placeholder="邮箱"
-                style="width:220px;padding:8px 10px;margin-bottom:12px;">
-            <input id="login-password" type="password" placeholder="密码"
-                style="width:220px;padding:8px 10px;margin-bottom:18px;">
-            <div style="width:100%;display:flex;justify-content:space-between;">
-                <button onclick="closeLoginModal()"
-                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
-                <button onclick="login()"
-                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">登录</button>
+    <div id="login-modal">
+        <div class="login-modal-content">
+            <h3 class="login-modal-title">用户登录</h3>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="login-email">邮箱</label>
+                    <input id="login-email" type="email" class="form-input" placeholder="邮箱">
+                    <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="login-password">密码</label>
+                    <input id="login-password" type="password" class="form-input" placeholder="密码">
+                    <div class="form-error"></div>
+                </div>
+                <div class="login-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">取消</button>
+                    <button id="login-btn" type="submit" class="btn btn-primary" data-original-text="登录">登录</button>
+                </div>
+                <div class="register-link">
+                    <a href="javascript:void(0);" id="switch-mode-btn" onclick="switchAuthMode()">没有账号？立即注册</a>
+                </div>
+            </form>
+            <form id="register-form" class="login-form" style="display:none;">
+                <div class="form-group">
+                    <label class="form-label" for="register-email">邮箱</label>
+                    <input id="register-email" type="email" class="form-input" placeholder="邮箱">
+                    <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-nickname">昵称</label>
+                    <input id="register-nickname" type="text" class="form-input" placeholder="昵称">
+                    <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-password">密码</label>
+                    <input id="register-password" type="password" class="form-input" placeholder="密码">
+                    <div class="form-error"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="register-confirm-password">确认密码</label>
+                    <input id="register-confirm-password" type="password" class="form-input" placeholder="确认密码">
+                    <div class="form-error"></div>
+                </div>
+                <div class="login-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">取消</button>
+                    <button id="register-btn" type="submit" class="btn btn-primary" data-original-text="注册">注册</button>
+                </div>
+                <div class="register-link">
+                    <a href="javascript:void(0);" id="switch-mode-btn" onclick="switchAuthMode()">已有账号？立即登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- 添加链接弹窗 -->
+    <div id="fav-form-modal">
+        <div class="fav-form-content">
+            <h3 class="fav-form-title">添加链接</h3>
+            <div class="fav-form-group">
+                <label class="fav-form-label required">*URL链接地址:</label>
+                <input id="fav-form-url" type="text" class="fav-form-input" placeholder="完整链接或域名">
+                <button type="button" class="auto-get-btn" onclick="autoGetIcon()">自动获取</button>
+            </div>
+            <div class="fav-form-group">
+                <label class="fav-form-label required">*网站名称:</label>
+                <input id="fav-form-title" type="text" class="fav-form-input" placeholder="网站名称">
+            </div>
+            <div class="fav-form-group">
+                <label class="fav-form-label">网站图标:</label>
+                <input id="fav-form-icon" type="text" class="fav-form-input" placeholder="填写图标的URL地址">
+                <div class="fav-form-help">填写图标的URL地址，如：http://www.xxx.com/logo.png<br>部分网站无法自动获取，请手动填写</div>
+            </div>
+            <div class="fav-form-group">
+                <label class="fav-form-label">网站描述:</label>
+                <input id="fav-form-desc" type="text" class="fav-form-input" placeholder="网站描述（可选）">
+            </div>
+            <div class="fav-form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeFavForm()">取消</button>
+                <button type="button" class="btn btn-primary" onclick="submitFavForm()">提交</button>
             </div>
         </div>
     </div>
-
-    <!-- 添加收藏弹窗（新版） -->
-    <div id="fav-form-modal"
-        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
-        <div
-            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:340px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;">
-            <h3 style="margin-bottom:18px;">添加收藏</h3>
-            <div style="width:100%;margin-bottom:12px;">
-                <label>*URL链接地址:</label>
-                <input id="fav-form-url" type="text" placeholder="完整链接或域名"
-                    style="width:100%;padding:8px 10px;margin-top:4px;">
-                <button type="button" onclick="autoGetIcon()"
-                    style="margin-top:6px;float:right;font-size:12px;">自动获取</button>
-            </div>
-            <div style="width:100%;margin-bottom:12px;">
-                <label>*网站名称:</label>
-                <input id="fav-form-title" type="text" placeholder="网站名称"
-                    style="width:100%;padding:8px 10px;margin-top:4px;">
-            </div>
-            <div style="width:100%;margin-bottom:12px;">
-                <label>网站图标:</label>
-                <input id="fav-form-icon" type="text" placeholder="填写图标的URL地址"
-                    style="width:100%;padding:8px 10px;margin-top:4px;">
-                <div style="font-size:12px;color:#f55;margin-top:2px;">
-                    填写图标的URL地址，如：http://www.xxx.com/logo.png<br>部分网站无法自动获取，请手动填写</div>
-            </div>
-            <div style="width:100%;margin-bottom:12px;">
-                <label>网站描述:</label>
-                <input id="fav-form-desc" type="text" placeholder="网站描述（可选）"
-                    style="width:100%;padding:8px 10px;margin-top:4px;">
-            </div>
-            <div style="width:100%;display:flex;justify-content:space-between;margin-top:10px;">
-                <button type="button" onclick="closeFavForm()"
-                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
-                <button type="button" onclick="submitFavForm()"
-                    style="background:#38cfa6;color:#fff;border:none;padding:6px 18px;border-radius:6px;">提交</button>
-            </div>
-        </div>
-    </div>
-
     <!-- 选择已有站点弹窗 -->
-    <div id="select-site-modal"
-        style="display:none;position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);z-index:9999;align-items:center;justify-content:center;">
-        <div
-            style="background:#fff;padding:32px 36px;border-radius:12px;min-width:340px;box-shadow:0 2px 16px #0001;display:flex;flex-direction:column;align-items:center;max-height:80vh;overflow:auto;">
-            <h3 style="margin-bottom:18px;">选择已有站点收藏</h3>
-            <div id="site-list" style="width:100%;max-height:300px;overflow:auto;margin-bottom:16px;"></div>
-            <div style="width:100%;display:flex;justify-content:space-between;">
-                <button type="button" onclick="closeSelectSiteModal()"
-                    style="background:#eee;border:none;padding:6px 18px;border-radius:6px;">取消</button>
-                <button type="button" onclick="addSelectedSitesToFav()"
-                    style="background:#3385ff;color:#fff;border:none;padding:6px 18px;border-radius:6px;">添加到我的收藏</button>
+    <div id="select-site-modal">
+        <div class="select-site-content">
+            <h3 class="select-site-title">选择已有站点收藏</h3>
+            <div class="site-modal-search-bar">
+                <input id="site-modal-search-input" type="text" placeholder="搜索站点名称/拼音/描述" />
+            </div>
+            <div id="site-list"></div>
+            <div class="fav-form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeSelectSiteModal()">取消</button>
+                <button type="button" class="btn btn-primary" onclick="addSelectedSitesToFav()">添加到收藏 (0)</button>
             </div>
         </div>
     </div>
 
-    <style>
-        /* 父容器设置 flex 布局，实现多行排列 */
-        #fav-list {
-            margin-top: 16px;
-            flex-wrap: wrap;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-        }
-
-        .fav-card {
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 8px;
-            border: 1px solid #d4d7dd;
-            background-color: #ffffff;
-            background: var(--BoxItemBackground-color);
-            position: relative;
-            /* flex: 0 0 25%; */
-            /* max-width: 25%; */
-        }
-
-        /* 鼠标悬停卡片动画 */
-        .fav-card:hover {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transform: translateY(-2px);
-        }
-
-        #fav-add-card {
-            border: 1px dashed rgb(188, 220, 255);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-        }
-
-        /* 链接容器设置 flex，让图标和文字垂直居中 */
-        .fav-link {
-            box-sizing: border-box;
-            display: flex;
-            position: relative;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* 图标样式，控制尺寸 */
-        .fav-icon {
-            display: block;
-            width: auto;
-            height: 90%;
-            width: 32px;
-            height: 32px;
-            position: relative;
-            object-fit: cover;
-            border-radius: 6px;
-        }
-
-        .fav-context {
-            padding-left: 7px;
-        }
-
-        .fav-title {
-            font-weight: bold;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            word-break: break-all;
-            white-space: nowrap;
-            color: var(--Body-font-color);
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .fav-desc {
-            text-overflow: ellipsis;
-            transition: .3s;
-            font-size: 12px;
-            overflow-wrap: break-word;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            line-height: 1.4;
-            color: #888;
-            /* white-space: nowrap; */
-        }
-
-        .fav-remove {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            cursor: pointer;
-            width: 14px;
-            height: 14px;
-            color: #ffffff;
-            line-height: 14px;
-            text-align: center;
-            border-radius: 50px;
-            background: #ff0000;
-            font-size: 20px;
-            z-index: 2;
-        }
-    </style>
-
-    <script type="module">
-        // 引入Firebase相关SDK
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDiz-O33R3gAm4SfWyh8lSKMX-_4HdPrvg",
-            authDomain: "excel-6ffce.firebaseapp.com",
-            projectId: "excel-6ffce",
-            storageBucket: "excel-6ffce.firebasestorage.app",
-            messagingSenderId: "380737839136",
-            appId: "1:380737839136:web:1f1ab3e046b761106c5c45",
-            measurementId: "G-WXCMT6NDXZ"
-        };
-
-        // 初始化Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let currentUid = null;
-        let favsCache = [];
-        window.isCustomizing = false;
-
-        // 登录状态切换时，控制按钮和弹窗显示
-        function updateLoginUI(loggedIn) {
-            document.getElementById('top-login-btn').style.display = loggedIn ? 'none' : 'block';
-            if (loggedIn) closeLoginModal();
-        }
-
-        // 监听登录状态变化
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                updateLoginUI(true);
-                document.getElementById('my-fav-box').style.display = 'block';
-                currentUid = user.uid;
-                await loadFavsFromCloud();
-            } else {
-                updateLoginUI(false);
-                document.getElementById('my-fav-box').style.display = 'none';
-                currentUid = null;
-                favsCache = [];
-                renderFavs();
-            }
-        });
-
-        // 加载云端收藏
-        async function loadFavsFromCloud() {
-            if (!currentUid) return;
-            const userDoc = doc(db, 'userFavs', currentUid);
-            try {
-                const snap = await getDoc(userDoc);
-                favsCache = (snap.exists() && snap.data().favs) ? snap.data().favs : [];
-                renderFavs();
-            } catch (e) {
-                favsCache = [];
-                renderFavs();
-            }
-        }
-
-        // 保存到云端
-        async function saveFavToCloud(fav) {
-            if (!currentUid) return;
-            const userDoc = doc(db, 'userFavs', currentUid);
-            await setDoc(userDoc, { favs: arrayUnion(fav) }, { merge: true });
-            favsCache.push(fav);
-            renderFavs();
-        }
-
-        // 删除云端收藏
-        async function removeFavFromCloud(idx) {
-            if (!currentUid) return;
-            const userDoc = doc(db, 'userFavs', currentUid);
-            const favToRemove = favsCache[idx];
-            await updateDoc(userDoc, { favs: arrayRemove(favToRemove) });
-            favsCache.splice(idx, 1);
-            renderFavs();
-        }
-
-        // 显示登录弹窗
-        window.showLoginModal = function () {
-            document.getElementById('login-modal').style.display = 'flex';
-        };
-
-        // 关闭登录弹窗
-        window.closeLoginModal = function () {
-            document.getElementById('login-modal').style.display = 'none';
-            document.getElementById('login-email').value = '';
-            document.getElementById('login-password').value = '';
-        };
-
-        // 登录事件
-        window.login = function () {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            signInWithEmailAndPassword(auth, email, password)
-                .catch((error) => {
-                    alert('登录失败：' + error.message);
-                });
-        };
-
-        // 登出事件
-        window.logout = function () {
-            signOut(auth);
-        };
-
-        // 切换编辑模式
-        window.toggleCustomMode = function () {
-            window.isCustomizing = !window.isCustomizing;
-            renderFavs();
-            // 按钮文字切换
-            var btn = document.getElementById('fav-custom-btn');
-            if (btn) btn.innerHTML = window.isCustomizing ? '<span style="font-size:15px;">💾 保存</span>' : '<span style="font-size:15px;">⚙️编辑</span>';
-        };
-
-        // 渲染收藏
-        window.renderFavs = function () {
-            const list = document.getElementById('fav-list');
-            list.innerHTML = '';
-
-            // 添加收藏卡片
-            const addCard = document.createElement('div');
-            addCard.id = 'fav-add-card';
-            addCard.className = 'fav-card';
-            addCard.innerHTML = '<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" style="fill: #3385ff;width: 22px;margin-right: 10px;"><path d="M577.088 0H448.96v448.512H0v128h448.96V1024h128.128V576.512H1024v-128H577.088z"></path></svg><div style="color:#3385ff;">添加链接</div>';
-            addCard.onclick = openFavForm;
-            list.appendChild(addCard);
-
-            // 渲染收藏卡片
-            favsCache.forEach((fav, idx) => {
-                const card = document.createElement('div');
-                card.className = 'fav-card';
-                card.innerHTML = `
-    <a href="${fav.url}" target="_blank" class="fav-link">
-      <img src="${fav.icon || 'https://ico.cxr.cool/' + (fav.url.replace(/^https?:\/\//, '').split('/')[0]) + '.ico'}" class="fav-icon" onerror="this.src='https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png';this.onerror=null;">
-      <div class="fav-context"><div class="fav-title">${fav.title}</div>
-      <div class="fav-desc">${fav.desc || ''}</div></div>
-    </a>
-    ${window.isCustomizing ? `<span onclick="removeFav(${idx})" class="fav-remove">×</span>` : ''}
-  `;
-                list.appendChild(card);
-            });
-        };
-
-        // 删除收藏
-        window.removeFav = function (idx) {
-            removeFavFromCloud(idx);
-        };
-
-        // "+"加号卡片弹窗
-        function openFavForm() {
-            document.getElementById('fav-form-modal').style.display = 'flex';
-        }
-
-        window.closeFavForm = function () {
-            document.getElementById('fav-form-modal').style.display = 'none';
-            document.getElementById('fav-form-url').value = '';
-            document.getElementById('fav-form-title').value = '';
-            document.getElementById('fav-form-icon').value = '';
-            document.getElementById('fav-form-desc').value = '';
-        };
-
-        // 使用新API获取网站信息
-        window.autoGetIcon = async function () {
-            const urlInput = document.getElementById('fav-form-url');
-            const url = urlInput.value.trim();
-
-            if (!url) {
-                alert('请先填写网址');
-                return;
-            }
-
-            // 确保URL包含协议头
-            let fullUrl = url;
-            if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                fullUrl = 'https://' + url;
-                urlInput.value = fullUrl;
-            }
-
-            try {
-                // 显示加载状态
-                document.getElementById('fav-form-title').value = '加载中...';
-                document.getElementById('fav-form-icon').value = '';
-                document.getElementById('fav-form-desc').value = '';
-
-                // 调用新API
-                const response = await fetch('https://v.api.aa1.cn/api/api-web-head-json/index.php?url=' + encodeURIComponent(fullUrl));
-                const data = await response.json();
-
-                if (data && data.code === 200) {
-                    // 填充表单
-                    document.getElementById('fav-form-title').value = data.title || '';
-                    document.getElementById('fav-form-icon').value = 'https://ico.cxr.cool/' + (data.url.replace(/^https?:\/\//, '').split('/')[0]) + '.ico';
-                    document.getElementById('fav-form-desc').value = data.description || '';
-                } else {
-                    alert('获取网站信息失败，请手动填写');
-                    document.getElementById('fav-form-title').value = '';
-                }
-            } catch (error) {
-                console.error('获取网站信息出错:', error);
-                alert('获取网站信息出错，请手动填写');
-                document.getElementById('fav-form-title').value = '';
-            }
-        };
-
-        window.submitFavForm = async function () {
-            const url = document.getElementById('fav-form-url').value.trim();
-            const title = document.getElementById('fav-form-title').value.trim();
-            const icon = document.getElementById('fav-form-icon').value.trim();
-            const desc = document.getElementById('fav-form-desc').value.trim();
-
-            if (!url || !title) {
-                alert('请填写完整信息');
-                return;
-            }
-
-            const fav = { title, url, icon, desc };
-            await saveFavToCloud(fav);
-            closeFavForm();
-        };
-
-        // "自定义"按钮弹窗
-        window.openSelectSiteModal = function () {
-            document.getElementById('select-site-modal').style.display = 'flex';
-            renderSiteList();
-        };
-
-        window.closeSelectSiteModal = function () {
-            document.getElementById('select-site-modal').style.display = 'none';
-        };
-
-        // 渲染站点列表
-        window.renderSiteList = function () {
-            const siteList = document.getElementById('site-list');
-            siteList.innerHTML = '';
-
-            // 构建二级分组结构 {大类: {小类: [site, ...]}}
-            const groupMap = {};
-            (window.allSites || []).forEach(site => {
-                const main = site.group ? site.group.split('>')[0].trim() : '未分组';
-                const sub = site.group && site.group.includes('>') ? site.group.split('>')[1].trim() : '';
-                if (!groupMap[main]) groupMap[main] = {};
-                if (!groupMap[main][sub]) groupMap[main][sub] = [];
-                groupMap[main][sub].push(site);
-            });
-
-            const mains = Object.keys(groupMap);
-
-            // 一级Tab
-            const tabBarMain = document.createElement('div');
-            tabBarMain.className = 'tab-bar tab-bar-main';
-            tabBarMain.style = 'display:flex;gap:8px;overflow-x:auto;margin-bottom:8px;padding-bottom:4px;';
-
-            mains.forEach((main, i) => {
-                const tab = document.createElement('button');
-                tab.innerText = main;
-                tab.className = 'tab-btn' + (i === 0 ? ' active' : '');
-                tab.onclick = function () {
-                    document.querySelectorAll('#site-list .tab-bar-main .tab-btn').forEach(btn => btn.classList.remove('active'));
-                    tab.classList.add('active');
-                    document.querySelectorAll('#site-list .tab-bar-sub').forEach(c => c.style.display = 'none');
-                    document.getElementById('tab-bar-sub-' + i).style.display = 'flex';
-
-                    // 默认激活第一个二级tab
-                    const firstSub = document.getElementById('tab-bar-sub-' + i).querySelector('.tab-btn');
-                    if (firstSub) firstSub.click();
-                };
-                tabBarMain.appendChild(tab);
-            });
-
-            siteList.appendChild(tabBarMain);
-
-            // 二级Tab和内容
-            mains.forEach((main, i) => {
-                const subs = Object.keys(groupMap[main]);
-                const tabBarSub = document.createElement('div');
-                tabBarSub.className = 'tab-bar tab-bar-sub';
-                tabBarSub.id = 'tab-bar-sub-' + i;
-                tabBarSub.style = 'display:' + (i === 0 ? 'flex' : 'none') + ';gap:8px;overflow-x:auto;margin-bottom:12px;';
-
-                subs.forEach((sub, j) => {
-                    const tab = document.createElement('button');
-                    tab.innerText = sub || main;
-                    tab.className = 'tab-btn' + (j === 0 ? ' active' : '');
-                    tab.onclick = function () {
-                        document.querySelectorAll('#tab-bar-sub-' + i + ' .tab-btn').forEach(btn => btn.classList.remove('active'));
-                        tab.classList.add('active');
-                        document.querySelectorAll('#site-list .site-list-content').forEach(c => c.style.display = 'none');
-                        document.getElementById('site-list-content-' + i + '-' + j).style.display = 'flex';
-                    };
-                    tabBarSub.appendChild(tab);
-                });
-
-                siteList.appendChild(tabBarSub);
-
-                // 内容区
-                subs.forEach((sub, j) => {
-                    const content = document.createElement('div');
-                    content.className = 'site-list site-list-content';
-                    content.id = 'site-list-content-' + i + '-' + j;
-                    content.style = 'flex-wrap:wrap;gap:16px;' + (j === 0 && i === 0 ? 'display:flex;' : 'display:none;');
-
-                    groupMap[main][sub].forEach((site, idx) => {
-                        const card = document.createElement('div');
-                        card.className = 'site-card';
-                        card.innerHTML = `<input type="checkbox" value="${window.allSites.indexOf(site)}" style="margin-right:8px;">
-                      <span>${site.title}</span>
-                      <small>${site.url}</small>`;
-                        content.appendChild(card);
-                    });
-
-                    siteList.appendChild(content);
-                });
-            });
-        };
-
-        window.addSelectedSitesToFav = async function () {
-            const checked = Array.from(document.querySelectorAll('#site-list input[type=checkbox]:checked'));
-            if (!checked.length) { alert('请选择要添加的站点'); return; }
-
-            let added = 0;
-            for (const cb of checked) {
-                const site = window.allSites[cb.value];
-                if (favsCache.some(f => f.url === site.url)) continue; // 已有则跳过
-
-                await saveFavToCloud(site);
-                added++;
-            }
-
-            if (added === 0) alert('所选站点均已收藏，无需重复添加！');
-            closeSelectSiteModal();
-        };
-
-        // Excel加载后自动生成window.allSites
-        window.allSites = [];
-        function collectAllSitesFromExcel() {
-            try {
-                const mainContent = document.getElementById('excel');
-                const cards = mainContent.querySelectorAll('.box-card');
-                let sites = [];
-
-                cards.forEach(card => {
-                    const items = card.querySelectorAll('a');
-                    items.forEach(a => {
-                        const title = a.querySelector('.logo span') ? a.querySelector('.logo span').textContent.trim() : '';
-                        const url = a.href;
-                        const icon = a.querySelector('img') ? a.querySelector('img').src : '';
-                        const desc = a.querySelector('.desc') ? a.querySelector('.desc').textContent.trim() : '';
-
-                        // 分组可用父级h2或box标题
-                        let group = '';
-                        let parent = a.closest('.box');
-                        if (parent) {
-                            let h2 = parent.querySelector('h2');
-                            if (h2) group = h2.textContent.trim();
-                        }
-
-                        sites.push({ title, url, icon, group, desc });
-                    });
-                });
-
-                window.allSites = sites;
-            } catch (e) {
-                window.allSites = [];
-                console.error('收集站点数据失败:', e);
-            }
-        }
-
-        // 优化批量添加弹窗样式
-        (function () {
-            var style = document.createElement('style');
-            style.innerHTML = `
-            #select-site-modal .tab-bar { gap: 4px !important; overflow-x: auto !important; padding-bottom: 2px !important; }
-            #select-site-modal .tab-btn { font-size: 13px !important; padding: 3px 10px !important; border-radius: 14px !important; border: none; background: #f0f4ff; color: #3273dc; margin-right: 2px; white-space: nowrap; }
-            #select-site-modal .tab-btn.active { background: #3385ff; color: #fff; }
-            #select-site-modal .site-list-content { display: flex; flex-wrap: wrap; gap: 12px; }
-            #select-site-modal .site-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #e0e7ef; padding: 10px 8px; min-width: 0; max-width: 320px; width: 30%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; font-size: 14px; word-break: break-all; }
-            #select-site-modal .site-card span { font-weight: bold; font-size: 14px; margin-bottom: 2px; word-break: break-all; }
-            #select-site-modal .site-card small { color: #888; font-size: 12px; margin-top: 2px; }
-            @media (max-width: 800px) { 
-                #select-site-modal .site-list-content { flex-direction: column; gap: 8px; } 
-                #select-site-modal .site-card { width: 100%; font-size: 13px; padding: 8px 6px; } 
-            }
-        `;
-            document.head.appendChild(style);
-        })();
-
-        // 绑定按钮事件
-        document.addEventListener('DOMContentLoaded', function () {
-            // 绑定添加按钮
-            var addBtn = document.getElementById('fav-add-card');
-            if (addBtn) addBtn.onclick = openFavForm;
-
-            // 绑定自定义按钮
-            var customBtn = document.getElementById('fav-custom-btn');
-            if (customBtn) customBtn.onclick = window.toggleCustomMode;
-
-            // 绑定批量添加按钮
-            var batchBtn = document.getElementById('fav-batch-add-btn');
-            if (batchBtn) batchBtn.onclick = window.openSelectSiteModal;
-
-            // 收集所有站点数据
-            setTimeout(collectAllSitesFromExcel, 1500); // Excel异步加载，延迟收集
-        });
-    </script>
-
-
+    <!-- JS模块化引入 -->
+    <script type="module" src="js/firebase-auth.js"></script>
+    <script type="module" src="js/favorites.js"></script>
+    <!-- <script src="js/fav-drag.js"></script> -->
 
 </body>
 
