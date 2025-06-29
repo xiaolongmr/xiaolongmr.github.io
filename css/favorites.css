@@ -1,0 +1,1120 @@
+  /* ========================================
+   收藏功能样式
+   ======================================== */
+  /* 父容器设置 flex 布局，实现多行排列 */
+  #fav-list {
+      margin-top: 16px;
+      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      position: relative;
+  }
+
+  .fav-card {
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 8px;
+      border: 1px solid #d4d7dd;
+      background-color: #ffffff;
+      background: var(--BoxItemBackground-color);
+      position: relative;
+      /* flex: 0 0 25%; */
+      /* max-width: 25%; */
+  }
+
+  /* 鼠标悬停卡片动画 */
+  .fav-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+  }
+
+  #fav-add-card {
+      border: 1px dashed rgb(188, 220, 255);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+  }
+
+  /* 链接容器设置 flex，让图标和文字垂直居中 */
+  .fav-link {
+      box-sizing: border-box;
+      display: flex;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+
+  /* 图标样式，控制尺寸 */
+  .fav-icon {
+      display: block;
+      width: auto;
+      height: 90%;
+      width: 32px;
+      height: 32px;
+      position: relative;
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+  }
+
+  .fav-context {
+      padding-left: 7px;
+      flex: 1;
+      min-width: 0;
+  }
+
+  .fav-title {
+      font-weight: bold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-break: break-all;
+      white-space: nowrap;
+      color: var(--Body-font-color);
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+  }
+
+  .fav-desc {
+      text-overflow: ellipsis;
+      transition: .3s;
+      font-size: 12px;
+      overflow-wrap: break-word;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      line-height: 1.4;
+      color: #888;
+      /* white-space: nowrap; */
+  }
+
+  /* 删除按钮 */
+  .fav-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+      color: #ffffff;
+      line-height: 14px;
+      text-align: center;
+      border-radius: 50px;
+      background: #ff0000;
+      font-size: 20px;
+      z-index: 2;
+      transition: all 0.3s ease;
+  }
+
+  .fav-card:hover .fav-remove {
+      opacity: 1;
+  }
+
+  .fav-remove:hover {
+      background: #cc0000;
+      transform: scale(1.1);
+  }
+
+  /* 拖拽手柄样式 */
+  .fav-drag-handle {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      cursor: grab;
+      width: 20px;
+      height: 20px;
+      color: #666;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      z-index: 2;
+      user-select: none;
+      transition: all 0.2s ease;
+  }
+
+  .fav-drag-handle:hover {
+      background: rgba(51, 133, 255, 0.1);
+      color: #3385ff;
+  }
+
+  .fav-drag-handle:active {
+      cursor: grabbing;
+      background: rgba(51, 133, 255, 0.2);
+  }
+
+
+  /* 拖拽时的卡片样式 */
+  .fav-card.dragging {
+      opacity: 0.5;
+      transform: rotate(5deg);
+      z-index: 1000;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* 编辑模式下调整链接位置，避免与拖拽手柄重叠 */
+  /* .fav-card[data-index] .fav-link {
+      margin-left: 20px;
+  } */
+
+  /* 我的导航容器 */
+  #my-fav-box {
+      display: none;
+  }
+
+  .my-fav-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+  }
+
+  .my-fav-box-title {
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+  }
+
+  .my-fav-box-title-icon {
+      margin-right: 10px;
+  }
+
+  .my-fav-box-actions {
+      display: flex;
+      gap: 10px;
+  }
+
+  .my-fav-box-btn {
+      background: #f0f4ff;
+      color: #3273dc;
+      border: 1px solid #d4d7dd;
+      border-radius: 8px;
+      padding: 4px 16px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+  }
+
+  .my-fav-box-btn:hover {
+      background: #e1e8ff;
+      border-color: #3273dc;
+  }
+
+  /* 收藏卡片 */
+  .fav-card {
+      transition: all 0.3s ease;
+  }
+
+  .fav-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+      border-color: #3385ff;
+  }
+
+  #fav-add-card:hover {
+      background: #f0f4ff;
+      border-color: #3385ff;
+  }
+
+  /* 链接容器 */
+  .fav-link {
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+  }
+
+  /* 编辑模式下的特殊样式 */
+  .fav-card[data-index] {
+      cursor: default;
+  }
+
+  .fav-card[data-index]:active {
+      transform: none;
+  }
+
+  /* 只在编辑模式下禁用链接点击 */
+  .fav-card[data-index] .fav-link {
+      pointer-events: auto;
+  }
+
+  /* 编辑模式下禁用链接点击 */
+  .fav-card[data-index].editing .fav-link {
+      pointer-events: none;
+  }
+
+  /* 收藏分组标签 */
+  .fav-groups-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+  }
+
+  .fav-group-tab {
+      background: #f0f4ff;
+      color: #3273dc;
+      border: none;
+      border-radius: 16px;
+      padding: 6px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+  }
+
+  .fav-group-tab:hover {
+      background: #e1e8ff;
+  }
+
+  .fav-group-tab.active {
+      background: #3385ff;
+      color: white;
+  }
+
+  /* 弹窗样式 */
+  #fav-form-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+  }
+
+  .fav-form-content {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .fav-form-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+  }
+
+  .fav-form-group {
+      margin-bottom: 16px;
+  }
+
+  .fav-form-label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #555;
+  }
+
+  .fav-form-label.required::after {
+      content: ' *';
+      color: #ff4444;
+  }
+
+  .fav-form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+  }
+
+  .fav-form-input:focus {
+      outline: none;
+      border-color: #3385ff;
+      box-shadow: 0 0 0 2px rgba(51, 133, 255, 0.1);
+  }
+
+  .fav-form-input.error {
+      border-color: #ff4444;
+  }
+
+  .fav-form-help {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+      line-height: 1.4;
+  }
+
+  .fav-form-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 24px;
+  }
+
+  .auto-get-btn {
+      background: #3385ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      margin-left: 8px;
+      transition: background 0.3s ease;
+  }
+
+  .auto-get-btn:hover {
+      background: #2968cc;
+  }
+
+  /* 选择站点弹窗 */
+  #select-site-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+  }
+
+  .select-site-content {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .select-site-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+  }
+
+  /* 搜索栏 */
+  .site-modal-search-bar {
+      margin-bottom: 16px;
+  }
+
+  .site-modal-search-bar input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+  }
+
+  .site-modal-search-bar input:focus {
+      outline: none;
+      border-color: #3385ff;
+      box-shadow: 0 0 0 2px rgba(51, 133, 255, 0.1);
+  }
+
+  /* 操作栏 */
+  .site-modal-actions {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+  }
+
+  .btn-outline {
+      background: transparent;
+      color: #3385ff;
+      border: 1px solid #3385ff;
+      border-radius: 6px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+      background: #3385ff;
+      color: white;
+  }
+
+  /* Tab样式 */
+  .site-modal-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #eee;
+  }
+
+  .site-modal-tab-btn {
+      background: #f0f4ff;
+      color: #3273dc;
+      border: none;
+      border-radius: 16px;
+      padding: 8px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      min-width: 80px;
+  }
+
+  .site-modal-tab-btn:hover {
+      background: #e1e8ff;
+  }
+
+  .site-modal-tab-btn.active {
+      background: #3385ff;
+      color: white;
+  }
+
+  /* Tab内容 */
+  .site-modal-tab-content {
+      position: relative;
+  }
+
+  .site-modal-tab-panel {
+      display: none;
+  }
+
+  .site-modal-tab-panel.active {
+      display: block;
+  }
+
+  /* 分组标题样式 */
+  .site-modal-group-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 0 12px 0;
+      padding: 8px 12px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+      border-radius: 8px;
+      color: #3273dc;
+      border-left: 4px solid #3385ff;
+  }
+
+  /* 卡片列表 */
+  .site-modal-card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+  }
+
+  /* 站点卡片样式优化 */
+  .site-modal-card {
+      border: 2px solid #e8f4ff;
+      border-radius: 12px;
+      padding: 12px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .site-modal-card:hover {
+      border-color: #3273dc;
+      box-shadow: 0 4px 12px rgba(50, 115, 220, 0.15);
+      transform: translateY(-2px);
+  }
+
+  /* 选中状态样式 */
+  .site-modal-card.selected {
+      border-color: #3385ff;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+      box-shadow: 0 4px 12px rgba(50, 115, 220, 0.2);
+  }
+
+  .site-modal-card.selected::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3385ff, #4c8bf5);
+  }
+
+  /* 已收藏状态样式 */
+  .site-modal-card.collected {
+      border-color: #e0e0e0;
+      background: #f8f9fa;
+      cursor: not-allowed;
+      opacity: 0.7;
+  }
+
+  .site-modal-card.collected:hover {
+      border-color: #e0e0e0;
+      box-shadow: none;
+      transform: none;
+  }
+
+  /* 卡片内容布局 */
+  .site-modal-card-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+  }
+
+  /* 复选框样式 */
+  .site-modal-card-checkbox {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+  }
+
+  .site-checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #3385ff;
+  }
+
+  .site-modal-card.collected .site-checkbox {
+      display: none;
+  }
+
+  /* 图标样式 */
+  .site-modal-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #e0e0e0;
+  }
+
+  /* 信息区域 */
+  .site-modal-card-info {
+      flex: 1;
+      min-width: 0;
+  }
+
+  .site-modal-card-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+
+  .site-modal-card-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+
+  /* 状态区域 */
+  .site-modal-card-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+  }
+
+  /* 已收藏标签 */
+  .site-modal-card-badge {
+      background: #28a745;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 500;
+      white-space: nowrap;
+  }
+
+  /* 响应式调整 */
+  @media screen and (max-width: 768px) {
+      .site-modal-tabs {
+          flex-wrap: wrap;
+      }
+
+      .site-modal-tab-btn {
+          font-size: 12px;
+          padding: 6px 12px;
+          min-width: 60px;
+      }
+
+      .site-modal-card-list {
+          grid-template-columns: 1fr;
+          gap: 8px;
+      }
+
+      .site-modal-group-title {
+          font-size: 14px;
+          margin: 15px 0 8px 0;
+          padding: 6px 10px;
+      }
+  }
+
+  /* 响应式设计 - 移动设备适配 */
+  @media screen and (max-width: 768px) {
+      #fav-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+      }
+
+      .fav-card {
+          padding: 8px;
+      }
+
+      .fav-icon {
+          width: 28px;
+          height: 28px;
+      }
+
+      .fav-title {
+          font-size: 14px;
+      }
+
+      .fav-desc {
+          font-size: 11px;
+      }
+
+      /* 移动设备上拖拽手柄样式调整 */
+      .fav-drag-handle {
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          font-size: 14px;
+          top: 6px;
+          left: 6px;
+      }
+
+      /* 移动设备上删除按钮样式调整 */
+      .fav-remove {
+          width: 16px;
+          height: 16px;
+          line-height: 16px;
+          font-size: 18px;
+          top: 6px;
+          right: 6px;
+      }
+
+
+      /* 移动设备上按钮样式调整 */
+      .my-fav-box-btn {
+          padding: 6px 12px;
+          font-size: 13px;
+      }
+
+      .my-fav-box-actions {
+          gap: 8px;
+      }
+  }
+
+  /* 触摸设备优化 */
+  @media (hover: none) and (pointer: coarse) {
+      .fav-drag-handle {
+          /* 在触摸设备上增大点击区域 */
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          font-size: 16px;
+      }
+
+      .fav-remove {
+          /* 在触摸设备上增大点击区域 */
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          font-size: 22px;
+      }
+  }
+
+  .site-modal-search-bar {
+      margin-bottom: 16px;
+      text-align: center;
+  }
+
+  #site-modal-search-input {
+      width: 80%;
+      padding: 8px 12px;
+      border: 1px solid #d4d7dd;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      margin: 0 auto;
+      display: block;
+  }
+
+  .site-modal-group-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #3273dc;
+      margin: 20px 0 10px 0;
+      padding: 8px 12px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+      border-left: 4px solid #3273dc;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(51, 115, 220, 0.1);
+  }
+
+  .site-modal-group-title:first-child {
+      margin-top: 0;
+  }
+
+  .site-modal-card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+  }
+
+  .site-modal-card {
+      background: #fff;
+      border: 1.5px solid #e9ecef;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+      max-width: 320px;
+      flex: 1 1 220px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+  }
+
+  .site-modal-card.selected {
+      border-color: #3385ff;
+      background: #eaf3ff;
+      box-shadow: 0 2px 8px #3385ff22;
+  }
+
+  .site-modal-card.collected {
+      background: #f2f2f2;
+      color: #aaa;
+      border-color: #ddd;
+      cursor: not-allowed;
+      opacity: 0.7;
+  }
+
+  .site-modal-card-badge {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: #bbb;
+      color: #fff;
+      font-size: 12px;
+      border-radius: 8px;
+      padding: 2px 8px;
+  }
+
+  .site-modal-card-check {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      color: #3385ff;
+      font-size: 18px;
+      font-weight: bold;
+  }
+
+  .site-modal-card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      object-fit: cover;
+  }
+
+  .site-modal-card-info {
+      flex: 1;
+      min-width: 0;
+  }
+
+  .site-modal-card-title {
+      font-weight: bold;
+      font-size: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+
+  .site-modal-card-desc {
+      font-size: 12px;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+
+  /* 响应式调整 */
+  @media screen and (max-width: 768px) {
+      .site-modal-group-title {
+          font-size: 14px;
+          margin: 15px 0 8px 0;
+          padding: 6px 10px;
+      }
+
+      .site-modal-card-list {
+          grid-template-columns: 1fr;
+          gap: 8px;
+          margin-bottom: 15px;
+      }
+  }
+
+  /* 站点卡片样式优化 */
+  .site-modal-card {
+      border: 2px solid #e8f4ff;
+      border-radius: 12px;
+      padding: 12px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .site-modal-card:hover {
+      border-color: #3273dc;
+      box-shadow: 0 4px 12px rgba(50, 115, 220, 0.15);
+      transform: translateY(-2px);
+  }
+
+  /* 选中状态样式 */
+  .site-modal-card.selected {
+      border-color: #3273dc;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+      box-shadow: 0 4px 12px rgba(50, 115, 220, 0.2);
+  }
+
+  .site-modal-card.selected::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3273dc, #4c8bf5);
+  }
+
+  /* 已收藏状态样式 */
+  .site-modal-card.collected {
+      border-color: #e0e0e0;
+      background: #f8f9fa;
+      cursor: not-allowed;
+      opacity: 0.7;
+  }
+
+  .site-modal-card.collected:hover {
+      border-color: #e0e0e0;
+      box-shadow: none;
+      transform: none;
+  }
+
+  /* 卡片内容布局 */
+  .site-modal-card-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+  }
+
+  /* 图标样式 */
+  .site-modal-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #e0e0e0;
+  }
+
+  /* 信息区域 */
+  .site-modal-card-info {
+      flex: 1;
+      min-width: 0;
+  }
+
+  .site-modal-card-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+
+  .site-modal-card-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+
+  /* 状态区域 */
+  .site-modal-card-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+  }
+
+  /* 已收藏标签 */
+  .site-modal-card-badge {
+      background: #28a745;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 500;
+      white-space: nowrap;
+  }
+
+  /* 选中状态勾选 */
+  .site-modal-card-check {
+      width: 24px;
+      height: 24px;
+      background: #3273dc;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(50, 115, 220, 0.3);
+      animation: checkAppear 0.3s ease;
+  }
+
+  @keyframes checkAppear {
+      from {
+          transform: scale(0);
+          opacity: 0;
+      }
+
+      to {
+          transform: scale(1);
+          opacity: 1;
+      }
+  }
+
+  /* 搜索结果相关样式 */
+  .site-modal-card-match-type {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+      font-style: italic;
+  }
+
+  /* 高亮关键词样式 */
+  .site-modal-card-title mark,
+  .site-modal-card-desc mark {
+      background-color: #ffeb3b !important;
+      padding: 1px 2px !important;
+      border-radius: 2px !important;
+      color: #333 !important;
+      font-weight: bold;
+  }
+
+  /* 搜索结果标题样式 */
+  .site-modal-group-title:has(span:contains("🔍")) {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%) !important;
+      border-left-color: #ffc107 !important;
+      color: #856404 !important;
+  }
+
+  /* RSS结果相关样式 */
+  .site-modal-group-title.rss-results-title {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+      border-left-color: #2196f3 !important;
+      color: #1565c0 !important;
+  }
+
+  /* RSS图标样式 */
+  .site-modal-card-icon.rss-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+  }
+
+  /* RSS徽章样式 */
+  .site-modal-card-badge.rss-badge {
+      background: #2196f3 !important;
+      color: white !important;
+      font-size: 10px !important;
+      padding: 2px 6px !important;
+      border-radius: 10px !important;
+      font-weight: 500 !important;
+  }
+
+  /* RSS元数据样式 */
+  .site-modal-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #666;
+  }
+
+  .site-modal-card-date {
+      color: #888;
+  }
+
+  .site-modal-card-source {
+      color: #666;
+  }
+
+  /* RSS项目特殊样式 */
+  .site-modal-card.rss-item {
+      border-color: #e3f2fd;
+      background: linear-gradient(135deg, #fafbfc 0%, #f5f7fa 100%);
+  }
+
+  .site-modal-card.rss-item:hover {
+      border-color: #2196f3;
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
+  }
+
+  .site-modal-card.rss-item.selected {
+      border-color: #2196f3;
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+  }
+
+  .site-modal-card.rss-item.selected::before {
+      background: linear-gradient(90deg, #2196f3, #42a5f5);
+  }

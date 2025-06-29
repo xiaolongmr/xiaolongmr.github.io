@@ -1,0 +1,352 @@
+/* ========================================
+   Firebase 认证系统样式
+   ======================================== */
+
+/* 顶部登录按钮 */
+#top-login-btn {
+    position: fixed;
+    top: 18px;
+    right: 32px;
+    z-index: 10000;
+}
+
+#top-login-btn button {
+    background: #3385ff;
+    color: #fff;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#top-login-btn button:hover {
+    background: #2968d4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 用户头像按钮 */
+#user-avatar-btn {
+    position: fixed;
+    top: 18px;
+    right: 32px;
+    z-index: 10000;
+    display: none;
+}
+
+.user-avatar-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* background: #fff; */
+    /* border: 1px solid #e0e7ef; */
+    border-radius: 20px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.user-avatar-container:hover .user-avatar {
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
+    /* transform: translateY(-1px); */
+    border: 2px solid #e0e7ef;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff00;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.user-name {
+    font-weight: 500;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s ease;
+}
+
+.user-avatar-container:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* 用户下拉菜单 */
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: #fff;
+    border: 1px solid #e0e7ef;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.user-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-item i {
+    width: 16px;
+    text-align: center;
+}
+
+/* 登录弹窗 */
+#login-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.login-modal-content {
+    background: #fff;
+    padding: 32px 36px;
+    border-radius: 12px;
+    min-width: 320px;
+    max-width: 400px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.login-modal-title {
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.login-modal-subtitle {
+    margin-bottom: 24px;
+    color: #666;
+    font-size: 14px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e7ef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3385ff;
+    box-shadow: 0 0 0 3px rgba(51, 133, 255, 0.1);
+}
+
+.form-input.error {
+    border-color: #ff4757;
+}
+
+.form-error {
+    color: #ff4757;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.login-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btn-secondary {
+    background: #f1f3f4;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e8eaed;
+}
+
+.btn-primary {
+    background: #3385ff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #2968d4;
+}
+
+.btn-primary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* 注册链接 */
+.register-link {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.register-link a {
+    color: #3385ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+
+    #top-login-btn,
+    #user-avatar-btn {
+        top: 12px;
+        right: 16px;
+    }
+
+    .login-modal-content {
+        margin: 16px;
+        padding: 24px 20px;
+        min-width: auto;
+        width: calc(100% - 32px);
+    }
+
+    .user-avatar-container {
+        padding: 3px 8px;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .dropdown-arrow {
+        display: none;
+    }
+}
+
+/* 加载状态 */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
