@@ -12,7 +12,10 @@ import {
     createUserWithEmailAndPassword,
     signOut,
     updateProfile,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    signInAnonymously, // 新增匿名登录方法
+    EmailAuthProvider, // 新增
+    linkWithCredential // 新增
 } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 import {
     getFirestore,
@@ -45,7 +48,7 @@ const db = getFirestore(app);
  * 全局变量
  */
 let currentUser = null;
-let userProfile = null;
+window.userProfile = window.userProfile || null;
 
 /**
  * 用户认证状态管理类
@@ -78,7 +81,8 @@ class AuthManager {
      */
     async handleUserLogin(user) {
         currentUser = user;
-        console.log('用户已登录:', user.email);
+        console.log('用户邮箱:', user.email);
+        console.log('用户uid:', user.uid);
 
         // 获取用户详细信息
         await this.loadUserProfile(user.uid);
@@ -92,8 +96,9 @@ class AuthManager {
         // 隐藏登录按钮
         this.hideLoginButton();
 
-        // 显示我的导航模块
+        // 显示我的收藏模块
         this.showFavoritesBox();
+        this.updateUpgradeBtnVisibility && this.updateUpgradeBtnVisibility();
     }
 
     /**
@@ -101,7 +106,7 @@ class AuthManager {
      */
     handleUserLogout() {
         currentUser = null;
-        userProfile = null;
+        window.userProfile = null;
         console.log('用户已登出');
 
         // 更新UI状态
@@ -113,8 +118,9 @@ class AuthManager {
         // 显示登录按钮
         this.showLoginButton();
 
-        // 隐藏我的导航模块
+        // 隐藏我的收藏模块
         this.hideFavoritesBox();
+        this.updateUpgradeBtnVisibility && this.updateUpgradeBtnVisibility();
     }
 
     /**
@@ -127,23 +133,39 @@ class AuthManager {
             const snap = await getDoc(userDoc);
 
             if (snap.exists()) {
-                userProfile = snap.data();
+                window.userProfile = snap.data();
             } else {
-                // 创建默认用户资料
-                userProfile = {
-                    nickname: currentUser.displayName || currentUser.email.split('@')[0],
-                    avatar: this.getDefaultAvatar(currentUser.email),
+                // 匿名用户特殊处理
+                let nickname, avatar;
+                if (currentUser.isAnonymous) {
+                    nickname = '访客' + uid.slice(-4);
+                    avatar = this.getDefaultAvatar('anonymous@guest.com');
+                } else {
+                    nickname = currentUser.displayName || (currentUser.email ? currentUser.email.split('@')[0] : '用户');
+                    avatar = this.getDefaultAvatar(currentUser.email || '');
+                }
+                window.userProfile = {
+                    nickname,
+                    avatar,
                     bio: '',
                     createdAt: new Date().toISOString(),
                     lastLogin: new Date().toISOString()
                 };
-                await this.saveUserProfile(uid, userProfile);
+                await this.saveUserProfile(uid, window.userProfile);
             }
         } catch (error) {
             console.error('加载用户资料失败:', error);
-            userProfile = {
-                nickname: currentUser.displayName || currentUser.email.split('@')[0],
-                avatar: this.getDefaultAvatar(currentUser.email),
+            let nickname, avatar;
+            if (currentUser && currentUser.isAnonymous) {
+                nickname = '访客' + uid.slice(-4);
+                avatar = this.getDefaultAvatar('anonymous@guest.com');
+            } else {
+                nickname = currentUser && currentUser.displayName || (currentUser && currentUser.email ? currentUser.email.split('@')[0] : '用户');
+                avatar = this.getDefaultAvatar(currentUser && currentUser.email || '');
+            }
+            window.userProfile = {
+                nickname,
+                avatar,
                 bio: '',
                 createdAt: new Date().toISOString(),
                 lastLogin: new Date().toISOString()
@@ -230,17 +252,17 @@ class AuthManager {
      */
     updateUserAvatar() {
         const avatarContainer = document.getElementById('user-avatar-container');
-        if (avatarContainer && userProfile) {
+        if (avatarContainer && window.userProfile) {
             const avatarImg = avatarContainer.querySelector('.user-avatar');
             const userName = avatarContainer.querySelector('.user-name');
 
             if (avatarImg) {
-                avatarImg.src = userProfile.avatar;
-                avatarImg.alt = userProfile.nickname;
+                avatarImg.src = window.userProfile.avatar;
+                avatarImg.alt = window.userProfile.nickname || '访客';
             }
 
             if (userName) {
-                userName.textContent = userProfile.nickname;
+                userName.textContent = window.userProfile.nickname || '访客';
             }
         }
     }
@@ -266,7 +288,7 @@ class AuthManager {
     }
 
     /**
-     * 显示我的导航模块
+     * 显示我的收藏模块
      */
     showFavoritesBox() {
         const favBox = document.getElementById('my-fav-box');
@@ -276,7 +298,7 @@ class AuthManager {
     }
 
     /**
-     * 隐藏我的导航模块
+     * 隐藏我的收藏模块
      */
     hideFavoritesBox() {
         const favBox = document.getElementById('my-fav-box');
@@ -325,6 +347,58 @@ class AuthManager {
                 this.handleRegister();
             });
         }
+
+        // 匿名登录按钮事件
+        const anonymousBtn = document.getElementById('anonymous-login-btn');
+        if (anonymousBtn) {
+            anonymousBtn.addEventListener('click', () => this.handleAnonymousLogin());
+        }
+        // 升级为正式账号按钮事件，弹窗显示
+        const upgradeBtn = document.getElementById('upgrade-account-btn');
+        if (upgradeBtn) {
+            upgradeBtn.addEventListener('click', () => {
+                document.getElementById('upgrade-modal').style.display = 'flex';
+                document.getElementById('upgrade-email').value = '';
+                document.getElementById('upgrade-password').value = '';
+                document.getElementById('upgrade-email-error').textContent = '';
+                document.getElementById('upgrade-password-error').textContent = '';
+            });
+        }
+        // 弹窗取消按钮
+        const cancelBtn = document.getElementById('upgrade-cancel-btn');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                document.getElementById('upgrade-modal').style.display = 'none';
+            });
+        }
+        // 弹窗升级按钮
+        const okBtn = document.getElementById('upgrade-ok-btn');
+        if (okBtn) {
+            okBtn.addEventListener('click', async () => {
+                const email = document.getElementById('upgrade-email').value.trim();
+                const password = document.getElementById('upgrade-password').value;
+                let valid = true;
+                if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+                    document.getElementById('upgrade-email-error').textContent = '请输入有效邮箱';
+                    valid = false;
+                } else {
+                    document.getElementById('upgrade-email-error').textContent = '';
+                }
+                if (!password || password.length < 6) {
+                    document.getElementById('upgrade-password-error').textContent = '密码至少6位';
+                    valid = false;
+                } else {
+                    document.getElementById('upgrade-password-error').textContent = '';
+                }
+                if (!valid) return;
+                okBtn.disabled = true;
+                okBtn.textContent = '升级中...';
+                await window.authManager.handleUpgradeAccount(email, password);
+                okBtn.disabled = false;
+                okBtn.textContent = '升级';
+                document.getElementById('upgrade-modal').style.display = 'none';
+            });
+        }
     }
 
     /**
@@ -334,8 +408,16 @@ class AuthManager {
         const modal = document.getElementById('login-modal');
         if (modal) {
             modal.style.display = 'flex';
-            // 切换到登录模式
             this.switchToLoginMode();
+            this.clearLoginForm();
+            const info = this.loadLoginInfo && this.loadLoginInfo();
+            if (info) {
+                document.getElementById('login-email').value = info.email;
+                document.getElementById('login-password').value = info.password;
+                document.getElementById('remember-password').checked = true;
+            } else {
+                document.getElementById('remember-password').checked = false;
+            }
         }
     }
 
@@ -399,6 +481,7 @@ class AuthManager {
     async handleLogin() {
         const email = document.getElementById('login-email').value.trim();
         const password = document.getElementById('login-password').value;
+        const remember = document.getElementById('remember-password').checked;
         const loginBtn = document.getElementById('login-btn');
 
         // 验证输入
@@ -417,6 +500,11 @@ class AuthManager {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            if (remember) {
+                this.saveLoginInfo(email, password);
+            } else {
+                this.clearLoginInfo();
+            }
             console.log('登录成功');
         } catch (error) {
             console.error('登录失败:', error);
@@ -485,6 +573,37 @@ class AuthManager {
             this.handleAuthError(error);
         } finally {
             this.setLoadingState(registerBtn, false);
+        }
+    }
+
+    /**
+     * 处理匿名登录
+     */
+    async handleAnonymousLogin() {
+        const anonymousBtn = document.getElementById('anonymous-login-btn');
+        this.setLoadingState(anonymousBtn, true);
+        try {
+            await signInAnonymously(auth);
+            // 登录成功后会自动触发 onAuthStateChanged
+        } catch (error) {
+            this.handleAuthError(error);
+        } finally {
+            this.setLoadingState(anonymousBtn, false);
+        }
+    }
+
+    /**
+     * 处理匿名用户升级为正式账号
+     */
+    async handleUpgradeAccount(email, password) {
+        try {
+            const credential = EmailAuthProvider.credential(email, password);
+            await linkWithCredential(currentUser, credential);
+            alert('升级成功，您的账号已绑定邮箱！');
+            await this.handleUserLogin(auth.currentUser);
+            this.updateUpgradeBtnVisibility && this.updateUpgradeBtnVisibility();
+        } catch (error) {
+            this.handleAuthError(error);
         }
     }
 
@@ -613,7 +732,7 @@ class AuthManager {
      * @returns {Object|null} 用户资料对象
      */
     getUserProfile() {
-        return userProfile;
+        return window.userProfile;
     }
 
     /**
@@ -623,12 +742,63 @@ class AuthManager {
     isLoggedIn() {
         return currentUser !== null;
     }
+
+    /**
+     * 保存登录信息
+     * @param {string} email - 邮箱
+     * @param {string} password - 密码
+     */
+    saveLoginInfo(email, password) {
+        // 简单加密（仅防止明文，非安全加密）
+        localStorage.setItem('rememberLogin', JSON.stringify({
+            email,
+            password: window.btoa(unescape(encodeURIComponent(password)))
+        }));
+    }
+
+    /**
+     * 清除登录信息
+     */
+    clearLoginInfo() {
+        localStorage.removeItem('rememberLogin');
+    }
+
+    /**
+     * 加载登录信息
+     * @returns {Object|null} 登录信息对象
+     */
+    loadLoginInfo() {
+        const data = localStorage.getItem('rememberLogin');
+        if (!data) return null;
+        try {
+            const obj = JSON.parse(data);
+            return {
+                email: obj.email,
+                password: decodeURIComponent(escape(window.atob(obj.password)))
+            };
+        } catch (e) { return null; }
+    }
+
+    /**
+     * 显示/隐藏“升级为正式账号”按钮
+     */
+    updateUpgradeBtnVisibility() {
+        const upgradeBtn = document.getElementById('upgrade-account-btn');
+        if (upgradeBtn) {
+            if (currentUser && currentUser.isAnonymous) {
+                upgradeBtn.style.display = 'block';
+            } else {
+                upgradeBtn.style.display = 'none';
+            }
+        }
+    }
 }
 
 /**
  * 全局认证管理器实例
  */
 window.authManager = new AuthManager();
+window.authManager.updateUpgradeBtnVisibility && window.authManager.updateUpgradeBtnVisibility();
 
 /**
  * 全局函数 - 显示登录弹窗
@@ -681,6 +851,48 @@ window.resetPassword = function () {
             console.error('发送重置邮件失败:', error);
             alert('发送重置邮件失败：' + error.message);
         });
+};
+
+// 密码可见切换功能
+function setupPasswordVisibilityToggles() {
+    document.querySelectorAll('.toggle-password-visibility').forEach(btn => {
+        const input = btn.parentElement.querySelector('input[type="password"], input[type="text"]');
+        btn.onclick = function () {
+            if (!input) return;
+            const isVisible = input.type === 'text';
+            input.type = isVisible ? 'password' : 'text';
+            // 切换图标
+            btn.innerHTML = isVisible
+                ? `<svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+                : `<svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.81 21.81 0 0 1 5.06-6.06M1 1l22 22"/><path d="M9.53 9.53A3 3 0 0 0 12 15a3 3 0 0 0 2.47-5.47"/></svg>`;
+        };
+    });
+}
+// 页面加载和弹窗切换时都要调用
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupPasswordVisibilityToggles);
+} else {
+    setupPasswordVisibilityToggles();
+}
+// 登录/注册模式切换后也要重新绑定
+const origSwitchToLoginMode = AuthManager.prototype.switchToLoginMode;
+AuthManager.prototype.switchToLoginMode = function () {
+    origSwitchToLoginMode.call(this);
+    setTimeout(() => {
+        const info = this.loadLoginInfo && this.loadLoginInfo();
+        if (info) {
+            document.getElementById('login-email').value = info.email;
+            document.getElementById('login-password').value = info.password;
+            document.getElementById('remember-password').checked = true;
+        } else {
+            document.getElementById('remember-password').checked = false;
+        }
+    }, 0);
+};
+const origSwitchToRegisterMode = AuthManager.prototype.switchToRegisterMode;
+AuthManager.prototype.switchToRegisterMode = function () {
+    origSwitchToRegisterMode.call(this);
+    setTimeout(setupPasswordVisibilityToggles, 0);
 };
 
 // 导出认证管理器供其他模块使用

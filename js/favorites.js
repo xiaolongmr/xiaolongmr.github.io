@@ -26,6 +26,9 @@ window.orderChanged = false; // 添加排序变化标记
 // 选中状态集合
 let selectedSiteUrls = new Set();
 
+// ========== 收藏编辑功能 ========== //
+let editingFavIndex = null;
+
 // 自定义提示函数 - 替换浏览器原生alert
 function showCustomAlert(message, type = 'info') {
     // 移除已存在的提示
@@ -912,6 +915,21 @@ window.renderFavs = function () {
     ${window.isCustomizing ? `<div class="fav-drag-handle">⋮⋮</div>` : ''} 
     `;
         list.appendChild(card);
+
+        // 修复：编辑模式下点击卡片弹出编辑弹窗
+        if (window.isCustomizing) {
+            card.addEventListener('click', function (e) {
+                // 避免点击删除按钮、拖拽手柄、a标签时触发编辑
+                if (
+                    e.target.classList.contains('fav-remove') ||
+                    e.target.classList.contains('fav-drag-handle') ||
+                    e.target.closest('a')
+                ) {
+                    return;
+                }
+                window.openEditFavForm(idx);
+            });
+        }
     });
 
     // 编辑模式下初始化SortableJS
@@ -953,14 +971,12 @@ window.removeFav = function (idx) {
 // "+"加号卡片弹窗
 function openFavForm() {
     document.getElementById('fav-form-modal').style.display = 'flex';
+    resetFavFormTitle(); // 仅在新增时重置标题
 }
 
 window.closeFavForm = function () {
+    editingFavIndex = null;
     document.getElementById('fav-form-modal').style.display = 'none';
-    document.getElementById('fav-form-url').value = '';
-    document.getElementById('fav-form-title').value = '';
-    document.getElementById('fav-form-icon').value = '';
-    document.getElementById('fav-form-desc').value = '';
 };
 
 // 使用新API获取网站信息
@@ -1011,23 +1027,20 @@ window.autoGetIcon = async function () {
 };
 
 // 提交收藏表单
+const origSubmitFavForm = window.submitFavForm;
 window.submitFavForm = function () {
     const url = document.getElementById('fav-form-url').value.trim();
     const title = document.getElementById('fav-form-title').value.trim();
     const icon = document.getElementById('fav-form-icon').value.trim();
     const desc = document.getElementById('fav-form-desc').value.trim();
-
     if (!url || !title) {
         showCustomAlert('请填写必填项：URL和网站名称', 'warning');
         return;
     }
-
-    // 确保URL包含协议头
     let fullUrl = url;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
         fullUrl = 'https://' + url;
     }
-
     const fav = {
         url: fullUrl,
         title: title,
@@ -1035,10 +1048,46 @@ window.submitFavForm = function () {
         desc: desc || null,
         createdAt: new Date().toISOString()
     };
-
-    saveFavToCloud(fav);
-    closeFavForm();
+    if (editingFavIndex !== null) {
+        // 编辑模式，更新原有收藏
+        updateFavInCache(editingFavIndex, fav);
+        editingFavIndex = null;
+        closeFavForm();
+        resetFavFormTitle();
+        showCustomAlert('收藏已更新', 'success');
+    } else {
+        // 新增模式，直接上传到云端，由云端同步刷新本地缓存和UI
+        window.closeFavForm();
+        saveFavToCloud(fav); // 新增时直接上传到云端
+    }
 };
+
+// 打开编辑弹窗并填充数据
+window.openEditFavForm = function (idx) {
+    editingFavIndex = idx;
+    const fav = favsCache[idx];
+    document.getElementById('fav-form-modal').style.display = 'flex';
+    document.getElementById('fav-form-title').value = fav.title || '';
+    document.getElementById('fav-form-url').value = fav.url || '';
+    document.getElementById('fav-form-icon').value = fav.icon || '';
+    document.getElementById('fav-form-desc').value = fav.desc || '';
+    // 修改弹窗标题
+    const titleEl = document.querySelector('.fav-form-title');
+    if (titleEl) titleEl.textContent = '编辑收藏';
+};
+
+// 恢复弹窗标题
+function resetFavFormTitle() {
+    const titleEl = document.querySelector('.fav-form-title');
+    if (titleEl) titleEl.textContent = '添加链接';
+}
+
+// 修改收藏并保存
+function updateFavInCache(idx, fav) {
+    favsCache[idx] = { ...favsCache[idx], ...fav };
+    updateFavsOrder();
+    renderFavs();
+}
 
 // 批量添加本站数据
 window.batchAddFromExcel = function () {
@@ -1240,3 +1289,79 @@ document.addEventListener('DOMContentLoaded', function () {
         customBtn.onclick = window.toggleCustomMode;
     }
 });
+
+// 新增：编辑弹窗"确定"按钮逻辑，仅本地保存
+window.confirmEditFavForm = function () {
+    const url = document.getElementById('fav-form-url').value.trim();
+    const title = document.getElementById('fav-form-title').value.trim();
+    const icon = document.getElementById('fav-form-icon').value.trim();
+    const desc = document.getElementById('fav-form-desc').value.trim();
+    if (!url || !title) {
+        showCustomAlert('请填写必填项：URL和网站名称', 'warning');
+        return;
+    }
+    let fullUrl = url;
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        fullUrl = 'https://' + url;
+    }
+    const fav = {
+        url: fullUrl,
+        title: title,
+        icon: icon || null,
+        desc: desc || null,
+        createdAt: new Date().toISOString()
+    };
+    if (editingFavIndex !== null) {
+        // 编辑模式，仅本地保存
+        favsCache[editingFavIndex] = { ...favsCache[editingFavIndex], ...fav };
+        editingFavIndex = null;
+        renderFavs();
+        window.closeFavForm();
+    } else {
+        // 新增模式，直接上传到云端，由云端同步刷新本地缓存和UI
+        window.closeFavForm();
+        saveFavToCloud(fav); // 新增时直接上传到云端
+    }
+};
+
+// ========== 站长推荐模块 ========== //
+const adminDocId = "owTNzDqUcePOAp9nISR1lBxS4Ev2"; // 站长推荐UID
+const adminCollection = "userFavs"; // 你的收藏集合名
+
+async function loadAdminRecommend() {
+    const docRef = doc(db, adminCollection, adminDocId);
+    const docSnap = await getDoc(docRef);
+    const box = document.getElementById('admin-recommend-box');
+    if (!box) return;
+    if (docSnap.exists()) {
+        const favs = docSnap.data().favs || [];
+        renderAdminRecommend(favs);
+    } else {
+        box.innerHTML = '<div style="color:#888;padding:20px;">暂无站长推荐</div>';
+    }
+}
+
+function renderAdminRecommend(favs) {
+    const box = document.getElementById('admin-recommend-box');
+    box.innerHTML = '<div class="my-fav-box-header"><div class="my-fav-box-title"><span class="my-fav-box-title-icon">👑 站长推荐</span></div></div>';
+    const list = document.createElement('div');
+    list.className = 'my-fav-list';
+    favs.forEach(fav => {
+        const card = document.createElement('div');
+        card.className = 'fav-card';
+        const iconUrl = fav.icon || (fav.url ? `https://ico.cxr.cool/${new URL(fav.url).hostname}.ico` : '');
+        card.innerHTML = `
+            <a href="${fav.url}" target="_blank" class="fav-link">
+                <img src="${iconUrl}" class="fav-icon" onerror="this.src='https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png';this.onerror=null;">
+                <div class="fav-context">
+                    <div class="fav-title">${fav.title}</div>
+                    <div class="fav-desc">${fav.desc || ''}</div>
+                </div>
+            </a>
+        `;
+        list.appendChild(card);
+    });
+    box.appendChild(list);
+}
+
+window.addEventListener('DOMContentLoaded', loadAdminRecommend);
