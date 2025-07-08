@@ -1,8 +1,8 @@
 /* ========================================
-   Firebase 认证系统样式
+   Firebase 认证系统样式（模块化分组整理）
    ======================================== */
 
-/* 顶部登录按钮 */
+/* ========== 1. 顶部登录按钮 ========== */
 #top-login-btn {
     position: fixed;
     top: 18px;
@@ -10,25 +10,51 @@
     z-index: 10000;
 }
 
-#top-login-btn button {
-    background: #3385ff;
+.top-login-btn-beauty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #3385ff 0%, #4f9cff 100%);
     color: #fff;
-    border: none;
-    padding: 8px 22px;
-    border-radius: 20px;
     font-size: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px 0 rgba(51, 133, 255, 0.13);
+    padding: 0 22px;
+    height: 44px;
+    min-width: 90px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    position: fixed;
+    top: 18px;
+    right: 32px;
+    z-index: 10000;
+    transition: all 0.18s cubic-bezier(.4, 0, .2, 1);
+    letter-spacing: 1px;
+    outline: none;
+    user-select: none;
 }
 
-#top-login-btn button:hover {
-    background: #2968d4;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.top-login-btn-beauty svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
 }
 
-/* 用户头像按钮 */
+.top-login-btn-beauty:hover,
+.top-login-btn-beauty:focus {
+    background: linear-gradient(90deg, #2968d4 0%, #3385ff 100%);
+    box-shadow: 0 8px 24px 0 rgba(51, 133, 255, 0.18);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+}
+
+.top-login-btn-beauty:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px 0 rgba(51, 133, 255, 0.10);
+}
+
+/* ========== 2. 用户头像/下拉菜单 ========== */
 #user-avatar-btn {
     position: fixed;
     top: 18px;
@@ -139,7 +165,7 @@
     text-align: center;
 }
 
-/* 登录弹窗 */
+/* ========== 3. 登录弹窗整体 ========== */
 #login-modal {
     display: none;
     position: fixed;
@@ -192,6 +218,7 @@
     font-size: 14px;
 }
 
+/* ========== 4. 登录/注册表单与输入框 ========== */
 .login-form {
     width: 100%;
 }
@@ -207,6 +234,46 @@
     font-weight: 500;
     color: #333;
     font-size: 14px;
+}
+
+.form-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-input-wrapper .form-input {
+    padding-right: 40px;
+    /* 预留小眼睛按钮空间 */
+}
+
+.toggle-password-visibility {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #bbb;
+    transition: color 0.2s;
+    z-index: 2;
+}
+
+.toggle-password-visibility:hover {
+    color: #3385ff;
+}
+
+.eye-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
 }
 
 .form-input {
@@ -236,14 +303,57 @@
     display: none;
 }
 
-.login-actions {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 24px;
+/* 记住密码复选框 */
+.remember-group {
+    margin-bottom: 8px;
+    margin-top: -8px;
 }
 
+.remember-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+}
+
+.remember-group input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #b3c6e0;
+    border-radius: 5px;
+    margin-right: 7px;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.remember-group input[type="checkbox"]:checked {
+    background: #3385ff;
+    border-color: #3385ff;
+}
+
+.remember-group input[type="checkbox"]:checked::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 5px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+/* ========== 6. 通用按钮 ========== */
 .btn {
     padding: 10px 20px;
     border: none;
@@ -266,6 +376,7 @@
 
 .btn-primary {
     background: #3385ff;
+    float: right;
     color: #fff;
 }
 
@@ -278,7 +389,7 @@
     cursor: not-allowed;
 }
 
-/* 注册链接 */
+/* ========== 7. 注册/切换链接 ========== */
 .register-link {
     margin-top: 16px;
     text-align: center;
@@ -296,7 +407,33 @@
     text-decoration: underline;
 }
 
-/* 响应式设计 */
+/* ========== 8. 加载状态 ========== */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========== 9. 响应式 ========== */
 @media (max-width: 768px) {
 
     #top-login-btn,
@@ -323,30 +460,146 @@
     .dropdown-arrow {
         display: none;
     }
-}
 
-/* 加载状态 */
-.loading {
-    position: relative;
-    pointer-events: none;
-}
-
-.loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    margin: -8px 0 0 -8px;
-    border: 2px solid transparent;
-    border-top: 2px solid currentColor;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
+    .top-login-btn-beauty {
+        top: 12px;
+        right: 12px;
+        font-size: 15px;
+        height: 38px;
+        min-width: 70px;
+        padding: 0 14px;
     }
+
+    .top-login-btn-beauty svg {
+        margin-right: 5px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Semi Design 风格按钮 */
+.semi-btn {
+    display: inline-block;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #1a1a1a;
+    padding: 8px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 8px;
+}
+
+.semi-btn-block {
+    width: 100%;
+}
+
+.semi-btn-outline {
+    border: 1px solid #3385ff;
+    color: #3385ff;
+    background: #fff;
+}
+
+.semi-btn-outline:hover {
+    background: #eaf3ff;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+.semi-btn-primary {
+    background: #3385ff;
+    color: #fff;
+    border: 1px solid #3385ff;
+}
+
+.semi-btn-primary:hover {
+    background: #1a73e8;
+    border-color: #1a73e8;
+}
+
+.semi-btn-secondary {
+    background: #f5f6fa;
+    color: #1a1a1a;
+    border: 1px solid #d1d5db;
+}
+
+.semi-btn-secondary:hover {
+    background: #e5e9f2;
+}
+
+/* Semi Design 风格弹窗 */
+.semi-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.semi-modal-content {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    width: 340px;
+    max-width: 90vw;
+    padding: 24px 24px 16px 24px;
+    position: relative;
+}
+
+.semi-modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #222;
+}
+
+.semi-modal-body {
+    margin-bottom: 16px;
+}
+
+.semi-form-group {
+    margin-bottom: 14px;
+}
+
+.semi-form-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.semi-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.semi-input:focus {
+    border-color: #3385ff;
+}
+
+.semi-form-error {
+    color: #e54848;
+    font-size: 13px;
+    margin-top: 2px;
+    min-height: 18px;
+}
+
+.semi-modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.semi-modal-footer .semi-btn {
+    width: 48%;
 }

@@ -96,7 +96,7 @@
   }
 
   /* 删除按钮 */
-  .fav-remove {
+  #my-fav-box .my-fav-box .fav-remove {
       position: absolute;
       top: 4px;
       right: 4px;
@@ -107,8 +107,8 @@
       line-height: 14px;
       text-align: center;
       border-radius: 50px;
-      background: #ff0000;
-      font-size: 20px;
+      background: #ff8585;
+      font-size: 14px;
       z-index: 2;
       transition: all 0.3s ease;
   }
@@ -117,9 +117,8 @@
       opacity: 1;
   }
 
-  .fav-remove:hover {
-      background: #cc0000;
-      transform: scale(1.1);
+  #my-fav-box .my-fav-box .fav-remove:hover {
+      background: #ff0000;
   }
 
   /* 拖拽手柄样式 */
@@ -142,13 +141,13 @@
   }
 
   .fav-drag-handle:hover {
-      background: rgba(51, 133, 255, 0.1);
-      color: #3385ff;
+      background: #ff6fb6a1;
+      color: #ffffff;
   }
 
   .fav-drag-handle:active {
       cursor: grabbing;
-      background: rgba(51, 133, 255, 0.2);
+      background: rgb(255 105 180);
   }
 
 
@@ -165,7 +164,7 @@
       margin-left: 20px;
   } */
 
-  /* 我的导航容器 */
+  /* 我的收藏容器 */
   #my-fav-box {
       display: none;
   }
@@ -330,6 +329,10 @@
       color: #ff4444;
   }
 
+  #fav-form-url {
+      width: 69%;
+  }
+
   .fav-form-input {
       width: 100%;
       padding: 10px 12px;
@@ -364,6 +367,7 @@
   }
 
   .auto-get-btn {
+      width: 30%;
       background: #3385ff;
       color: white;
       border: none;
@@ -371,7 +375,6 @@
       padding: 8px 12px;
       font-size: 12px;
       cursor: pointer;
-      margin-left: 8px;
       transition: background 0.3s ease;
   }
 
