@@ -151,9 +151,27 @@
             padding-top: 8px !important;
             margin-top: 5px !important;
         }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3385ff;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
     <!-- end -->
-
     <!-- 核心文件，解析excel表格  已上传到希尔桌面-->
     <!-- <script src="https://cdn.staticfile.org/xlsx/0.18.5/xlsx.core.min.js" type="application/javascript"></script> -->
     <script src="https://cdn.h5ds.com/space/files/600972551685382144/20240307/690223055768350720.js"
@@ -193,8 +211,11 @@
         }
     </script>
     <!-- end -->
-
+    <!-- 头像裁剪 -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.13/dist/cropper.min.js"></script>
 
 </head>
 
@@ -308,55 +329,12 @@
                 </div>
                 <!-- end -->
 
-                <!-- 我的导航 -->
-                <!-- 我的导航css样式 -->
-                <!-- <style>
-                    .box#my-fav-box {
-                        display: none;
-                    }
-
-                    .my-fav-box-header {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-bottom: 10px;
-                    }
-
-                    .my-fav-box-title {
-                        font-size: 20px;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        display: flex;
-                        align-items: center;
-                    }
-
-                    .my-fav-box-title-icon {
-                        margin-right: 10px;
-                    }
-
-
-
-                    .my-fav-box-actions {
-                        display: flex;
-                        gap: 10px;
-                    }
-
-                    .my-fav-box-btn {
-                        background: #f0f4ff;
-                        color: #3273dc;
-                        border: 1px solid #d4d7dd;
-                        border-radius: 8px;
-                        padding: 4px 16px;
-                        cursor: pointer;
-                        font-size: 15px;
-                    }
-                </style> -->
-
+                <!-- 我的收藏 -->
                 <div class="box" id="my-fav-box">
                     <div class="my-fav-box">
                         <div class="my-fav-box-header">
                             <div class="my-fav-box-title">
-                                <span class="my-fav-box-title-icon">🌟 我的导航</span>
+                                <span class="my-fav-box-title-icon">🌟 我的收藏</span>
                                 <!-- <span class="my-fav-box-desc">（可自定义添加、分类，批量管理，分享，仅自己可见）</span> -->
                                 <!-- （可自定义添加、分类，批量管理，分享，仅自己可见 -->
 
@@ -376,7 +354,10 @@
                     </div>
                 </div>
                 <!-- end -->
-
+                <!-- 站长推荐 -->
+                <div class="box" id="admin-recommend-box">
+                </div>
+                <!--  -->
                 <!-- 这里是excel表格的数据,由js动态生成 -->
                 <div class="excel" id="excel" style="font-family: auto;"></div>
                 <!-- end -->
@@ -436,6 +417,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const url = "https://dh.z-l.top/zl.xlsx";
+            // const url = "zl.xlsx";
+
             fetch(url)
                 .then((res) => res.blob())
                 .then((blob) => {
@@ -773,7 +756,7 @@
             var sweetalertUrl = "https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/limonte-sweetalert2/8.19.0/sweetalert2.all.min.js";
             var animateCssUrl = "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/animate.css/4.1.1/animate.min.css";
             var fontAwesomeUrl = "https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.1/css/all.min.css";
-            var specialScriptUrl = "js/chatzl-uploader-fixed.js"; //聊天脚本
+            var specialScriptUrl = "js/chat.js"; //聊天脚本
             // var specialScriptUrl = "js/chatzl.js"; //本地测试尬聊
             // var specialScriptUrl = "https://z-l.top/chat.js"; //上传时候的尬聊，需要改名字和位置
             // var specialScriptUrl = "js/chat-原版.js"; //尬聊
@@ -985,6 +968,7 @@
                 exactMatchColor: '#4caf50',    // 精准匹配
                 pinyinMatchColor: '#2196f3',   // 拼音匹配
                 descMatchColor: '#9e9e9e',     // 描述匹配
+                urlMatchColor: '#ff5722',      // 链接匹配
                 rssMatchColor: '#ff9800'       // RSS匹配
             }
         };
@@ -1044,6 +1028,10 @@
                 var desc = extractTextContent(descElement);
                 var title = logoElement.textContent.trim();
 
+                // 获取父级a标签的href内容
+                var parentLink = item.closest('a');
+                var href = parentLink ? parentLink.getAttribute('href') : '';
+
                 // 生成拼音 - 增强版
                 var titlePinyin = '';
                 var titlePinyinFirst = '';
@@ -1066,6 +1054,7 @@
                         console.log(`     - 全拼: ${titlePinyin}`);
                         console.log(`     - 首字母: ${titlePinyinFirst}`);
                         console.log(`     - 无声调: ${titlePinyinNone}`);
+                        console.log(`     - 链接: ${href}`);
                     }
 
                 } catch (e) {
@@ -1077,6 +1066,7 @@
                     element: item.parentElement,
                     title: title.toLowerCase(),
                     desc: desc.toLowerCase(),
+                    href: href.toLowerCase(),
                     titlePinyin: titlePinyin,
                     titlePinyinNone: titlePinyinNone,
                     titlePinyinFirst: titlePinyinFirst
@@ -1319,10 +1309,18 @@
                     }
                 }
 
-                // 描述匹配（最低优先级）
+                // 描述匹配
                 if (item.desc.includes(keyword)) {
                     item.matchType = 'desc';
                     item.matchWeight = 40;
+                    results.push(item);
+                    return;
+                }
+
+                // URL链接匹配（最低优先级）
+                if (item.href && item.href.includes(keyword)) {
+                    item.matchType = 'url';
+                    item.matchWeight = 35;
                     results.push(item);
                     return;
                 }
@@ -1532,6 +1530,10 @@
                                 case 'desc':
                                     matchTypeText = ' [描述匹配]';
                                     matchColor = searchConfig.style.descMatchColor;
+                                    break;
+                                case 'url':
+                                    matchTypeText = ' [链接匹配]';
+                                    matchColor = searchConfig.style.urlMatchColor;
                                     break;
                             }
 
@@ -1957,8 +1959,18 @@
 
     <!-- 顶部登录按钮 -->
     <div id="top-login-btn">
-        <button onclick="showLoginModal()">登录</button>
+        <button class="top-login-btn-beauty" onclick="showLoginModal()" aria-label="登录">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" style="margin-right:7px;">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+            </svg>
+            登录
+        </button>
     </div>
+    <!-- end -->
+
+
     <!-- 用户头像按钮（登录后显示） -->
     <div id="user-avatar-btn" style="display:none;">
         <div id="user-avatar-container" class="user-avatar-container">
@@ -1971,10 +1983,11 @@
             </span>
         </div>
         <div class="user-dropdown">
-            <a class="dropdown-item" href="#">个人中心</a>
-            <a class="dropdown-item" href="#">系统通知</a>
-            <a class="dropdown-item" href="#">账号设置</a>
-            <a class="dropdown-item" href="#" onclick="logout()">退出登录</a>
+            <a class="dropdown-item" id="profile-center-link" href="#">个人中心</a>
+            <a class="dropdown-item" id="system-notice-link" href="#">系统通知</a>
+            <a class="dropdown-item" id="account-settings-link" href="#">账号设置</a>
+            <a class="dropdown-item" id="upgrade-account-btn" href="javascript:void(0);">升级为正式账号</a>
+            <a class="dropdown-item" id="logout-link" href="#">退出登录</a>
         </div>
     </div>
     <!-- 登录弹窗 -->
@@ -1989,12 +2002,30 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="login-password">密码</label>
-                    <input id="login-password" type="password" class="form-input" placeholder="密码">
+                    <div class="form-input-wrapper">
+                        <input id="login-password" type="password" class="form-input" placeholder="密码">
+                        <button type="button" class="toggle-password-visibility" aria-label="切换密码可见" tabindex="-1">
+                            <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="form-error"></div>
+                </div>
+                <div class="form-group remember-group">
+                    <label>
+                        <input type="checkbox" id="remember-password">记住密码
+                    </label>
                 </div>
                 <div class="login-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">取消</button>
                     <button id="login-btn" type="submit" class="btn btn-primary" data-original-text="登录">登录</button>
+                </div>
+                <div class="anonymous-link" style="text-align:center;margin:10px 0;">
+                    <button type="button" id="anonymous-login-btn"
+                        class="semi-btn semi-btn-outline semi-btn-block">匿名访客登录</button>
                 </div>
                 <div class="register-link">
                     <a href="javascript:void(0);" id="switch-mode-btn" onclick="switchAuthMode()">没有账号？立即注册</a>
@@ -2013,12 +2044,30 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="register-password">密码</label>
-                    <input id="register-password" type="password" class="form-input" placeholder="密码">
+                    <div class="form-input-wrapper">
+                        <input id="register-password" type="password" class="form-input" placeholder="密码">
+                        <button type="button" class="toggle-password-visibility" aria-label="切换密码可见" tabindex="-1">
+                            <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="form-error"></div>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="register-confirm-password">确认密码</label>
-                    <input id="register-confirm-password" type="password" class="form-input" placeholder="确认密码">
+                    <div class="form-input-wrapper">
+                        <input id="register-confirm-password" type="password" class="form-input" placeholder="确认密码">
+                        <button type="button" class="toggle-password-visibility" aria-label="切换密码可见" tabindex="-1">
+                            <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
                     <div class="form-error"></div>
                 </div>
                 <div class="login-actions">
@@ -2047,7 +2096,8 @@
             <div class="fav-form-group">
                 <label class="fav-form-label">网站图标:</label>
                 <input id="fav-form-icon" type="text" class="fav-form-input" placeholder="填写图标的URL地址">
-                <div class="fav-form-help">填写图标的URL地址，如：http://www.xxx.com/logo.png<br>部分网站无法自动获取，请手动填写</div>
+                <div class="fav-form-help">默认使用 https://ico.cxr.cool api获取，可不填<br>部分网站无法自动获取，请手动填写
+                </div>
             </div>
             <div class="fav-form-group">
                 <label class="fav-form-label">网站描述:</label>
@@ -2055,7 +2105,7 @@
             </div>
             <div class="fav-form-actions">
                 <button type="button" class="btn btn-secondary" onclick="closeFavForm()">取消</button>
-                <button type="button" class="btn btn-primary" onclick="submitFavForm()">提交</button>
+                <button type="button" class="btn btn-primary" onclick="confirmEditFavForm()">确定</button>
             </div>
         </div>
     </div>
@@ -2077,8 +2127,118 @@
     <!-- JS模块化引入 -->
     <script type="module" src="js/firebase-auth.js"></script>
     <script type="module" src="js/favorites.js"></script>
-    <!-- <script src="js/fav-drag.js"></script> -->
+    <script type="module" src="js/account-settings.js"></script>
 
+    <!-- 账号设置弹窗 -->
+    <div id="account-settings-modal" class="account-settings-modal"
+        style="display:none;z-index:10010;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.35);justify-content:center;align-items:center;">
+        <div class="account-settings-content"
+            style="background:#fff;border-radius:12px;max-width:700px;width:95vw;padding:0;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;display:flex;overflow:hidden;">
+            <!-- 左侧栏 -->
+            <div class="account-settings-sidebar"
+                style="width:220px;background:#f7f7f7;padding:32px 18px;display:flex;flex-direction:column;align-items:center;gap:32px;">
+                <!-- 头像 -->
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+                    <img id="avatar-preview" src="" alt="头像预览"
+                        style="width:80px;height:80px;border-radius:50%;border:1px solid #eee;object-fit:cover;">
+                    <input type="file" id="avatar-upload" accept="image/*" style="display:none;">
+                    <button type="button" id="avatar-upload-btn" class="btn btn-secondary"
+                        style="padding:6px 16px;">上传头像</button>
+                    <!-- 裁剪区：弹窗内裁剪头像，初始隐藏 -->
+                    <div id="avatar-cropper-area" style="display:none;margin-top:12px;text-align:center;">
+                        <div style="position:relative;display:inline-block;">
+                            <img id="avatar-cropper-img" style="max-width:180px;max-height:180px;display:inline-block;">
+                            <div id="avatar-loading"
+                                style="display:none;position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(255,255,255,0.6);z-index:10;justify-content:center;align-items:center;">
+                                <div class="loader"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top:8px;">
+                            <button type="button" id="avatar-cropper-confirm" class="btn btn-primary"
+                                style="margin-right:8px;">确定</button>
+                            <button type="button" id="avatar-cropper-cancel" class="btn btn-secondary">取消</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 注册时间 -->
+                <div style="width:100%;text-align:center;">
+                    <div style="font-size:13px;color:#888;">注册时间</div>
+                    <div id="register-time" style="font-size:14px;color:#333;margin-top:2px;"></div>
+                </div>
+                <!-- 邮箱及验证 -->
+                <div style="width:100%;text-align:center;">
+                    <div style="font-size:13px;color:#888;">电子邮箱</div>
+                    <div style="margin-top:2px;">
+                        <input type="email" id="email-input" class="form-input" readonly
+                            style="width:100%;text-align:center;">
+                    </div>
+                    <div style="margin-top:6px;">
+                        <button type="button" id="verify-email-btn" class="btn btn-secondary"
+                            style="padding:4px 10px;display:none;">立即验证</button>
+                        <span id="email-verified-status" style="font-size:13px;color:#3385ff;margin-left:6px;"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧主内容 -->
+            <div class="account-settings-main"
+                style="flex:1;padding:40px 36px;display:flex;flex-direction:column;justify-content:center;">
+                <h2 style="text-align:left;margin-bottom:32px;">账号设置</h2>
+                <form id="account-settings-form" autocomplete="off">
+                    <!-- 昵称 -->
+                    <div class="form-group" style="margin-bottom:28px;">
+                        <label style="font-weight:600;">昵称</label>
+                        <input type="text" id="nickname-input" class="form-input" maxlength="20"
+                            style="width:100%;margin-top:6px;">
+                    </div>
+                    <!-- 个人说明 -->
+                    <div class="form-group" style="margin-bottom:28px;">
+                        <label style="font-weight:600;">个人说明</label>
+                        <input type="text" id="bio-input" class="form-input" maxlength="50"
+                            style="width:100%;margin-top:6px;">
+                    </div>
+                    <!-- 操作按钮 -->
+                    <div class="form-actions" style="display:flex;gap:16px;justify-content:flex-start;margin-top:32px;">
+                        <button type="button" id="save-profile-btn" class="btn btn-primary"
+                            style="padding:8px 32px;">保存资料</button>
+                        <button type="button" onclick="closeAccountSettings()" class="btn btn-secondary"
+                            style="padding:8px 24px;">关闭</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    <!-- 个人中心弹窗（动态渲染） -->
+    <!-- 统一弹窗容器 -->
+    <div id="center-modal"
+        style="display:none;position:fixed;z-index:10010;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);justify-content:center;align-items:center;">
+        <div class="modal-content"></div>
+    </div>
+    <script type="module" src="js/center-modal.js"></script>
+
+    <!-- 升级为正式账号弹窗 -->
+    <div id="upgrade-modal" class="semi-modal" style="display:none;">
+        <div class="semi-modal-content">
+            <div class="semi-modal-title">升级为正式账号</div>
+            <div class="semi-modal-body">
+                <div class="semi-form-group">
+                    <label class="semi-form-label">邮箱</label>
+                    <input id="upgrade-email" type="email" class="semi-input" placeholder="请输入邮箱">
+                    <div class="semi-form-error" id="upgrade-email-error"></div>
+                </div>
+                <div class="semi-form-group">
+                    <label class="semi-form-label">密码</label>
+                    <input id="upgrade-password" type="password" class="semi-input" placeholder="请输入密码">
+                    <div class="semi-form-error" id="upgrade-password-error"></div>
+                </div>
+            </div>
+            <div class="semi-modal-footer">
+                <button type="button" class="semi-btn semi-btn-secondary" id="upgrade-cancel-btn">取消</button>
+                <button type="button" class="semi-btn semi-btn-primary" id="upgrade-ok-btn">升级</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
