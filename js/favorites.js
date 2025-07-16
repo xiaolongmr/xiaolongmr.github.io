@@ -200,7 +200,7 @@ function createSiteCard(site) {
 
     card.innerHTML = `
         <div class="site-modal-card-content" data-url="${site.url}">
-            <div class="site-modal-card-checkbox">
+     <div class="site-modal-card-checkbox">
                 ${!isCollected ? `<input type="checkbox" ${isSelected ? 'checked' : ''} class="site-checkbox">` : ''}
             </div>
             <img src="${site.icon || ''}" class="site-modal-card-icon" onerror="this.src='https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png';this.onerror=null;">
@@ -1324,6 +1324,118 @@ window.confirmEditFavForm = function () {
     }
 };
 
+// 获取域名工具函数
+function getDomainFromUrl(url) {
+    try {
+        return new URL(url).hostname;
+    } catch {
+        return '';
+    }
+}
+// ========== 保证收藏弹窗图标预览与输入框内容始终同步 ========== //
+function syncFavIconPreviewByInput() {
+    const iconInput = document.getElementById('fav-form-icon');
+    const urlInput = document.getElementById('fav-form-url');
+    const previewImg = document.getElementById('icon-preview-img-html');
+    const defaultIcon = 'https://cdn.jsdmirror.com/gh/xiaolongmr/test@main/1.png';
+    if (!iconInput || !previewImg || !urlInput) return;
+    const iconUrl = iconInput.value.trim();
+    const url = urlInput.value.trim();
+    if (iconUrl) {
+        previewImg.src = iconUrl;
+    } else if (url) {
+        const domain = getDomainFromUrl(url);
+        previewImg.src = domain ? `https://ico.cxr.cool/${domain}.ico` : defaultIcon;
+    } else {
+        previewImg.src = defaultIcon;
+    }
+}
+// 绑定input/change事件，避免重复绑定
+(function bindFavIconInputSync() {
+    const iconInput = document.getElementById('fav-form-icon');
+    const urlInput = document.getElementById('fav-form-url');
+    if (!iconInput || !urlInput) return;
+    if (iconInput._previewBinded) return;
+    iconInput._previewBinded = true;
+    iconInput.addEventListener('input', syncFavIconPreviewByInput);
+    iconInput.addEventListener('change', syncFavIconPreviewByInput);
+    urlInput.addEventListener('input', syncFavIconPreviewByInput);
+    urlInput.addEventListener('change', syncFavIconPreviewByInput);
+})();
+// 统一清空收藏表单内容
+function clearFavFormFields() {
+    const ids = ['fav-form-url', 'fav-form-title', 'fav-form-icon', 'fav-form-desc'];
+    ids.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) input.value = '';
+    });
+    const titleEl = document.querySelector('.fav-form-title');
+    if (titleEl) titleEl.textContent = '添加链接';
+}
+// 只在openFavForm里清空一次
+window.openFavForm = function () {
+    editingFavIndex = null;
+    clearFavFormFields();
+    document.getElementById('fav-form-modal').style.display = 'flex';
+    syncFavIconPreviewByInput();
+};
+// 打开弹窗时自动同步icon字段
+const origOpenFavForm = window.openFavForm;
+window.openFavForm = function () {
+    if (typeof origOpenFavForm === 'function') origOpenFavForm();
+    setTimeout(syncFavIconPreviewByInput, 50);
+};
+const origOpenEditFavForm = window.openEditFavForm;
+window.openEditFavForm = function (idx) {
+    if (typeof origOpenEditFavForm === 'function') origOpenEditFavForm(idx);
+    setTimeout(syncFavIconPreviewByInput, 50);
+};
+// 自动获取/上传图片后也刷新预览
+const origAutoGetIcon = window.autoGetIcon;
+window.autoGetIcon = async function () {
+    if (typeof origAutoGetIcon === 'function') await origAutoGetIcon();
+    syncFavIconPreviewByInput();
+};
+// 上传图片按钮逻辑增强
+(function enhanceIconUploadBtn() {
+    const btn = document.getElementById('icon-upload-btn-html');
+    if (!btn) return;
+    const iconInput = document.getElementById('fav-form-icon');
+    const urlInput = document.getElementById('fav-form-url');
+    if (!iconInput || !urlInput) return;
+    if (btn._enhanced) return;
+    btn._enhanced = true;
+    let fileInput = btn._fileInput;
+    if (!fileInput) {
+        fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        btn.parentNode.appendChild(fileInput);
+        btn._fileInput = fileInput;
+    }
+    btn.onclick = () => fileInput.click();
+    fileInput.onchange = async function () {
+        const file = fileInput.files[0];
+        if (!file) return;
+        btn.textContent = '点我上传';
+        btn.disabled = true;
+        try {
+            const url = await window.uploadToTelegram(file);
+            iconInput.value = url;
+            btn.textContent = '点我上传';
+            btn.disabled = false;
+            syncFavIconPreviewByInput();
+            if (window.showCustomAlert) window.showCustomAlert('上传成功，已自动填入图标URL', 'success');
+        } catch (e) {
+            btn.textContent = '点我上传';
+            btn.disabled = false;
+            if (window.showCustomAlert) window.showCustomAlert('上传失败：' + e.message, 'error');
+        }
+        fileInput.value = '';
+    };
+})();
+
 // ========== 站长推荐模块 ========== //
 const adminDocId = "owTNzDqUcePOAp9nISR1lBxS4Ev2"; // 站长推荐UID
 const adminCollection = "userFavs"; // 你的收藏集合名
@@ -1364,4 +1476,22 @@ function renderAdminRecommend(favs) {
     box.appendChild(list);
 }
 
-window.addEventListener('DOMContentLoaded', loadAdminRecommend);
+window.addEventListener('DOMContentLoaded', loadAdminRecommend);// 拦截/增强编辑弹窗打开逻辑，自动同步预览图和输入框
+if (window.openEditFavModal) {
+    const origOpenEditFavModal = window.openEditFavModal;
+    window.openEditFavModal = function (fav) {
+        // fav.icon为数据库favs里的icon字段
+        window.syncFavIconPreview(fav && fav.icon ? fav.icon : '');
+        return origOpenEditFavModal.apply(this, arguments);
+    };
+}
+// 新增弹窗时也自动同步
+if (window.openAddFavModal) {
+    const origOpenAddFavModal = window.openAddFavModal;
+    window.openAddFavModal = function () {
+        window.syncFavIconPreview('');
+        return origOpenAddFavModal.apply(this, arguments);
+    };
+}
+
+
