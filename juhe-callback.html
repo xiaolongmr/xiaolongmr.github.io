@@ -46,13 +46,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
         const type = urlParams.get('type');
-        function isLocal() {
-            return [
-                'localhost',
-                '127.0.0.1',
-                '127.0.0.1:5501'
-            ].some(h => location.host === h || location.hostname === h);
-        }
         if (code && type) {
             fetch(`/api/login-callback?code=${code}&type=${type}`)
                 .then(res => res.json())
@@ -60,16 +53,11 @@
                     if (data.code === 0) {
                         localStorage.setItem('user', JSON.stringify(data.user));
                         localStorage.setItem('system', 'juhe');
-                        if (isLocal()) {
-                            // 测试环境，显示头像昵称
-                            document.getElementById('msg').textContent = '';
-                            document.getElementById('user-info').style.display = 'block';
-                            document.getElementById('user-avatar').src = data.user.avatar || data.user.faceimg || '';
-                            document.getElementById('user-nickname').textContent = data.user.nickname || '';
-                        } else {
-                            // 线上环境，跳转主页
-                            window.location.href = '/';
-                        }
+                        // 无论本地还是线上都显示头像昵称
+                        document.getElementById('msg').textContent = '';
+                        document.getElementById('user-info').style.display = 'block';
+                        document.getElementById('user-avatar').src = data.user.avatar || data.user.faceimg || '';
+                        document.getElementById('user-nickname').textContent = data.user.nickname || '';
                     } else {
                         document.getElementById('msg').textContent = '登录失败：' + data.msg;
                     }
