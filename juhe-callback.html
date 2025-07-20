@@ -53,14 +53,16 @@
                     if (data.code === 0) {
                         localStorage.setItem('user', JSON.stringify(data.user));
                         localStorage.setItem('system', 'juhe');
-                        // 无论本地还是线上都显示头像昵称
                         document.getElementById('msg').textContent = '';
                         document.getElementById('user-info').style.display = 'block';
-                        document.getElementById('user-avatar').src = data.user.avatar || data.user.faceimg || '';
+                        document.getElementById('user-avatar').src = data.user.avatar || '';
                         document.getElementById('user-nickname').textContent = data.user.nickname || '';
                     } else {
                         document.getElementById('msg').textContent = '登录失败：' + data.msg;
                     }
+                })
+                .catch(err => {
+                    document.getElementById('msg').textContent = '请求失败：' + err;
                 });
         } else {
             document.getElementById('msg').textContent = '未获取到登录code';
