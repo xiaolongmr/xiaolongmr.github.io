@@ -11,13 +11,17 @@
     color: #444
 }
 
+/* .OwO-logo svg {
+    color: #ff3b30;
+} */
+
 .sb:hover {
     color: #444
 }
 
 .OwO.OwO-open .OwO-logo {
-    border-radius: 4px 4px 0 0;
-    border-bottom: none;
+    /* border-radius: 4px 4px 0 0; */
+    /* border-bottom: none; */
     color: #444
 }
 
@@ -27,7 +31,7 @@
 
 .OwO.OwO-up .OwO-body {
     top: inherit;
-    bottom: 24px;
+    bottom: 10px;
     border-radius: 4px 4px 4px 0
 }
 
@@ -1154,7 +1158,8 @@
 /* 上传图片的样式 */
 .sb {
     position: relative;
-    display: inline-block;
+    display: flex;
+    gap: 4px;
     float: left;
     color: #888;
     background: #fff;
@@ -1168,6 +1173,20 @@
     box-sizing: border-box;
     z-index: 2;
     line-height: 16px;
+    flex-direction: row;
+}
+
+.sb svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* .pc svg {
+    color: #9952e1;
+} */
+
+#cfbed svg {
+    color: #ff9500;
 }
 
 /* </style> */

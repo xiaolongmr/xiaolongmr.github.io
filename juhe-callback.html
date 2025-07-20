@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>登录回调</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .user-info {
+            margin-top: 30px;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px #e0e0e0;
+        }
+
+        .user-nickname {
+            font-size: 20px;
+            color: #3385ff;
+            margin-top: 12px;
+        }
+
+        .success {
+            color: #4caf50;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="msg">正在登录...</div>
+    <div class="user-info" id="user-info" style="display:none;">
+        <img id="user-avatar" class="user-avatar" src="" alt="头像">
+        <div id="user-nickname" class="user-nickname"></div>
+        <div class="success">登录成功！</div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const type = urlParams.get('type');
+        function isLocal() {
+            return [
+                'localhost',
+                '127.0.0.1',
+                '127.0.0.1:5501'
+            ].some(h => location.host === h || location.hostname === h);
+        }
+        if (code && type) {
+            fetch(`/api/login-callback?code=${code}&type=${type}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code === 0) {
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                        localStorage.setItem('system', 'juhe');
+                        if (isLocal()) {
+                            // 测试环境，显示头像昵称
+                            document.getElementById('msg').textContent = '';
+                            document.getElementById('user-info').style.display = 'block';
+                            document.getElementById('user-avatar').src = data.user.avatar || data.user.faceimg || '';
+                            document.getElementById('user-nickname').textContent = data.user.nickname || '';
+                        } else {
+                            // 线上环境，跳转主页
+                            window.location.href = '/';
+                        }
+                    } else {
+                        document.getElementById('msg').textContent = '登录失败：' + data.msg;
+                    }
+                });
+        } else {
+            document.getElementById('msg').textContent = '未获取到登录code';
+        }
+    </script>
+</body>
+
+</html>

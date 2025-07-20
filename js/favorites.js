@@ -1494,4 +1494,75 @@ if (window.openAddFavModal) {
     };
 }
 
+// ========== 系统切换辅助函数 ========== //
+function getCurrentSystem() {
+    return localStorage.getItem('system') || 'firebase';
+}
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user'));
+}
+// ========== 收藏API适配 ========== //
+// 新增收藏
+async function addFavUniversal(fav) {
+    const system = getCurrentSystem();
+    const user = getCurrentUser();
+    if (system === 'juhe') {
+        // 国内API
+        await fetch('/api/favs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                social_uid: user.social_uid,
+                url: fav.url,
+                title: fav.title,
+                icon: fav.icon,
+                desc: fav.desc
+            })
+        });
+        // 刷新本地缓存
+        await loadFavsFromJuhe();
+    } else {
+        // Firebase原有逻辑
+        await saveFavToCloud(fav);
+    }
+}
+// 获取收藏
+async function getFavsUniversal() {
+    const system = getCurrentSystem();
+    const user = getCurrentUser();
+    if (system === 'juhe') {
+        const res = await fetch(`/api/favs?social_uid=${user.social_uid}`);
+        return await res.json();
+    } else {
+        // Firebase原有逻辑
+        return favsCache;
+    }
+}
+// 删除收藏
+async function removeFavUniversal(idxOrId) {
+    const system = getCurrentSystem();
+    const user = getCurrentUser();
+    if (system === 'juhe') {
+        // idxOrId为MongoDB _id
+        await fetch(`/api/favs?id=${idxOrId}`, { method: 'DELETE' });
+        await loadFavsFromJuhe();
+    } else {
+        // Firebase原有逻辑
+        await removeFavFromCloud(idxOrId);
+    }
+}
+// ========== Juhe收藏加载 ========== //
+async function loadFavsFromJuhe() {
+    const user = getCurrentUser();
+    if (!user) return;
+    const res = await fetch(`/api/favs?social_uid=${user.social_uid}`);
+    favsCache = await res.json();
+    renderFavs();
+}
+// ========== 修改原有收藏相关调用 ========== //
+// 1. 新增收藏时，调用addFavUniversal(fav)
+// 2. 获取收藏时，调用getFavsUniversal()
+// 3. 删除收藏时，调用removeFavUniversal(idxOrId)
+// 4. 登录后根据system自动加载收藏
+
 

@@ -1803,7 +1803,88 @@
                 });
 
 
-                // v: 这里是文字转语音的代码
+                //                 t.msg = t.msg.replace(/\/?v:(.+)/, function (match, $1) {
+                //                     const audioId = `audio-${$1}`;
+                //                     const buttonId = `play-button-${$1}`;
+
+                //                     // 生成 HTML
+                //                     const html = `
+                //     <a style="display: inline-flex; align-items: center; text-decoration: none; color: inherit; border: 1px solid #d1d1d1; border-radius: 5px; padding: 4px 8px; background-color: #f9f9f9; transition: background-color 0.3s; cursor: pointer;">
+                //         <img id="img-${$1}" src="//dh.z-l.top/js/语音.svg" alt="audio icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                //         <audio id="${audioId}" preload="metadata" style="display: none;">
+                //             <source src="https://dict.youdao.com/dictvoice?audio=${$1}&le=zh" type="audio/mp3">
+                //         </audio>
+                //         <span id="${buttonId}" style="margin-left: 8px; font-size: 0.9rem; color: #333;">加载中...</span>
+                //     </a>
+                //     <div style="background: #e0e0e0; height: 4px; border-radius: 2px; margin-top: 4px; width: 100%;">
+                //         <div id="audio-bar-${$1}" style="background: #009244; height: 100%; border-radius: 2px; width: 0;"></div>
+                //     </div>
+                //     `;
+
+                //                     // 绑定音频事件
+                //                     setTimeout(() => {
+                //                         const button = document.getElementById(buttonId);
+                //                         const audio = document.getElementById(audioId);
+                //                         const imgElement = document.getElementById(`img-${$1}`);
+                //                         const audioBar = document.getElementById(`audio-bar-${$1}`);
+
+                //                         audio.addEventListener('loadedmetadata', () => {
+                //                             const duration = formatTime(audio.duration);
+                //                             button.textContent = duration; // 显示音频总时长
+                //                         });
+
+                //                         audio.addEventListener('timeupdate', () => {
+                //                             const remainingTime = audio.duration - audio.currentTime;
+                //                             button.textContent = formatTime(remainingTime); // 更新剩余时间
+
+                //                             // 更新音频条长度
+                //                             const lengthPercentage = (audio.currentTime / audio.duration) * 100;
+                //                             audioBar.style.width = `${lengthPercentage}%`;
+                //                         });
+
+                //                         audio.addEventListener('ended', () => {
+                //                             button.textContent = formatTime(audio.duration); // 恢复为总时长
+                //                             audioBar.style.width = '100%'; // 播放完成后填满条
+                //                             imgElement.classList.remove('playing'); // 移除播放动画
+                //                         });
+
+                //                         // 将点击事件绑定到整个<a>标签
+                //                         button.parentElement.addEventListener('click', () => {
+                //                             if (audio.paused) {
+                //                                 audio.play();
+                //                                 imgElement.classList.add('playing'); // 添加播放动画
+                //                             } else {
+                //                                 audio.pause();
+                //                                 imgElement.classList.remove('playing'); // 移除播放动画
+                //                             }
+                //                         });
+                //                     }, 0); // 确保在 DOM 更新后执行
+
+                //                     return html;
+                //                 });
+
+                //                 // 格式化时间为 mm:ss
+                //                 function formatTime(seconds) {
+                //                     const minutes = Math.floor(seconds / 60);
+                //                     const secs = Math.floor(seconds % 60);
+                //                     return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                //                 }
+
+                //                 // CSS 动画
+                //                 const style = document.createElement('style');
+                //                 style.textContent = `
+                // @keyframes blink {
+                //     0% { opacity: 1; }
+                //     50% { opacity: 0.5; }
+                //     100% { opacity: 1; }
+                // }
+                // img.playing {
+                //     animation: blink 0.5s infinite;
+                // }
+                // `;
+                //                 document.head.appendChild(style);
+
+
                 t.msg = t.msg.replace(/\/?v:([^<]*)?(?:<a[^>]*>[^<]*<\/a>)?/, function (match, $1) {
                     const audioId = `audio-${$1}`;
                     const buttonId = `play-button-${$1}`;
@@ -1914,7 +1995,7 @@ img.playing {
 `;
                 document.head.appendChild(style);
 
-                // end: 这里是文字转语音的代码
+
 
 
 
@@ -1924,8 +2005,8 @@ img.playing {
                     const currentHostname = window.location.hostname; // 获取当前页面的域名
                     const hostname = new URL(url).hostname; // 获取链接的域名
 
-                    // 黑名单域名列表,将需要不转为url卡片的域名填这里
-                    const blacklist = ['dict.youdao.com', 'npm.elemecdn.com', 'api.cenguigui.cn', 't.tutu.to', 'img.z-l.top'];
+                    // 黑名单域名列表
+                    const blacklist = ['dict.youdao.com', 'npm.elemecdn.com', 'api.cenguigui.cn', 't.tutu.to'];
 
                     // 检查是否在黑名单中
                     if (blacklist.includes(hostname)) {
@@ -1944,11 +2025,19 @@ img.playing {
                         return regex.test(hostname);
                     });
 
-                    var faviconUrl = 'https://ico.cxr.cool/' + encodeURIComponent(hostname) + '.ico';
-                    let descApiUrl = `https://cn.apihz.cn/api/wangzhan/getdata.php?id=88888888&key=88888888&type=1&url=` + url;
+                    var faviconUrl = 'https://api.iowen.cn/favicon/' + encodeURIComponent(hostname) + '.png';
+                    let descApiUrl = `https://tdktool.com/api/tdk/info/title?url=` + url;
 
-                    // 生成唯一标识，用于关联后续要更新标题的元素
-                    const uniqueKey = `link_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+                    fetch(descApiUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            const title = data.data.title; // 获取标题
+                            siteDesc.innerHTML = title || '无描述信息';
+                        })
+                        .catch(error => {
+                            console.error('获取描述失败:', error);
+                            siteDesc.innerHTML = '无描述信息';
+                        });
 
                     // 根据域名判断显示提示信息
                     const tooltipMessage = isSameDomain
@@ -1957,291 +2046,24 @@ img.playing {
                             ? '<div class="tag-link-tips" style="border-bottom: 1px solid #009244; padding-bottom: 4px; font-size: .7rem; color: #009244; font-weight: 400; pointer-events: none;">链接域名在白名单中，可放心访问<img src="https://gcore.jsdelivr.net/gh/btwoa/Fluent-Emoji-3D/%E6%8B%89%E7%82%AE%E5%BD%A9%E5%B8%A6.gif" icon="反手食指向左指" style="height: 1.5rem; display: inline;"></div>'
                             : '<div class="tag-link-tips" style="border-bottom: 1px solid #9f9f9f; padding-bottom: 4px; font-size: .6rem; color: #4b4b4b; font-weight: 400; pointer-events: none;">引用站外地址，不保证链接的可用性和安全性</div>';
 
-                    // 先返回包含占位内容的链接卡片，后续通过唯一标识更新标题
-                    const linkCard = '<a class="tag-Link" target="_blank" href="' + url + '" rel="external nofollow" title="即将进入' + hostname + '，访问小张博客 z-l.top 可留言将域名添加至白名单" style="background: hsl(205deg, 16%, 77%); border-radius: 8px !important; display: flex; border: 1px solid #a1a1a1; flex-direction: column; padding: .3rem 0.9rem .6rem; border-width: 1px !important;">' +
+                    return '<a class="tag-Link" target="_blank" href="' + url + '" rel="external nofollow" title="即将进入' + hostname + '，访问小张博客 z-l.top 可留言将域名添加至白名单" style="background: hsl(205deg, 16%, 77%); border-radius: 8px !important; display: flex; border: 1px solid #a1a1a1; flex-direction: column; padding: .3rem 0.9rem .6rem; border-width: 1px !important;">' +
                         tooltipMessage + // 插入提示信息
                         '<div class="tag-link-bottom" style="display: flex; margin-top: .5rem; align-items: center; justify-content: space-around; pointer-events: none;">' +
                         '<div class="tag-link-left" style="width: 30px; min-width: 30px; height: 30px; background-size: cover !important; border-radius: 22px; background: #d3d3d3; pointer-events: none; display: flex;">' +
                         '<img loading="lazy" onerror="this.src=\'https://blog.z-l.top/img/favicon.png\'" style="padding: 0; margin: auto; font-size: 24px; width: 30px; border-radius: 16px; color: darkred;" src="' + faviconUrl + '" alt="Favicon" class="tag-link-favicon">' +
                         '</div>' +
                         '<div class="tag-link-right" style="margin-left: 1rem; pointer-events: none;width: calc(100% - 5.5rem);">' +
-                        // 用data-unique-key存储唯一标识，方便后续查找
-                        '<div class="siteDesc" data-unique-key="' + uniqueKey + '" style="font-size: 0.9rem; line-height: 1.2; font-weight: 700; pointer-events: none; color: #494949; word-break: break-all; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">' + hostname + '</div>' +
+                        '<div class="siteDesc" id="siteDesc" style="font-size: 0.9rem; line-height: 1.2; font-weight: 700; pointer-events: none; color: #494949; word-break: break-all; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">' + hostname + '</div>' +
                         '<div style="font-size: .7rem; color: #7f7f7f; font-weight: 400; margin-top: 8px; pointer-events: none; line-height: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + url + '</div>' +
                         '</div>' +
                         '<i class="icon-arrow-right-s-line" style="margin-left: auto; filter: opacity(0.5); font-size: 1.5rem; padding-left: .5rem; pointer-events: none;">🔗</i>' +
                         '</div>' +
                         '</a>';
-
-                    // 发起fetch请求获取标题并更新对应元素
-                    fetch(descApiUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            // 先判断接口是否返回成功状态
-                            if (data.code === 200) {
-                                const title = data.title;
-                                // 根据唯一标识找到对应的siteDesc元素
-                                const targetSiteDesc = document.querySelector(`.siteDesc[data-unique-key="${uniqueKey}"]`);
-                                if (targetSiteDesc) {
-                                    targetSiteDesc.innerHTML = title || '无描述信息';
-                                }
-                            } else {
-                                // 接口返回失败（如参数错误、频次限制）
-                                console.error('接口返回错误:', data);
-                                const targetSiteDesc = document.querySelector(`.siteDesc[data-unique-key="${uniqueKey}"]`);
-                                if (targetSiteDesc) {
-                                    targetSiteDesc.innerHTML = '无描述信息';
-                                }
-                            }
-                        })
-                        .catch(error => {
-                            console.error('获取描述失败:', error);
-                            const targetSiteDesc = document.querySelector(`.siteDesc[data-unique-key="${uniqueKey}"]`);
-                            if (targetSiteDesc) {
-                                targetSiteDesc.innerHTML = '无描述信息';
-                            }
-                        });
-
-                    return linkCard;
                 });
 
 
-                // 语音消息替换，audio标签直接用src属性，优先本地blob
-                // 保证只渲染一个audio[src]，不再用<source>
-                t.msg = t.msg.replace(/\[语音消息 (\d{2}:\d{2})\]\s*(https?:\/\/[^\s]+\.webm)/g, function (_, duration, url) {
-                    var uid = 'voice_' + Math.random().toString(36).slice(2) + '_' + Date.now();
-                    var localSrc = '';
-                    if (window._myVoiceBlobs && window._myVoiceBlobs[url] && t.id === s) {
-                        localSrc = window._myVoiceBlobs[url];
-                    }
-                    return `
-    <div class="ctrm-voice-bubble" id="${uid}">
-      <button class="ctrm-voice-play" type="button" title="播放/暂停">
-        <svg class="icon-play" viewBox="0 0 24 24" width="20" height="20"><polygon points="6,4 20,12 6,20" fill="#fff"/></svg>
-        <svg class="icon-pause" viewBox="0 0 24 24" width="20" height="20" style="display:none;"><rect x="6" y="4" width="4" height="16" fill="#fff"/><rect x="14" y="4" width="4" height="16" fill="#fff"/></svg>
-      </button>
-      <div class="ctrm-voice-progress"><div class="ctrm-voice-bar"></div></div>
-      <span class="ctrm-voice-time">${duration}</span>
-      <audio preload="metadata" style="display:none;" src="${localSrc || url}"></audio>
-    </div>`;
-                });
 
-                // 动态插入语音气泡样式
-                if (!document.getElementById('ctrm-voice-bubble-style')) {
-                    var voiceStyle = document.createElement('style');
-                    voiceStyle.id = 'ctrm-voice-bubble-style';
-                    voiceStyle.textContent = `
-.ctrm-voice-bubble {
-  display: flex;
-  align-items: center;
-  background: #f5f7fa;
-  border-radius: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  padding: 6px 16px 6px 10px;
-  min-height: 38px;
-  margin: 6px 0;
-  font-size: 15px;
-  position: relative;
-  gap: 10px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.ctrm-voice-bubble.playing {
-  background: #e6f7ff;
-}
-.ctrm-voice-play {
-  background: #67c23a;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s;
-  padding: 0;
-}
-.ctrm-voice-bubble.playing .ctrm-voice-play {
-  background: #409eff;
-}
-.ctrm-voice-play .icon-play { display: block; }
-.ctrm-voice-play .icon-pause { display: none; }
-.ctrm-voice-bubble.playing .icon-play { display: none; }
-.ctrm-voice-bubble.playing .icon-pause { display: block; }
-.ctrm-voice-progress {
-  flex: 1;
-  height: 4px;
-  background: #e0e0e0;
-  border-radius: 2px;
-  margin: 0 8px;
-  position: relative;
-  min-width: 60px;
-  max-width: 120px;
-}
-.ctrm-voice-bar {
-  background: #67c23a;
-  height: 100%;
-  border-radius: 2px;
-  width: 0;
-  transition: width 0.2s;
-}
-.ctrm-voice-time {
-  color: #888;
-  font-size: 13px;
-  min-width: 36px;
-  text-align: right;
-}
-`;
-                    document.head.appendChild(voiceStyle);
-                }
 
-                // 语音气泡交互逻辑（事件委托，防止多条消息失效）
-                if (!window._voiceBubbleEventBinded) {
-                    window._voiceBubbleEventBinded = true;
-                    document.addEventListener('click', function (e) {
-                        const playBtn = e.target.closest('.ctrm-voice-play');
-                        if (!playBtn) return;
-                        const bubble = playBtn.closest('.ctrm-voice-bubble');
-                        if (!bubble) return;
-                        // 只用audio[src]，不用<source>
-                        const audio = bubble.querySelector('audio');
-                        if (!audio) { alert('audio标签没找到'); return; }
-                        audio.volume = 1;
-                        audio.muted = false;
-                        // 停止其他正在播放的音频
-                        if (window._voicePlaying && window._voicePlaying !== audio) {
-                            window._voicePlaying.pause();
-                            const otherBubble = window._voicePlaying.closest('.ctrm-voice-bubble');
-                            if (otherBubble) otherBubble.classList.remove('playing');
-                            window._voicePlaying = null;
-                        }
-                        // 播放逻辑
-                        if (audio.paused) {
-                            console.log('will play', audio.src);
-                            const playPromise = audio.play();
-                            if (playPromise !== undefined) {
-                                playPromise.then(() => {
-                                    bubble.classList.add('playing');
-                                    window._voicePlaying = audio;
-                                    console.log('play success');
-                                }).catch(err => {
-                                    console.error('play error', err);
-                                    alert('无法播放语音：' + err.message);
-                                });
-                            }
-                        } else {
-                            audio.pause();
-                            bubble.classList.remove('playing');
-                            window._voicePlaying = null;
-                        }
-                        audio.ontimeupdate = function () {
-                            if (audio.duration) {
-                                const bar = bubble.querySelector('.ctrm-voice-bar');
-                                const time = bubble.querySelector('.ctrm-voice-time');
-                                bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
-                                const remain = Math.max(0, audio.duration - audio.currentTime);
-                                const m = Math.floor(remain / 60), s = Math.floor(remain % 60);
-                                time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                            }
-                        };
-                        audio.onended = function () {
-                            bubble.classList.remove('playing');
-                            const bar = bubble.querySelector('.ctrm-voice-bar');
-                            bar.style.width = '100%';
-                            window._voicePlaying = null;
-                        };
-                        audio.onloadedmetadata = function () {
-                            const time = bubble.querySelector('.ctrm-voice-time');
-                            const m = Math.floor(audio.duration / 60), s = Math.floor(audio.duration % 60);
-                            time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                        };
-                        e.stopPropagation();
-                    });
-                }
-
-                // 额外的事件委托绑定，确保在DOM更新后也能生效
-                setTimeout(function () {
-                    if (!window._voiceBubbleEventBindedExtra) {
-                        window._voiceBubbleEventBindedExtra = true;
-                        document.addEventListener('click', function (e) {
-                            const playBtn = e.target.closest('.ctrm-voice-play');
-                            if (!playBtn) return;
-                            const bubble = playBtn.closest('.ctrm-voice-bubble');
-                            if (!bubble) return;
-                            const audio = bubble.querySelector('audio');
-                            if (!audio) { alert('audio标签没找到'); return; }
-                            audio.volume = 1;
-                            audio.muted = false;
-                            if (!window._voicePlaying) window._voicePlaying = null;
-                            if (window._voicePlaying && window._voicePlaying !== audio) {
-                                window._voicePlaying.pause();
-                                if (window._voicePlaying.parentElement) window._voicePlaying.parentElement.parentElement.classList.remove('playing');
-                            }
-                            if (audio.paused) {
-                                // 确保音频已加载
-                                if (audio.readyState < 2) {
-                                    audio.load();
-                                    setTimeout(() => {
-                                        playBtn.click();
-                                    }, 100);
-                                    return;
-                                }
-
-                                // 重置音频到开始位置
-                                audio.currentTime = 0;
-
-                                // 使用Promise处理播放
-                                const playPromise = audio.play();
-                                if (playPromise !== undefined) {
-                                    playPromise.then(() => {
-                                        bubble.classList.add('playing');
-                                        window._voicePlaying = audio;
-                                    }).catch(err => {
-                                        console.error('播放失败:', err);
-                                        // 如果是中断错误，尝试重新播放
-                                        if (err.name === 'AbortError') {
-                                            setTimeout(() => {
-                                                audio.play().catch(e => {
-                                                    alert('无法播放语音：' + e.message);
-                                                });
-                                            }, 100);
-                                        } else {
-                                            alert('无法播放语音：' + err.message);
-                                        }
-                                    });
-                                }
-                            } else {
-                                audio.pause();
-                                audio.currentTime = 0;
-                                bubble.classList.remove('playing');
-                                window._voicePlaying = null;
-                            }
-                            audio.ontimeupdate = function () {
-                                if (audio.duration) {
-                                    const bar = bubble.querySelector('.ctrm-voice-bar');
-                                    const time = bubble.querySelector('.ctrm-voice-time');
-                                    bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
-                                    const remain = Math.max(0, audio.duration - audio.currentTime);
-                                    const m = Math.floor(remain / 60), s = Math.floor(remain % 60);
-                                    time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                                }
-                            };
-                            audio.onended = function () {
-                                bubble.classList.remove('playing');
-                                const bar = bubble.querySelector('.ctrm-voice-bar');
-                                bar.style.width = '100%';
-                                window._voicePlaying = null;
-                            };
-                            audio.onloadedmetadata = function () {
-                                const time = bubble.querySelector('.ctrm-voice-time');
-                                const m = Math.floor(audio.duration / 60), s = Math.floor(audio.duration % 60);
-                                time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                            };
-                            e.stopPropagation();
-                        });
-                    }
-                }, 100);
 
                 // 图片灯箱开始
                 $(document).ready(function () {
@@ -2326,95 +2148,6 @@ img.playing {
 
                 // 将新消息添加到消息列表中
                 b.append(n);
-
-                // 为新创建的语音气泡直接绑定事件
-                setTimeout(function () {
-                    const voiceBubbles = n.find('.ctrm-voice-bubble');
-                    voiceBubbles.each(function () {
-                        const bubble = this;
-                        const playBtn = bubble.querySelector('.ctrm-voice-play');
-                        const audio = bubble.querySelector('audio');
-                        if (playBtn && audio) {
-                            playBtn.addEventListener('click', function (e) {
-                                e.preventDefault();
-                                e.stopPropagation();
-
-                                // 确保音频已加载
-                                if (audio.readyState < 2) {
-                                    audio.load();
-                                    setTimeout(() => {
-                                        playBtn.click();
-                                    }, 100);
-                                    return;
-                                }
-
-                                audio.volume = 1;
-                                audio.muted = false;
-
-                                // 停止其他正在播放的音频
-                                if (window._voicePlaying && window._voicePlaying !== audio) {
-                                    window._voicePlaying.pause();
-                                    window._voicePlaying.currentTime = 0;
-                                    const otherBubble = window._voicePlaying.closest('.ctrm-voice-bubble');
-                                    if (otherBubble) otherBubble.classList.remove('playing');
-                                }
-
-                                if (audio.paused) {
-                                    // 重置音频到开始位置
-                                    audio.currentTime = 0;
-
-                                    // 使用Promise处理播放
-                                    const playPromise = audio.play();
-                                    if (playPromise !== undefined) {
-                                        playPromise.then(() => {
-                                            bubble.classList.add('playing');
-                                            window._voicePlaying = audio;
-                                        }).catch(err => {
-                                            console.error('播放失败:', err);
-                                            // 如果是中断错误，尝试重新播放
-                                            if (err.name === 'AbortError') {
-                                                setTimeout(() => {
-                                                    audio.play().catch(e => {
-                                                        alert('无法播放语音：' + e.message);
-                                                    });
-                                                }, 100);
-                                            } else {
-                                                alert('无法播放语音：' + err.message);
-                                            }
-                                        });
-                                    }
-                                } else {
-                                    audio.pause();
-                                    audio.currentTime = 0;
-                                    bubble.classList.remove('playing');
-                                    window._voicePlaying = null;
-                                }
-                                audio.ontimeupdate = function () {
-                                    if (audio.duration) {
-                                        const bar = bubble.querySelector('.ctrm-voice-bar');
-                                        const time = bubble.querySelector('.ctrm-voice-time');
-                                        bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
-                                        const remain = Math.max(0, audio.duration - audio.currentTime);
-                                        const m = Math.floor(remain / 60), s = Math.floor(remain % 60);
-                                        time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                                    }
-                                };
-                                audio.onended = function () {
-                                    bubble.classList.remove('playing');
-                                    const bar = bubble.querySelector('.ctrm-voice-bar');
-                                    bar.style.width = '100%';
-                                    window._voicePlaying = null;
-                                };
-                                audio.onloadedmetadata = function () {
-                                    const time = bubble.querySelector('.ctrm-voice-time');
-                                    const m = Math.floor(audio.duration / 60), s = Math.floor(audio.duration % 60);
-                                    time.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-                                };
-                            });
-                        }
-                    });
-                }, 50);
-
                 // 调用滚动到底部函数
                 I();
 
@@ -2541,7 +2274,7 @@ img.playing {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <script>
 var OwO_demo = new OwO({
-    logo: '<svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>表情包',
+    logo: 'OωO表情',
     container: document.getElementsByClassName('OwO')[0],
     target: document.getElementsByClassName('OwO-textarea')[0],
     api: 'js/owo.json',
@@ -2550,130 +2283,6 @@ var OwO_demo = new OwO({
     maxHeight: '250px'
 });
 </script>
-<style>
-.ctrm-voice-container {
-    position: relative;
-    // display: inline-grid;
-    display:table;
-}
-
-.ctrm-voice-btn {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.ctrm-voice-btn:hover {
-    background:rgb(245, 249, 255);
-    transform: scale(1.1);
-}
-
-.recommend-tag:before {
-    border: 1px solid #5580ff;
-    border-radius: 12px;
-    box-sizing: border-box;
-    content: "";
-    height: 200%;
-    left: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    transform: scale(.5);
-    transform-origin: 0 0;
-    width: 200%;
-}
-.recommend-tag{
-    background: linear-gradient(283.26deg, #44adfe, #5580ff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    border-radius: 6px;
-    padding: 0 4px;
-    position: relative;
-    -webkit-text-fill-color: transparent;
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 16px;
-}
-.ctrm-voice-btn .recording {
-    background: #3742fa;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.ctrm-voice-timer {
-    color: #ffb300;
-}
-
-.ctrm-voice-recording-indicator {
-    position: absolute;
-    gap:8px;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    white-space: nowrap;
-    align-items: center;
-    z-index: 1;
-}
-
-.ctrm-voice-wave {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="50" r="10" fill="white"><animate attributeName="r" values="10;20;10" dur="1s" repeatCount="indefinite"/></circle><circle cx="50" cy="50" r="10" fill="white"><animate attributeName="r" values="10;20;10" dur="1s" begin="0.2s" repeatCount="indefinite"/></circle><circle cx="80" cy="50" r="10" fill="white"><animate attributeName="r" values="10;20;10" dur="1s" begin="0.4s" repeatCount="indefinite"/></circle></svg>') no-repeat center;
-    background-size: contain;
-}
-</style>
-<style>
-.ctrm-voice-message {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-}
-
-.ctrm-voice-play-btn {
-    background: #3742fa;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.ctrm-voice-play-btn:hover {
-    background: #2f3542;
-    transform: scale(1.1);
-}
-
-.ctrm-voice-play-btn svg {
-    fill: white;
-    margin-left: 2px;
-}
-
-.ctrm-voice-duration {
-    color: #333;
-    font-size: 14px;
-}
-    
-</style>
 <div id="ctrm_" style="z-index:10002!important;" class=" " >
     <div class="ctrm-container">
         <div class="ctrm-title">
@@ -2694,29 +2303,12 @@ var OwO_demo = new OwO({
         <div class="ctrm-panel">
             <div class="ctrm-bottom" style="display: none;">⇩</div>
             <div class="ctrm-dialog"></div>
-            <button data-chevereto-pup-trigger data-target="#editor" class="sb pc" title="上传图片仅支持电脑端"><svg class="flex-shrink-0 size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z"/></svg>图床上传</button>
-            <button  class="sb" id="cfbed" title="上传图片"><svg fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M19.11 9.827c.26 0 .451-.192.488-.445.23-1.406.43-2.127.865-2.575.433-.447 1.131-.654 2.49-.89a.503.503 0 0 0 .446-.502.5.5 0 0 0-.447-.503c-1.358-.237-2.056-.445-2.49-.892-.433-.447-.634-1.168-.864-2.571-.037-.256-.227-.449-.488-.449-.257 0-.45.193-.49.447-.23 1.405-.432 2.126-.865 2.573s-1.13.655-2.486.892a.5.5 0 0 0-.451.503c0 .273.203.47.447.503 1.36.235 2.057.438 2.49.882.433.445.635 1.167.864 2.583.04.252.235.444.491.444M3.853 3.207h9.058v1.961H3.853v9.867l1.488-1.327a2.8 2.8 0 0 1 3.704-.037l1.011.867 3.428-2.886a2.8 2.8 0 0 1 3.621-.001l2.957 2.483v-2.346h1.907v7.601c0 1.084-.854 1.962-1.907 1.962H3.852c-1.052 0-1.906-.878-1.906-1.962V5.17c0-1.084.854-1.962 1.907-1.962m16.209 13.46l-4.163-3.497a.93.93 0 0 0-1.207 0l-4.038 3.399a.93.93 0 0 1-1.214-.006l-1.615-1.385a.933.933 0 0 0-1.235.012l-2.737 2.44v1.76h16.209zm-9.535-7.625c0 1.084-.854 1.962-1.907 1.962s-1.907-.878-1.907-1.962c0-1.083.854-1.961 1.907-1.961s1.907.878 1.907 1.961" clip-rule="evenodd"/></svg>上传图片</button>
+            <button data-chevereto-pup-trigger data-target="#editor" class="sb pc" title="上传图片仅支持电脑端">图床上传</button>
+            <button  class="sb" id="cfbed" title="上传图片">上传图片</button>
             <!-- 表情包 -->
             <div class="OwO"></div>
-            <!-- 在ctrm-panel内，ctrm-textarea之前添加 -->
-<div class="ctrm-voice-container">
-    <button class="sb ctrm-voice-btn" id="ctrm-voice-btn" title="点击录音">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            <line x1="12" y1="19" x2="12" y2="23"></line>
-            <line x1="8" y1="23" x2="16" y2="23"></line>
-        </svg>
-        <div class="recommend-tag">新</div>
-    </button>
-    <div class="ctrm-voice-recording-indicator" style="display: none;">
-        <div class="ctrm-voice-wave"></div>
-        <span>正在录音</span>
-        <span class="ctrm-voice-timer">00:00</span>
-    </div>
-</div>
             <div class="ctrm-textarea">
-                <textarea id="editor" placeholder="拖拽或Ctrl+V至此可发图片..." maxlength="70" class="OwO-textarea" contenteditable></textarea>
+                <textarea id="editor" placeholder="拖拽或Ctrl+V可发图片..." maxlength="70" class="OwO-textarea" contenteditable></textarea>
                 <div id="sendMessageButton" class="ctrm-emit">发送</div>
                 <div class="image-preview-overlay" style="display: none;"><img src="" alt="preview"></div>
             </div>
@@ -3108,328 +2700,3 @@ window.uploadToTelegram = function (file) {
         xhr.send(formData);
     });
 };
-
-
-// 语音功能实现
-(function () {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        console.warn('浏览器不支持语音功能');
-        return;
-    }
-    const VOICE_CONFIG = {
-        MAX_RECORD_TIME: 30000,
-        MIN_RECORD_TIME: 1000,
-        UPLOAD_FOLDER: "v"
-    };
-    let mediaRecorder = null;
-    let audioChunks = [];
-    let startTime = null;
-    let timerInterval = null;
-    let voiceAutoSendLock = false;
-    let audioBlob = null;
-    let audioUrl = null;
-    let state = 'idle'; // idle, recording, review
-    let reviewPanel = null;
-    const voiceBtn = document.getElementById('ctrm-voice-btn');
-    const timerDisplay = document.querySelector('.ctrm-voice-recording-indicator .ctrm-voice-timer');
-    const recordingIndicator = document.querySelector('.ctrm-voice-recording-indicator');
-
-    // 录音按钮点击事件
-    voiceBtn.addEventListener('click', async function () {
-        if (state === 'idle') {
-            await startRecording();
-        } else if (state === 'recording') {
-            await stopRecording();
-        }
-    });
-
-    async function startRecording() {
-        if (state !== 'idle') return;
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
-            audioChunks = [];
-            mediaRecorder.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                    audioChunks.push(event.data);
-                }
-            };
-            mediaRecorder.onstop = onRecordingStop;
-            mediaRecorder.start();
-            voiceBtn.classList.add('recording');
-            recordingIndicator.style.display = 'flex';
-            if (timerDisplay) timerDisplay.textContent = '00:00';
-            startTime = Date.now();
-            timerInterval = setInterval(() => {
-                const elapsed = Date.now() - startTime;
-                if (timerDisplay) timerDisplay.textContent = formatTime(elapsed);
-                if (elapsed >= VOICE_CONFIG.MAX_RECORD_TIME) {
-                    stopRecording();
-                }
-            }, 100);
-            state = 'recording';
-        } catch (err) {
-            console.error('录音错误:', err);
-            if (err.name === 'NotAllowedError') {
-                alert('请允许麦克风权限');
-            } else if (err.name === 'NotFoundError') {
-                alert('未找到麦克风设备');
-            }
-        }
-    }
-
-    async function stopRecording() {
-        if (state !== 'recording') return;
-        if (mediaRecorder && mediaRecorder.state === 'recording') {
-            mediaRecorder.stop();
-            mediaRecorder.stream.getTracks().forEach(track => track.stop());
-        }
-        if (timerInterval) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-        }
-        voiceBtn.classList.remove('recording');
-        recordingIndicator.style.display = 'none';
-        if (timerDisplay) timerDisplay.textContent = '00:00';
-        state = 'review';
-    }
-
-    function onRecordingStop() {
-        const durationMs = Date.now() - startTime;
-        audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-        if (durationMs < VOICE_CONFIG.MIN_RECORD_TIME || audioBlob.size === 0) {
-            alert('录音内容过短或失败，请重试');
-            state = 'idle';
-            return;
-        }
-        // 录音结束后全局保存本地blob和url
-        window._lastVoiceBlob = audioBlob;
-        window._lastVoiceBlobUrl = URL.createObjectURL(audioBlob);
-        showReviewPanel(durationMs); // 传递真实时长
-    }
-
-    function showReviewPanel(durationMs) {
-        if (reviewPanel) reviewPanel.remove();
-        reviewPanel = document.createElement('div');
-        reviewPanel.className = 'ctrm-voice-review-panel';
-        // 试听audio标签src，使用window._lastVoiceBlobUrl
-        reviewPanel.innerHTML = `
-            <audio class="ctrm-voice-review-audio" src="${window._lastVoiceBlobUrl}" controls style="vertical-align:middle;width:180px;display:none;"></audio>
-            <button class="ctrm-voice-review-btn play">试听</button>
-            <button class="ctrm-voice-review-btn delete">删除</button>
-            <button class="ctrm-voice-review-btn send">发送</button>
-        `;
-        voiceBtn.parentNode.insertBefore(reviewPanel, voiceBtn.nextSibling);
-        const audio = reviewPanel.querySelector('.ctrm-voice-review-audio');
-        const playBtn = reviewPanel.querySelector('.ctrm-voice-review-btn.play');
-        playBtn.onclick = function () {
-            if (audio.paused) {
-                audio.play();
-                playBtn.textContent = '暂停';
-            } else {
-                audio.pause();
-                playBtn.textContent = '试听';
-            }
-        };
-        audio.onended = () => { playBtn.textContent = '试听'; };
-        // 删除
-        reviewPanel.querySelector('.ctrm-voice-review-btn.delete').onclick = function () {
-            window._lastVoiceBlob = null; window._lastVoiceBlobUrl = null;
-            reviewPanel.remove();
-            reviewPanel = null;
-            state = 'idle';
-        };
-        // 发送
-        const sendBtn = reviewPanel.querySelector('.ctrm-voice-review-btn.send');
-        sendBtn.onclick = async function () {
-            // 1. 按钮进入发送中动画（禁用+文字+loading）
-            sendBtn.disabled = true;
-            sendBtn.innerHTML = '发送中...<span class="ctrm-send-loading"></span>';
-            sendBtn.classList.add('sending');
-            // 2. 动态插入loading样式（仅插入一次）
-            if (!document.getElementById('ctrm-voice-send-style')) {
-                const style = document.createElement('style');
-                style.id = 'ctrm-voice-send-style';
-                style.innerHTML = `
-                .ctrm-voice-review-btn.sending {
-                    position: relative;
-                    color: #fff;
-                    background: #67c23a;
-                    border-color: #67c23a;
-                    padding-right: 8px !important;
-                }
-                .ctrm-send-loading {
-                    display: inline-block;
-                    width: 16px;
-                    height: 16px;
-                    vertical-align: middle;
-                    margin-left: 6px;
-                    border: 2px solid #fff;
-                    border-radius: 50%;
-                    border-top: 2px solid #67c23a;
-                    animation: ctrm-spin 0.7s linear infinite;
-                    box-sizing: border-box;
-                }
-                @keyframes ctrm-spin {
-                    0% { transform: rotate(0deg);}
-                    100% { transform: rotate(360deg);}
-                }
-                `;
-                document.head.appendChild(style);
-            }
-            // 3. 上传并发送
-            await uploadAndSendVoice(window._lastVoiceBlob, durationMs); // 用全局blob
-            // 4. 恢复按钮状态并关闭面板
-            sendBtn.disabled = false;
-            sendBtn.innerHTML = '发送';
-            sendBtn.classList.remove('sending');
-            reviewPanel.remove();
-            reviewPanel = null;
-            state = 'idle';
-        };
-    }
-
-    // 样式动态插入
-    (function () {
-        if (document.getElementById('ctrm-voice-review-style')) return;
-        var style = document.createElement('style');
-        style.id = 'ctrm-voice-review-style';
-        style.innerHTML = `
-        .ctrm-voice-review-panel {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        .ctrm-voice-review-btn {
-            background: #f5f7fa; border: 1px solid #ddd; border-radius: 6px; padding: 3px 12px; cursor: pointer; font-size: 13px; transition: background 0.2s;
-        }
-        .ctrm-voice-review-btn:hover { background: #e6f7ff; }
-        .ctrm-voice-review-btn.delete { color: #f56c6c; border-color: #f56c6c; }
-        .ctrm-voice-review-btn.send { color: #67c23a; border-color: #67c23a; }
-        `;
-        document.head.appendChild(style);
-    })();
-
-    // 工具函数 formatTime
-    function formatTime(ms) {
-        const seconds = Math.floor(ms / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const displaySeconds = seconds % 60;
-        return `${minutes.toString().padStart(2, '0')}:${displaySeconds.toString().padStart(2, '0')}`;
-    }
-
-    // 上传并发送语音（修复时长问题）
-    async function uploadAndSendVoice(blob, durationMs) {
-        console.log('uploadAndSendVoice blob:', blob, typeof blob, blob && blob.size);
-        if (voiceAutoSendLock) return;
-        voiceAutoSendLock = true;
-        const filename = `voice-${Date.now()}.webm`;
-        const formData = new FormData();
-        formData.append('file', blob, filename);
-        const query = new URLSearchParams({
-            authCode: 'z-l.top',
-            serverCompress: true,
-            uploadChannel: 'telegram',
-            autoRetry: true,
-            uploadNameType: 'short',
-            returnFormat: 'full',
-            uploadFolder: 'v'
-        }).toString();
-        try {
-            const response = await fetch(`https://img.z-l.top/upload?${query}`, {
-                method: 'POST',
-                body: formData
-            });
-            const text = await response.text();
-            console.log('upload response text:', text);
-            let result;
-            try {
-                result = JSON.parse(text);
-            } catch (e) {
-                throw new Error('服务器返回内容不是合法JSON: ' + text);
-            }
-            if (result[0]?.src) {
-                const voiceUrl = result[0].src;
-                // 强制保证映射对象存在
-                if (!window._myVoiceBlobs || typeof window._myVoiceBlobs !== 'object') window._myVoiceBlobs = {};
-                if (window._lastVoiceBlobUrl) {
-                    window._myVoiceBlobs[voiceUrl] = window._lastVoiceBlobUrl;
-                }
-                const message = `[语音消息 ${formatTime(durationMs)}] ${voiceUrl}`;
-                const chatInput = document.querySelector('.ctrm-textarea textarea');
-                if (chatInput) {
-                    chatInput.value = message;
-                    document.querySelector('.ctrm-emit').click();
-                }
-            } else {
-                alert('语音上传失败');
-            }
-        } catch (error) {
-            console.error('上传错误:', error);
-            alert('语音上传失败，请检查网络\n' + (error && error.message ? error.message : '') + (error && error.stack ? '\n' + error.stack : ''));
-        } finally {
-            setTimeout(() => voiceAutoSendLock = false, 1000);
-        }
-    }
-})();
-// ... existing code ...
-
-function alignRecordingIndicator() {
-    const btn = document.getElementById('ctrm-voice-btn');
-    const indicator = document.querySelector('.ctrm-voice-recording-indicator');
-    if (btn && indicator && indicator.style.display !== 'none') {
-        const rect = btn.getBoundingClientRect();
-        indicator.style.position = 'fixed';
-        indicator.style.left = (rect.left + rect.width / 2) + 'px';
-        indicator.style.top = (rect.top - indicator.offsetHeight - 12) + 'px';
-        indicator.style.transform = 'translateX(-50%)';
-        indicator.style.zIndex = 9999;
-    }
-}
-// 在录音提示显示后立即对齐
-const origStartRecording = startRecording;
-startRecording = async function () {
-    await origStartRecording.apply(this, arguments);
-    setTimeout(alignRecordingIndicator, 10);
-};
-window.addEventListener('resize', alignRecordingIndicator);
-window.addEventListener('scroll', alignRecordingIndicator);
-
-// 语音气泡后台预加载，提升点击体验
-function preloadAllVoiceAudios() {
-    document.querySelectorAll('.ctrm-voice-bubble audio').forEach(audio => {
-        if (!audio._preloadTried) {
-            audio._preloadTried = true;
-            // 只要src有值就预加载
-            if (audio.src) {
-                audio.load();
-                // 监听加载失败
-                audio.onerror = function () {
-                    const bubble = audio.closest('.ctrm-voice-bubble');
-                    if (bubble && !bubble.querySelector('.ctrm-voice-error')) {
-                        const err = document.createElement('span');
-                        err.className = 'ctrm-voice-error';
-                        err.textContent = '语音加载失败';
-                        err.style.color = '#f56c6c';
-                        err.style.marginLeft = '8px';
-                        bubble.appendChild(err);
-                    }
-                };
-            }
-        }
-    });
-}
-// DOM更新后自动预加载
-setTimeout(preloadAllVoiceAudios, 300);
-// 也可在新消息插入后调用
-
